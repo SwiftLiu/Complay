@@ -26,9 +26,15 @@
     [super viewDidLoad];
     
     //获取记住的账号密码
-    NSArray *accountInfo = [CacheTool getAccountAndPsd];
-    userTextField.text = accountInfo.firstObject;
-    psdTextField.text = accountInfo.lastObject;
+    NSString *account = [CacheTool getAccountAndPsd].firstObject;
+    NSString *psd = [CacheTool getAccountAndPsd].lastObject;
+    userTextField.text = account;
+    psdTextField.text = psd;
+    if (!account || !account.length) {
+        [userTextField becomeFirstResponder];
+    }else if (!psd || !psd.length) {
+        [psdTextField becomeFirstResponder];
+    }
 }
 
 #pragma mark - 登录
@@ -36,7 +42,6 @@
     //收起键盘
     [userTextField resignFirstResponder];
     [psdTextField resignFirstResponder];
-    
     
     //验证
     NSString *account = userTextField.text;
