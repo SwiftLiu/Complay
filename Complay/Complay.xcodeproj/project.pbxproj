@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D129B5F1CC46DD5005584E8 /* BmobIMSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B571CC46DD5005584E8 /* BmobIMSDK.framework */; };
+		5D129B601CC46DD5005584E8 /* BmobMessageSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B591CC46DD5005584E8 /* BmobMessageSDK.framework */; };
+		5D129B611CC46DD5005584E8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D129B5B1CC46DD5005584E8 /* AlipaySDK.bundle */; };
+		5D129B691CC46FC4005584E8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B681CC46FC4005584E8 /* CoreLocation.framework */; };
+		5D129B6B1CC46FCD005584E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B6A1CC46FCD005584E8 /* Security.framework */; };
+		5D129B6D1CC46FD3005584E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B6C1CC46FD3005584E8 /* CoreGraphics.framework */; };
+		5D129B6F1CC46FE6005584E8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B6E1CC46FE6005584E8 /* MobileCoreServices.framework */; };
+		5D129B711CC46FF0005584E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B701CC46FF0005584E8 /* CFNetwork.framework */; };
+		5D129B731CC46FFA005584E8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B721CC46FFA005584E8 /* CoreTelephony.framework */; };
+		5D129B751CC4700F005584E8 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */; };
+		5D129B771CC4702C005584E8 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B761CC4702C005584E8 /* libicucore.A.tbd */; };
+		5D129B791CC470F7005584E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B781CC470F7005584E8 /* libsqlite3.tbd */; };
 		5D5124971CBF344C009114CC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5124961CBF344C009114CC /* UserModel.m */; };
 		5D57231A1CB73F5F0041643A /* LPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723191CB73F5F0041643A /* LPLine.m */; };
 		5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723291CB7A08B0041643A /* HomeViewController.m */; };
@@ -40,6 +52,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D129B551CC46DD5005584E8 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
+		5D129B571CC46DD5005584E8 /* BmobIMSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobIMSDK.framework; sourceTree = "<group>"; };
+		5D129B591CC46DD5005584E8 /* BmobMessageSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobMessageSDK.framework; sourceTree = "<group>"; };
+		5D129B5B1CC46DD5005584E8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		5D129B5C1CC46DD5005584E8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		5D129B5D1CC46DD5005584E8 /* BmobPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobPay.framework; sourceTree = "<group>"; };
+		5D129B681CC46FC4005584E8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5D129B6A1CC46FCD005584E8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5D129B6C1CC46FD3005584E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5D129B6E1CC46FE6005584E8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5D129B701CC46FF0005584E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5D129B721CC46FFA005584E8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		5D129B761CC4702C005584E8 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
+		5D129B781CC470F7005584E8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		5D5124951CBF344C009114CC /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		5D5124961CBF344C009114CC /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		5D5723181CB73F5F0041643A /* LPLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLine.h; sourceTree = "<group>"; };
@@ -100,12 +127,68 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D129B791CC470F7005584E8 /* libsqlite3.tbd in Frameworks */,
+				5D129B771CC4702C005584E8 /* libicucore.A.tbd in Frameworks */,
+				5D129B751CC4700F005584E8 /* libz.1.2.5.tbd in Frameworks */,
+				5D129B731CC46FFA005584E8 /* CoreTelephony.framework in Frameworks */,
+				5D129B711CC46FF0005584E8 /* CFNetwork.framework in Frameworks */,
+				5D129B6F1CC46FE6005584E8 /* MobileCoreServices.framework in Frameworks */,
+				5D129B6D1CC46FD3005584E8 /* CoreGraphics.framework in Frameworks */,
+				5D129B6B1CC46FCD005584E8 /* Security.framework in Frameworks */,
+				5D129B691CC46FC4005584E8 /* CoreLocation.framework in Frameworks */,
+				5D129B601CC46DD5005584E8 /* BmobMessageSDK.framework in Frameworks */,
+				5D129B5F1CC46DD5005584E8 /* BmobIMSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D129B531CC46DD5005584E8 /* BmobSDK */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B541CC46DD5005584E8 /* Bmob_SDK_iOS_v1.6.9 */,
+				5D129B561CC46DD5005584E8 /* BmobIMSDK_v2.0.1_Beta */,
+				5D129B581CC46DD5005584E8 /* BmobMessageSDK_iOS_v1.0.2 */,
+				5D129B5A1CC46DD5005584E8 /* BmobPay_V1.0.6 */,
+			);
+			path = BmobSDK;
+			sourceTree = "<group>";
+		};
+		5D129B541CC46DD5005584E8 /* Bmob_SDK_iOS_v1.6.9 */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B551CC46DD5005584E8 /* BmobSDK.framework */,
+			);
+			path = Bmob_SDK_iOS_v1.6.9;
+			sourceTree = "<group>";
+		};
+		5D129B561CC46DD5005584E8 /* BmobIMSDK_v2.0.1_Beta */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B571CC46DD5005584E8 /* BmobIMSDK.framework */,
+			);
+			path = BmobIMSDK_v2.0.1_Beta;
+			sourceTree = "<group>";
+		};
+		5D129B581CC46DD5005584E8 /* BmobMessageSDK_iOS_v1.0.2 */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B591CC46DD5005584E8 /* BmobMessageSDK.framework */,
+			);
+			path = BmobMessageSDK_iOS_v1.0.2;
+			sourceTree = "<group>";
+		};
+		5D129B5A1CC46DD5005584E8 /* BmobPay_V1.0.6 */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B5B1CC46DD5005584E8 /* AlipaySDK.bundle */,
+				5D129B5C1CC46DD5005584E8 /* AlipaySDK.framework */,
+				5D129B5D1CC46DD5005584E8 /* BmobPay.framework */,
+			);
+			path = BmobPay_V1.0.6;
+			sourceTree = "<group>";
+		};
 		5D51248A1CBF2AB6009114CC /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +243,7 @@
 		5D5723161CB73F5F0041643A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B531CC46DD5005584E8 /* BmobSDK */,
 				5D5723171CB73F5F0041643A /* LPLine */,
 			);
 			path = Utils;
@@ -260,6 +344,15 @@
 		5D60A16C1CB63F5B009B38F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B781CC470F7005584E8 /* libsqlite3.tbd */,
+				5D129B761CC4702C005584E8 /* libicucore.A.tbd */,
+				5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */,
+				5D129B721CC46FFA005584E8 /* CoreTelephony.framework */,
+				5D129B701CC46FF0005584E8 /* CFNetwork.framework */,
+				5D129B6E1CC46FE6005584E8 /* MobileCoreServices.framework */,
+				5D129B6C1CC46FD3005584E8 /* CoreGraphics.framework */,
+				5D129B6A1CC46FCD005584E8 /* Security.framework */,
+				5D129B681CC46FC4005584E8 /* CoreLocation.framework */,
 				5D60A17A1CB63F5B009B38F7 /* LaunchScreen.storyboard */,
 				5D60A17D1CB63F5B009B38F7 /* Info.plist */,
 				5D60A16D1CB63F5B009B38F7 /* main.m */,
@@ -439,6 +532,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D129B611CC46DD5005584E8 /* AlipaySDK.bundle in Resources */,
 				5D6107B71CBCC425002C35E5 /* LoadView.xib in Resources */,
 				5D60A17C1CB63F5B009B38F7 /* LaunchScreen.storyboard in Resources */,
 				5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */,
@@ -582,6 +676,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/Bmob_SDK_iOS_v1.6.9",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobIMSDK_v2.0.1_Beta",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobMessageSDK_iOS_v1.0.2",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobPay_V1.0.6",
+				);
 				INFOPLIST_FILE = Complay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -597,6 +698,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/Bmob_SDK_iOS_v1.6.9",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobIMSDK_v2.0.1_Beta",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobMessageSDK_iOS_v1.0.2",
+					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobPay_V1.0.6",
+				);
 				INFOPLIST_FILE = Complay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
