@@ -15,5 +15,7 @@
 + (void)rememberAccount:(NSString *)account psd:(NSString *)psd;
 ///获取缓存的账号密码
 + (NSArray<NSString*> *)getAccountAndPsd;
+///删除保存的密码
++ (void)deletePsd;
 
 @end

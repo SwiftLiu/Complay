@@ -8,6 +8,7 @@
 
 #import "NetTool.h"
 #import "UserModel.h"
+#import "CacheTool.h"
 
 #define T_USER @"_User"
 #define T_TASK @"Task"
@@ -26,8 +27,10 @@
             //登录成功回调
             if (succeed) succeed(user);
         }else{
-            if (failed) failed();
             NSLog(@"登录失败：%@", error);
+            if (error.code == 101) {
+                if (failed) failed(@"账号或密码错误");
+            }
         }
     }];
 }
@@ -36,6 +39,7 @@
 {
     [BmobUser logout];
     [[UserModel shareModel] initWithBmobUser:[BmobUser getCurrentUser]];
+    [CacheTool deletePsd];
 }
 
 @end

@@ -25,6 +25,12 @@
 		5D129B821CC4B424005584E8 /* BmobSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5D129B871CC4B8D6005584E8 /* CacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B861CC4B8D6005584E8 /* CacheTool.m */; };
 		5D129B8D1CC4C6CD005584E8 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */; };
+		5D129B961CC4D4F3005584E8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B901CC4D4F3005584E8 /* AlertView.m */; };
+		5D129B971CC4D4F3005584E8 /* LPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B921CC4D4F3005584E8 /* LPAlertView.m */; };
+		5D129B981CC4D4F3005584E8 /* LPAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D129B931CC4D4F3005584E8 /* LPAlertView.xib */; };
+		5D129B991CC4D4F3005584E8 /* LPCustomHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B951CC4D4F3005584E8 /* LPCustomHUD.m */; };
+		5D129BA01CC4D97B005584E8 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B9E1CC4D97B005584E8 /* SettingViewController.m */; };
+		5D129BA11CC4D97B005584E8 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D129B9F1CC4D97B005584E8 /* SettingViewController.xib */; };
 		5D5124971CBF344C009114CC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5124961CBF344C009114CC /* UserModel.m */; };
 		5D57231A1CB73F5F0041643A /* LPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723191CB73F5F0041643A /* LPLine.m */; };
 		5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723291CB7A08B0041643A /* HomeViewController.m */; };
@@ -90,6 +96,17 @@
 		5D129B861CC4B8D6005584E8 /* CacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTool.m; sourceTree = "<group>"; };
 		5D129B8B1CC4C6CD005584E8 /* CommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunctions.h; sourceTree = "<group>"; };
 		5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunctions.m; sourceTree = "<group>"; };
+		5D129B8F1CC4D4F3005584E8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		5D129B901CC4D4F3005584E8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		5D129B911CC4D4F3005584E8 /* LPAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAlertView.h; sourceTree = "<group>"; };
+		5D129B921CC4D4F3005584E8 /* LPAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAlertView.m; sourceTree = "<group>"; };
+		5D129B931CC4D4F3005584E8 /* LPAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPAlertView.xib; sourceTree = "<group>"; };
+		5D129B941CC4D4F3005584E8 /* LPCustomHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCustomHUD.h; sourceTree = "<group>"; };
+		5D129B951CC4D4F3005584E8 /* LPCustomHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCustomHUD.m; sourceTree = "<group>"; };
+		5D129B9A1CC4D6E9005584E8 /* CommonHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
+		5D129B9D1CC4D97B005584E8 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		5D129B9E1CC4D97B005584E8 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		5D129B9F1CC4D97B005584E8 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		5D5124951CBF344C009114CC /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		5D5124961CBF344C009114CC /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		5D5723181CB73F5F0041643A /* LPLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLine.h; sourceTree = "<group>"; };
@@ -223,6 +240,38 @@
 			path = CacheTool;
 			sourceTree = "<group>";
 		};
+		5D129B8E1CC4D4F3005584E8 /* LPAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B8F1CC4D4F3005584E8 /* AlertView.h */,
+				5D129B901CC4D4F3005584E8 /* AlertView.m */,
+				5D129B911CC4D4F3005584E8 /* LPAlertView.h */,
+				5D129B921CC4D4F3005584E8 /* LPAlertView.m */,
+				5D129B931CC4D4F3005584E8 /* LPAlertView.xib */,
+				5D129B941CC4D4F3005584E8 /* LPCustomHUD.h */,
+				5D129B951CC4D4F3005584E8 /* LPCustomHUD.m */,
+			);
+			path = LPAlertView;
+			sourceTree = "<group>";
+		};
+		5D129B9B1CC4D948005584E8 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B9C1CC4D962005584E8 /* SettingHome */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5D129B9C1CC4D962005584E8 /* SettingHome */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B9D1CC4D97B005584E8 /* SettingViewController.h */,
+				5D129B9E1CC4D97B005584E8 /* SettingViewController.m */,
+				5D129B9F1CC4D97B005584E8 /* SettingViewController.xib */,
+			);
+			path = SettingHome;
+			sourceTree = "<group>";
+		};
 		5D51248A1CBF2AB6009114CC /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +326,7 @@
 		5D5723161CB73F5F0041643A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B8E1CC4D4F3005584E8 /* LPAlertView */,
 				5D129B531CC46DD5005584E8 /* BmobSDK */,
 				5D5723171CB73F5F0041643A /* LPLine */,
 			);
@@ -331,6 +381,7 @@
 		5D5723261CB7A0550041643A /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B9B1CC4D948005584E8 /* Setting */,
 				5DDE1AA81CBBA9EB00D769B1 /* MainHome */,
 			);
 			path = Mine;
@@ -416,6 +467,7 @@
 		5D60A18B1CB6437F009B38F7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B9A1CC4D6E9005584E8 /* CommonHeaders.h */,
 				5D95FC8D1CBB51C3009EF97A /* CommonConstants.h */,
 				5D129B8B1CC4C6CD005584E8 /* CommonFunctions.h */,
 				5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */,
@@ -573,9 +625,11 @@
 				5D129B611CC46DD5005584E8 /* AlipaySDK.bundle in Resources */,
 				5D6107B71CBCC425002C35E5 /* LoadView.xib in Resources */,
 				5D60A17C1CB63F5B009B38F7 /* LaunchScreen.storyboard in Resources */,
+				5D129B981CC4D4F3005584E8 /* LPAlertView.xib in Resources */,
 				5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */,
 				5D57233C1CB7A0DE0041643A /* TaskViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
+				5D129BA11CC4D97B005584E8 /* SettingViewController.xib in Resources */,
 				5D57232C1CB7A08B0041643A /* HomeViewController.xib in Resources */,
 				5D5723311CB7A09C0041643A /* MsgViewController.xib in Resources */,
 				5D5723411CB7B0440041643A /* TestViewController.xib in Resources */,
@@ -595,10 +649,13 @@
 				5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */,
 				5D95FC961CBB93CD009EF97A /* HeadImgView.m in Sources */,
 				C6C236B51CBE945000919E31 /* AddView.m in Sources */,
+				5D129BA01CC4D97B005584E8 /* SettingViewController.m in Sources */,
 				5D60A18A1CB64372009B38F7 /* AppDelegate.m in Sources */,
+				5D129B991CC4D4F3005584E8 /* LPCustomHUD.m in Sources */,
 				5D6107B61CBCC425002C35E5 /* LoadView.m in Sources */,
 				5D60A16E1CB63F5B009B38F7 /* main.m in Sources */,
 				5D6107B51CBCC425002C35E5 /* BasicViewController.m in Sources */,
+				5D129B961CC4D4F3005584E8 /* AlertView.m in Sources */,
 				5D129B8D1CC4C6CD005584E8 /* CommonFunctions.m in Sources */,
 				5D5723401CB7B0440041643A /* TestViewController.m in Sources */,
 				5D129B871CC4B8D6005584E8 /* CacheTool.m in Sources */,
@@ -612,6 +669,7 @@
 				5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */,
 				5D5124971CBF344C009114CC /* UserModel.m in Sources */,
 				5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */,
+				5D129B971CC4D4F3005584E8 /* LPAlertView.m in Sources */,
 				5D5723301CB7A09C0041643A /* MsgViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

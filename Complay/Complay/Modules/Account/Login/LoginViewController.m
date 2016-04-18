@@ -7,8 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "NetTool.h"
-#import "CacheTool.h"
+#import "CommonHeaders.h"
 
 @interface LoginViewController ()
 {
@@ -34,20 +33,42 @@
 
 #pragma mark - 登录
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    //收起键盘
     [userTextField resignFirstResponder];
     [psdTextField resignFirstResponder];
     
+    
+    //验证
     NSString *account = userTextField.text;
+    if (!account || !account.length) {
+        [AlertView showWithTitle:@"请输入账号!" message:nil buttonTitle:TITLE_CONFIRM block:^{
+            [userTextField becomeFirstResponder];
+        }];
+        return;
+    }
     NSString *psd = psdTextField.text;
+    if (!psd || !psd.length) {
+        [AlertView showWithTitle:@"请输入密码!" message:nil buttonTitle:TITLE_CONFIRM block:^{
+            [psdTextField becomeFirstResponder];
+        }];
+        return;
+    }
+    
+    //开始登录
+    [LPCustomHUD startLoading];
     [NetTool loginWithAccount:account psd:psd succeed:^(BmobObject *object) {
+        [LPCustomHUD endLoading];
         //记住账号密码
         [CacheTool rememberAccount:account psd:psd];
         //登录成功后回调
         if (_loginBlock) _loginBlock();
         //返回上一页面
         [self dismissViewControllerAnimated:YES completion:nil];
-    } failed:^{
-        
+    } failed:^(NSString *msg) {
+        [LPCustomHUD endLoading];
+        [AlertView showWithTitle:@"警告" message:msg buttonTitle:TITLE_CONFIRM block:^{
+            [userTextField becomeFirstResponder];
+        }];
     }];
 }
 
@@ -59,6 +80,13 @@
 #pragma mark - 找回密码
 - (IBAction)findPsdButtonPressed:(UIButton *)sender {
     
+}
+
+#pragma mark - 退出登录
+- (IBAction)cancelLoginButtonPressed:(UIButton *)sender {
+    [userTextField resignFirstResponder];
+    [psdTextField resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark

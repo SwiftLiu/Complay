@@ -96,7 +96,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="registButtonPressed:" destination="-1" eventType="touchUpInside" id="vih-My-Kdq"/>
+                        <action selector="cancelLoginButtonPressed:" destination="-1" eventType="touchUpInside" id="wXm-xr-ueD"/>
                     </connections>
                 </button>
             </subviews>

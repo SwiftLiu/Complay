@@ -15,7 +15,7 @@
 {
     NSUserDefaults *ud =[NSUserDefaults standardUserDefaults];
     NSDictionary *dic = @{@"psd" : psd?:@"", @"account" : account?:@""};
-    [ud setObject:dic forKey:@"keepUserAndPsd"];//设置值
+    [ud setObject:dic forKey:@"keepUserAndPsd"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -25,6 +25,15 @@
     NSDictionary *dic = [ud objectForKey:@"keepUserAndPsd"];
     NSArray *result = @[dic[@"account"]?:@"", dic[@"psd"]?:@""];
     return result;
+}
+
++ (void)deletePsd
+{
+    NSUserDefaults *ud =[NSUserDefaults standardUserDefaults];
+    NSDictionary *dic = [ud objectForKey:@"keepUserAndPsd"];
+    NSDictionary *newDic = @{@"psd" : @"", @"account" : dic[@"account"]?:@""};
+    [ud setObject:newDic forKey:@"keepUserAndPsd"];//设置值
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - 

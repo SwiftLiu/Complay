@@ -49,7 +49,7 @@
     if (account && account.length && psd && psd.length) {
         [NetTool loginWithAccount:account psd:psd succeed:^(BmobObject *object) {
             NSLog(@"自动登录成功!");
-        } failed:^{
+        } failed:^(NSString *msg) {
             NSLog(@"自动登录失败!");
         }];
     }

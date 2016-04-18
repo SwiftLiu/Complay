@@ -9,9 +9,10 @@
 #import "MineViewController.h"
 #import "HeadImgView.h"
 #import "UserModel.h"
+#import "NetTool.h"
 #import "LoginViewController.h"
 #import "CommonFunctions.h"
-
+#import "SettingViewController.h"
 
 @implementation MineLabel
 
@@ -75,6 +76,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+    //移除通知(退出登录监听)
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UserDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,6 +88,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = NO;
+    
 }
 
 
@@ -136,7 +140,11 @@
 
 ///设置
 - (IBAction)settingButtonPressed:(UIButton *)sender {
-    
+    SettingViewController *sVC = [SettingViewController new];
+    sVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:sVC animated:YES];
+    //注册通知(退出登录监听)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:UserDidChangeNotification object:nil];
 }
 
 ///登录

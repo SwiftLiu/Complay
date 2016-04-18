@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <BmobSDK/BmobUser.h>
 
+///用户账户修改通知
+static NSString *UserDidChangeNotification = @"userDidChangeNotification";
+
 @interface UserModel : NSObject
 
 ///用户登录状态

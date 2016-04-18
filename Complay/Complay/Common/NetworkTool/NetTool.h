@@ -10,7 +10,7 @@
 #import <BmobSDK/Bmob.h>
 
 typedef void (^SucceedBlock)(BmobObject *object);
-typedef void (^FailedBlock)();
+typedef void (^FailedBlock)(NSString *msg);
 
 @interface NetTool : NSObject
 
