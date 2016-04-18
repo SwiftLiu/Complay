@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BmobSDK/BmobUser.h>
 
 @interface UserModel : NSObject
 
 ///用户登录状态
-@property (assign, nonatomic) BOOL isLogin;
+@property (assign, nonatomic, readonly) BOOL isLogin;
 
 ///用户Id
 @property (strong, nonatomic, readonly) NSString *userId;
-///即时聊天Id
-@property (strong, nonatomic, readonly) NSString *chatId;
+///Bmob Id
+@property (strong, nonatomic, readonly) NSString *bmobId;
 ///昵称
 @property (strong, nonatomic, readonly) NSString *nickname;
 ///等级
@@ -53,6 +54,6 @@
 ///单利
 + (UserModel *)shareModel;
 ///初始化所有数据
-- (void)initWithDic:(NSDictionary *)dic;
+- (void)initWithBmobUser:(BmobUser *)user;
 
 @end

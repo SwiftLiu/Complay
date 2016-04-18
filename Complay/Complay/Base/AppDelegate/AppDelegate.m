@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "MainTabBarController.h"
+#import <BmobSDK/Bmob.h>
+#import "UserModel.h"
+#import "CacheTool.h"
+#import "NetTool.h"
 
 @interface AppDelegate ()
 
@@ -18,10 +22,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //配置Bmob AppKey
+    [self initBmobKey];
+    
+    //自动登录
+    [self autoLogin];
+    
     //初始化window
     [self initWindow];
     
     return YES;
+}
+
+///配置Bmob AppKey
+- (void)initBmobKey
+{
+    [Bmob registerWithAppKey:@"0ca519009e02689ee294f290496521f3"];
+}
+
+///自动登录
+- (void)autoLogin
+{
+    [[UserModel shareModel] initWithBmobUser:[BmobUser getCurrentUser]];
+    NSString *account = [CacheTool getAccountAndPsd].firstObject;
+    NSString *psd = [CacheTool getAccountAndPsd].lastObject;
+    if (account && account.length && psd && psd.length) {
+        [NetTool loginWithAccount:account psd:psd succeed:^(BmobObject *object) {
+            NSLog(@"自动登录成功!");
+        } failed:^{
+            NSLog(@"自动登录失败!");
+        }];
+    }
 }
 
 ///初始化window
@@ -33,6 +64,7 @@
     _window.rootViewController = tabBC;
     [_window makeKeyAndVisible];
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

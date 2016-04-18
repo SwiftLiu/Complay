@@ -8,7 +8,7 @@
 
 #import "UserModel.h"
 
-@implementation UserModel
+@implementation UserModel : NSObject 
 
 #pragma mark - 单利
 + (UserModel *)shareModel
@@ -22,27 +22,27 @@
 }
 
 #pragma mark - 初始化数据
-- (void)initWithDic:(NSDictionary *)dic
+- (void)initWithBmobUser:(BmobUser *)user
 {
-    _userId    = [dic objectForKey:@"userId"];
-    _chatId    = [dic objectForKey:@"chatId"];
-    _nickname  = [dic objectForKey:@"nickname"];
-    _stage     = [[dic objectForKey:@"stage"] intValue];
-    _stageName = [dic objectForKey:@"stageName"];
+    _isLogin   = user ? YES : NO;
+    _userId    = [user objectForKey:@"userId"];
+    _bmobId    = user.objectId;
+    _nickname  = user.username;
+    _stage     = [[user objectForKey:@"stage"] intValue];
+    _stageName = [user objectForKey:@"stageName"];
     
-    _email    = [dic objectForKey:@"email"];
-    _phoneNum = [dic objectForKey:@"phoneNum"];
-    _weboName = [dic objectForKey:@"weboName"];
-    _link     = [dic objectForKey:@"link"];
-    _linkName = [dic objectForKey:@"linkName"];
+    _email    = user.email;
+    _phoneNum = user.mobilePhoneNumber;
+    _weboName = [user objectForKey:@"weboName"];
+    _link     = [user objectForKey:@"link"];
+    _linkName = [user objectForKey:@"linkName"];
     
-    _fansCount = [[dic objectForKey:@"fansCount"] intValue];
-    _careCount = [[dic objectForKey:@"careCount"] intValue];
-    
-    _newSendTaskCount = [[dic objectForKey:@"newSendTaskCount"] intValue];
-    _newGetTaskCount  = [[dic objectForKey:@"newGetTaskCount"] intValue];
-    _oldSendTaskCount = [[dic objectForKey:@"oldSendTaskCount"] intValue];
-    _oldGetTaskCount  = [[dic objectForKey:@"oldGetTaskCount"] intValue];
+    _fansCount = [[user objectForKey:@"fansCount"] intValue];
+    _careCount = [[user objectForKey:@"careCount"] intValue];
+    _newSendTaskCount = [[user objectForKey:@"newSendTaskCount"] intValue];
+    _newGetTaskCount  = [[user objectForKey:@"newGetTaskCount"] intValue];
+    _oldSendTaskCount = [[user objectForKey:@"oldSendTaskCount"] intValue];
+    _oldGetTaskCount  = [[user objectForKey:@"oldGetTaskCount"] intValue];
 }
 
 

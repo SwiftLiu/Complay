@@ -17,8 +17,14 @@
 		5D129B711CC46FF0005584E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B701CC46FF0005584E8 /* CFNetwork.framework */; };
 		5D129B731CC46FFA005584E8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B721CC46FFA005584E8 /* CoreTelephony.framework */; };
 		5D129B751CC4700F005584E8 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */; };
-		5D129B771CC4702C005584E8 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B761CC4702C005584E8 /* libicucore.A.tbd */; };
 		5D129B791CC470F7005584E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B781CC470F7005584E8 /* libsqlite3.tbd */; };
+		5D129B7A1CC4B1E3005584E8 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF697171CC07B2B001C9921 /* NetTool.m */; };
+		5D129B7C1CC4B3AD005584E8 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B7B1CC4B3AD005584E8 /* libicucore.tbd */; };
+		5D129B801CC4B41B005584E8 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */; };
+		5D129B811CC4B424005584E8 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */; };
+		5D129B821CC4B424005584E8 /* BmobSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5D129B871CC4B8D6005584E8 /* CacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B861CC4B8D6005584E8 /* CacheTool.m */; };
+		5D129B8D1CC4C6CD005584E8 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */; };
 		5D5124971CBF344C009114CC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5124961CBF344C009114CC /* UserModel.m */; };
 		5D57231A1CB73F5F0041643A /* LPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723191CB73F5F0041643A /* LPLine.m */; };
 		5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723291CB7A08B0041643A /* HomeViewController.m */; };
@@ -43,7 +49,6 @@
 		5D95FC961CBB93CD009EF97A /* HeadImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D95FC951CBB93CD009EF97A /* HeadImgView.m */; };
 		5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */; };
 		5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDE1AAB1CBBA9EB00D769B1 /* MineViewController.xib */; };
-		5DF697181CC07B2B001C9921 /* NetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF697171CC07B2B001C9921 /* NetworkTool.m */; };
 		5DF6971B1CC0BCDD001C9921 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF6971A1CC0BCDD001C9921 /* BasicButton.m */; };
 		5DF697231CC0D8C0001C9921 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF697211CC0D8C0001C9921 /* LoginViewController.m */; };
 		5DF697251CC0D8C7001C9921 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF697241CC0D8C7001C9921 /* LoginViewController.xib */; };
@@ -51,8 +56,21 @@
 		C6C236B51CBE945000919E31 /* AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C236B41CBE945000919E31 /* AddView.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5D129B831CC4B424005584E8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5D129B821CC4B424005584E8 /* BmobSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		5D129B551CC46DD5005584E8 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		5D129B571CC46DD5005584E8 /* BmobIMSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobIMSDK.framework; sourceTree = "<group>"; };
 		5D129B591CC46DD5005584E8 /* BmobMessageSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobMessageSDK.framework; sourceTree = "<group>"; };
 		5D129B5B1CC46DD5005584E8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -65,8 +83,13 @@
 		5D129B701CC46FF0005584E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5D129B721CC46FFA005584E8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		5D129B761CC4702C005584E8 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		5D129B781CC470F7005584E8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		5D129B7B1CC4B3AD005584E8 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
+		5D129B851CC4B8D6005584E8 /* CacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTool.h; sourceTree = "<group>"; };
+		5D129B861CC4B8D6005584E8 /* CacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTool.m; sourceTree = "<group>"; };
+		5D129B8B1CC4C6CD005584E8 /* CommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunctions.h; sourceTree = "<group>"; };
+		5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunctions.m; sourceTree = "<group>"; };
 		5D5124951CBF344C009114CC /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		5D5124961CBF344C009114CC /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		5D5723181CB73F5F0041643A /* LPLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLine.h; sourceTree = "<group>"; };
@@ -109,8 +132,8 @@
 		5DDE1AA91CBBA9EB00D769B1 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		5DDE1AAB1CBBA9EB00D769B1 /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
-		5DF697161CC07B2B001C9921 /* NetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTool.h; sourceTree = "<group>"; };
-		5DF697171CC07B2B001C9921 /* NetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTool.m; sourceTree = "<group>"; };
+		5DF697161CC07B2B001C9921 /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
+		5DF697171CC07B2B001C9921 /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		5DF697191CC0BCDD001C9921 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
 		5DF6971A1CC0BCDD001C9921 /* BasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicButton.m; sourceTree = "<group>"; };
 		5DF697211CC0D8C0001C9921 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -127,13 +150,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D129B7C1CC4B3AD005584E8 /* libicucore.tbd in Frameworks */,
 				5D129B791CC470F7005584E8 /* libsqlite3.tbd in Frameworks */,
-				5D129B771CC4702C005584E8 /* libicucore.A.tbd in Frameworks */,
 				5D129B751CC4700F005584E8 /* libz.1.2.5.tbd in Frameworks */,
 				5D129B731CC46FFA005584E8 /* CoreTelephony.framework in Frameworks */,
 				5D129B711CC46FF0005584E8 /* CFNetwork.framework in Frameworks */,
 				5D129B6F1CC46FE6005584E8 /* MobileCoreServices.framework in Frameworks */,
+				5D129B811CC4B424005584E8 /* BmobSDK.framework in Frameworks */,
 				5D129B6D1CC46FD3005584E8 /* CoreGraphics.framework in Frameworks */,
+				5D129B801CC4B41B005584E8 /* BmobSDK.framework in Frameworks */,
 				5D129B6B1CC46FCD005584E8 /* Security.framework in Frameworks */,
 				5D129B691CC46FC4005584E8 /* CoreLocation.framework in Frameworks */,
 				5D129B601CC46DD5005584E8 /* BmobMessageSDK.framework in Frameworks */,
@@ -158,7 +183,7 @@
 		5D129B541CC46DD5005584E8 /* Bmob_SDK_iOS_v1.6.9 */ = {
 			isa = PBXGroup;
 			children = (
-				5D129B551CC46DD5005584E8 /* BmobSDK.framework */,
+				5D129B7F1CC4B41B005584E8 /* BmobSDK.framework */,
 			);
 			path = Bmob_SDK_iOS_v1.6.9;
 			sourceTree = "<group>";
@@ -187,6 +212,15 @@
 				5D129B5D1CC46DD5005584E8 /* BmobPay.framework */,
 			);
 			path = BmobPay_V1.0.6;
+			sourceTree = "<group>";
+		};
+		5D129B841CC4B8C1005584E8 /* CacheTool */ = {
+			isa = PBXGroup;
+			children = (
+				5D129B851CC4B8D6005584E8 /* CacheTool.h */,
+				5D129B861CC4B8D6005584E8 /* CacheTool.m */,
+			);
+			path = CacheTool;
 			sourceTree = "<group>";
 		};
 		5D51248A1CBF2AB6009114CC /* Account */ = {
@@ -344,8 +378,8 @@
 		5D60A16C1CB63F5B009B38F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D129B7B1CC4B3AD005584E8 /* libicucore.tbd */,
 				5D129B781CC470F7005584E8 /* libsqlite3.tbd */,
-				5D129B761CC4702C005584E8 /* libicucore.A.tbd */,
 				5D129B741CC4700F005584E8 /* libz.1.2.5.tbd */,
 				5D129B721CC46FFA005584E8 /* CoreTelephony.framework */,
 				5D129B701CC46FF0005584E8 /* CFNetwork.framework */,
@@ -383,6 +417,9 @@
 			isa = PBXGroup;
 			children = (
 				5D95FC8D1CBB51C3009EF97A /* CommonConstants.h */,
+				5D129B8B1CC4C6CD005584E8 /* CommonFunctions.h */,
+				5D129B8C1CC4C6CD005584E8 /* CommonFunctions.m */,
+				5D129B841CC4B8C1005584E8 /* CacheTool */,
 				5D5124941CBF3418009114CC /* Models */,
 				5DF697151CC07B0E001C9921 /* NetworkTool */,
 			);
@@ -450,8 +487,8 @@
 		5DF697151CC07B0E001C9921 /* NetworkTool */ = {
 			isa = PBXGroup;
 			children = (
-				5DF697161CC07B2B001C9921 /* NetworkTool.h */,
-				5DF697171CC07B2B001C9921 /* NetworkTool.m */,
+				5DF697161CC07B2B001C9921 /* NetTool.h */,
+				5DF697171CC07B2B001C9921 /* NetTool.m */,
 			);
 			path = NetworkTool;
 			sourceTree = "<group>";
@@ -484,6 +521,7 @@
 				5D60A1651CB63F5A009B38F7 /* Sources */,
 				5D60A1661CB63F5A009B38F7 /* Frameworks */,
 				5D60A1671CB63F5A009B38F7 /* Resources */,
+				5D129B831CC4B424005584E8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -552,7 +590,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DF697181CC07B2B001C9921 /* NetworkTool.m in Sources */,
 				5D95FC931CBB9396009EF97A /* BasicImgView.m in Sources */,
 				C66374D91CBD2EFC00447A39 /* RefreshTableView.m in Sources */,
 				5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */,
@@ -562,11 +599,14 @@
 				5D6107B61CBCC425002C35E5 /* LoadView.m in Sources */,
 				5D60A16E1CB63F5B009B38F7 /* main.m in Sources */,
 				5D6107B51CBCC425002C35E5 /* BasicViewController.m in Sources */,
+				5D129B8D1CC4C6CD005584E8 /* CommonFunctions.m in Sources */,
 				5D5723401CB7B0440041643A /* TestViewController.m in Sources */,
+				5D129B871CC4B8D6005584E8 /* CacheTool.m in Sources */,
 				5DF697231CC0D8C0001C9921 /* LoginViewController.m in Sources */,
 				5D6107B81CBCC425002C35E5 /* MainTabBar.m in Sources */,
 				5D57233B1CB7A0DE0041643A /* TaskViewController.m in Sources */,
 				5D57231A1CB73F5F0041643A /* LPLine.m in Sources */,
+				5D129B7A1CC4B1E3005584E8 /* NetTool.m in Sources */,
 				5DF6971B1CC0BCDD001C9921 /* BasicButton.m in Sources */,
 				5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */,
 				5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */,
@@ -684,8 +724,9 @@
 					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobPay_V1.0.6",
 				);
 				INFOPLIST_FILE = Complay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = iOSLiu.Complay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -706,8 +747,9 @@
 					"$(PROJECT_DIR)/Complay/Utils/BmobSDK/BmobPay_V1.0.6",
 				);
 				INFOPLIST_FILE = Complay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = iOSLiu.Complay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

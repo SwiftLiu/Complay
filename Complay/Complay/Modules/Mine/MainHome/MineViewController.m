@@ -10,6 +10,7 @@
 #import "HeadImgView.h"
 #import "UserModel.h"
 #import "LoginViewController.h"
+#import "CommonFunctions.h"
 
 
 @implementation MineLabel
@@ -107,13 +108,11 @@
         careFansView.hidden = YES;
     }
     
-    careCountLabel.text = [NSString stringWithFormat:@"%lu", user.careCount];
-    fansCountLabel.text = [NSString stringWithFormat:@"%lu", user.fansCount];
+    careCountLabel.text = StringFromNumber(user.careCount);
+    fansCountLabel.text = StringFromNumber(user.fansCount);
     
-    NSInteger newTaskNum = user.newSendTaskCount + user.newGetTaskCount;
-    newTaskNumLabel.text = [NSString stringWithFormat:@"%lu", newTaskNum];
-    NSInteger oldTaskNum = user.oldSendTaskCount + user.oldGetTaskCount;
-    oldTaskNumLabel.text = [NSString stringWithFormat:@"%lu", oldTaskNum];
+    newTaskNumLabel.text = StringFromNumber(user.newSendTaskCount + user.newGetTaskCount);
+    oldTaskNumLabel.text = StringFromNumber(user.oldSendTaskCount + user.oldGetTaskCount);
     
 }
 
