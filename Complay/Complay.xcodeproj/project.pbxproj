@@ -51,6 +51,10 @@
 		5D6107B81CBCC425002C35E5 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B01CBCC425002C35E5 /* MainTabBar.m */; };
 		5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B21CBCC425002C35E5 /* MainTabBarController.m */; };
 		5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B41CBCC425002C35E5 /* TabBarItem.m */; };
+		5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */; };
+		5D8AEE841CC6314A00E7F9A4 /* NewTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */; };
+		5D8AEE881CC6315E00E7F9A4 /* OldTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE861CC6315E00E7F9A4 /* OldTasksViewController.m */; };
+		5D8AEE891CC6315E00E7F9A4 /* OldTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8AEE871CC6315E00E7F9A4 /* OldTasksViewController.xib */; };
 		5D95FC931CBB9396009EF97A /* BasicImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D95FC921CBB9396009EF97A /* BasicImgView.m */; };
 		5D95FC961CBB93CD009EF97A /* HeadImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D95FC951CBB93CD009EF97A /* HeadImgView.m */; };
 		5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */; };
@@ -141,6 +145,12 @@
 		5D6107B21CBCC425002C35E5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		5D6107B31CBCC425002C35E5 /* TabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarItem.h; sourceTree = "<group>"; };
 		5D6107B41CBCC425002C35E5 /* TabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarItem.m; sourceTree = "<group>"; };
+		5D8AEE801CC6314A00E7F9A4 /* NewTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTasksViewController.h; sourceTree = "<group>"; };
+		5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTasksViewController.m; sourceTree = "<group>"; };
+		5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTasksViewController.xib; sourceTree = "<group>"; };
+		5D8AEE851CC6315E00E7F9A4 /* OldTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldTasksViewController.h; sourceTree = "<group>"; };
+		5D8AEE861CC6315E00E7F9A4 /* OldTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldTasksViewController.m; sourceTree = "<group>"; };
+		5D8AEE871CC6315E00E7F9A4 /* OldTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OldTasksViewController.xib; sourceTree = "<group>"; };
 		5D95FC8D1CBB51C3009EF97A /* CommonConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonConstants.h; sourceTree = "<group>"; };
 		5D95FC911CBB9396009EF97A /* BasicImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicImgView.h; sourceTree = "<group>"; };
 		5D95FC921CBB9396009EF97A /* BasicImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicImgView.m; sourceTree = "<group>"; };
@@ -383,6 +393,8 @@
 			children = (
 				5D129B9B1CC4D948005584E8 /* Setting */,
 				5DDE1AA81CBBA9EB00D769B1 /* MainHome */,
+				5D8AEE7E1CC6313500E7F9A4 /* NewTask */,
+				5D8AEE7F1CC6313500E7F9A4 /* OldTask */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -526,6 +538,26 @@
 			path = MainTabBarController;
 			sourceTree = "<group>";
 		};
+		5D8AEE7E1CC6313500E7F9A4 /* NewTask */ = {
+			isa = PBXGroup;
+			children = (
+				5D8AEE801CC6314A00E7F9A4 /* NewTasksViewController.h */,
+				5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */,
+				5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */,
+			);
+			path = NewTask;
+			sourceTree = "<group>";
+		};
+		5D8AEE7F1CC6313500E7F9A4 /* OldTask */ = {
+			isa = PBXGroup;
+			children = (
+				5D8AEE851CC6315E00E7F9A4 /* OldTasksViewController.h */,
+				5D8AEE861CC6315E00E7F9A4 /* OldTasksViewController.m */,
+				5D8AEE871CC6315E00E7F9A4 /* OldTasksViewController.xib */,
+			);
+			path = OldTask;
+			sourceTree = "<group>";
+		};
 		5DDE1AA81CBBA9EB00D769B1 /* MainHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,10 +654,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8AEE841CC6314A00E7F9A4 /* NewTasksViewController.xib in Resources */,
 				5D129B611CC46DD5005584E8 /* AlipaySDK.bundle in Resources */,
 				5D6107B71CBCC425002C35E5 /* LoadView.xib in Resources */,
 				5D60A17C1CB63F5B009B38F7 /* LaunchScreen.storyboard in Resources */,
 				5D129B981CC4D4F3005584E8 /* LPAlertView.xib in Resources */,
+				5D8AEE891CC6315E00E7F9A4 /* OldTasksViewController.xib in Resources */,
 				5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */,
 				5D57233C1CB7A0DE0041643A /* TaskViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
@@ -649,6 +683,7 @@
 				5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */,
 				5D95FC961CBB93CD009EF97A /* HeadImgView.m in Sources */,
 				C6C236B51CBE945000919E31 /* AddView.m in Sources */,
+				5D8AEE881CC6315E00E7F9A4 /* OldTasksViewController.m in Sources */,
 				5D129BA01CC4D97B005584E8 /* SettingViewController.m in Sources */,
 				5D60A18A1CB64372009B38F7 /* AppDelegate.m in Sources */,
 				5D129B991CC4D4F3005584E8 /* LPCustomHUD.m in Sources */,
@@ -666,6 +701,7 @@
 				5D129B7A1CC4B1E3005584E8 /* NetTool.m in Sources */,
 				5DF6971B1CC0BCDD001C9921 /* BasicButton.m in Sources */,
 				5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */,
+				5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */,
 				5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */,
 				5D5124971CBF344C009114CC /* UserModel.m in Sources */,
 				5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */,

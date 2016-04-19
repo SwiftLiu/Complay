@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <BmobSDK/Bmob.h>
 
-///用户账户修改通知
-static NSString *UserDidChangeNotification = @"userDidChangeNotification";
-
 @interface UserModel : NSObject
 
 ///用户登录状态
@@ -25,6 +22,8 @@ static NSString *UserDidChangeNotification = @"userDidChangeNotification";
 @property (strong, nonatomic, readonly) NSString *nickname;
 ///头像Url
 @property (strong, nonatomic) NSString *headUrl;
+///是否需要下载新头像
+@property (assign, nonatomic) BOOL newHead;
 ///等级
 @property (assign, nonatomic, readonly) int stage;
 ///等级名称
@@ -56,9 +55,12 @@ static NSString *UserDidChangeNotification = @"userDidChangeNotification";
 @property (assign, nonatomic, readonly) NSInteger oldGetTaskCount;
 
 
-///单利
-+ (UserModel *)shareModel;
+///单利（当前用户）
++ (UserModel *)currentUser;
 ///初始化所有数据
 - (void)initWithBmobUser:(BmobUser *)user;
+
+///登录后才处理
++ (void)dealBlock:(void(^)())block;
 
 @end

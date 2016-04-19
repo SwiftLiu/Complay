@@ -43,7 +43,7 @@
 ///自动登录
 - (void)autoLogin
 {
-    [[UserModel shareModel] initWithBmobUser:[BmobUser getCurrentUser]];
+    [[UserModel currentUser] initWithBmobUser:[BmobUser getCurrentUser]];
     NSString *account = [CacheTool getAccountAndPsd].firstObject;
     NSString *psd = [CacheTool getAccountAndPsd].lastObject;
     if (account && account.length && psd && psd.length) {

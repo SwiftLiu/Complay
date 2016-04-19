@@ -18,4 +18,6 @@
 #import "NetTool.h"
 #import "CacheTool.h"
 
+#import "UserModel.h"
+
 #endif /* CommonHeaders_h */

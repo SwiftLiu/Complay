@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "UserModel.h"
 #import "NetTool.h"
+#import "MineViewController.h"
 
 @interface SettingViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -17,6 +18,11 @@
 @end
 
 @implementation SettingViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,10 +35,8 @@
 - (void)logout
 {
     [NetTool logout];
+    [MineViewController updateUserBaseInfo];
     [self.navigationController popToRootViewControllerAnimated:YES];
-    //发送通知(退出登录)
-    NSNotification *noti = [NSNotification notificationWithName:UserDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:noti];
 }
 
 #pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
@@ -56,7 +60,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == titles.count-1 && [UserModel shareModel].isLogin) {
+    if (section == titles.count-1 && [UserModel currentUser].isLogin) {
         UIButton *logoutBtn = [UIButton new];
         logoutBtn.frame = CGRectMake(20, 15, tableView.bounds.size.width-40, 40);
         logoutBtn.clipsToBounds = YES;
@@ -65,7 +69,7 @@
         logoutBtn.alpha = 0.9;
         [logoutBtn setTintColor:[UIColor whiteColor]];
         logoutBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        NSString *title = [NSString stringWithFormat:@"退出登录(%@)", [UserModel shareModel].nickname];
+        NSString *title = [NSString stringWithFormat:@"退出登录(%@)", [UserModel currentUser].nickname];
         [logoutBtn setTitle:title forState:UIControlStateNormal];
         [logoutBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         UIView *logoutView = [UIView new];
@@ -77,7 +81,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:{
+                
+            }
+                break;
+            case 1:{
+                [UserModel dealBlock:^{
+                    
+                }];
+            }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

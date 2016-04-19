@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserModel.h"
 #import <BmobSDK/Bmob.h>
 
 typedef void (^SucceedBlock)(BmobObject *object);
@@ -23,8 +24,8 @@ typedef void (^FailedBlock)(NSString *msg);
 
 #pragma mark - 资源文件管理
 ///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
-- (void)getHeadImgOfUserId:(NSString *)userId complete:(void(^)(UIImage *img))block;
++ (void)getHeadImgOfUser:(UserModel *)user complete:(void(^)(UIImage *img))block;
 ///上传并缓存用户头像
-- (void)uploadHeadImg:(UIImage *)img complete:(void (^)(NSString *headUrl))block;
++ (void)uploadHeadData:(NSData *)headData complete:(void (^)(BOOL isSucceed))block;
 
 @end

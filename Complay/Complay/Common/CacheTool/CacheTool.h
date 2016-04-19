@@ -21,7 +21,7 @@
 
 #pragma mark - 资源文件
 ///缓存头像（覆盖）
-+ (void)cacheHeadImg:(UIImage *)img userId:(NSString *)userId;
++ (void)cacheHeadData:(NSData *)headData userId:(NSString *)userId;
 ///沙盒里读取头像
 + (UIImage *)getLocalHeadImgOfUserId:(NSString *)userId;
 

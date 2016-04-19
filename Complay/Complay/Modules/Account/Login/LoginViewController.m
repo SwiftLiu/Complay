@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "MineViewController.h"
 #import "CommonHeaders.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -66,6 +67,8 @@
         [LPCustomHUD endLoading];
         //记住账号密码
         [CacheTool rememberAccount:account psd:psd];
+        //更新个人中心
+        [MineViewController updateUserBaseInfo];
         //登录成功后回调
         if (_loginBlock) _loginBlock();
         //返回上一页面

@@ -7,11 +7,12 @@
 //
 
 #import "UserModel.h"
+#import "LoginViewController.h"
 
 @implementation UserModel : NSObject 
 
 #pragma mark - 单利
-+ (UserModel *)shareModel
++ (UserModel *)currentUser
 {
     static UserModel *model = nil;
     static dispatch_once_t onceToken;
@@ -25,7 +26,7 @@
 - (void)initWithBmobUser:(BmobUser *)user
 {
     _isLogin   = user ? YES : NO;
-    _userId    = [user objectForKey:@"userId"];
+    _userId    = [NSString stringWithFormat:@"%d", [[user objectForKey:@"userId"] intValue]];
     _bmobId    = user.objectId;
     _nickname  = user.username;
     _headUrl   = ((BmobFile *)[user objectForKey:@"headImg"]).url;
@@ -46,5 +47,18 @@
     _oldGetTaskCount  = [[user objectForKey:@"oldGetTaskCount"] intValue];
 }
 
+
+#pragma mark - 登录后才处理
++ (void)dealBlock:(void (^)())block
+{
+    if ([UserModel currentUser].isLogin) {
+        if (block) block();
+    }else {
+        LoginViewController *lVC = [LoginViewController new];
+        [lVC setLoginBlock:block];
+        UIViewController *vc = [[UIApplication sharedApplication].delegate window].rootViewController;
+        [vc presentViewController:lVC animated:YES completion:nil];
+    }
+}
 
 @end

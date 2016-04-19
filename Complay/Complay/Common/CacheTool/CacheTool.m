@@ -37,16 +37,32 @@
 }
 
 #pragma mark -#pragma mark - 资源文件
-///缓存头像（覆盖）
-+ (void)cacheHeadImg:(UIImage *)img userId:(NSString *)userId;
+///头像缓存路径
++ (NSString *)pathOfUserId:(NSString *)userId
 {
-    
+    NSString *dirPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/userHeads"];
+    NSFileManager *fileMager = [NSFileManager defaultManager];
+    if (![fileMager fileExistsAtPath:dirPath]) {
+        [fileMager createDirectoryAtPath:dirPath attributes:@{}];
+    }
+    NSString *path = [dirPath stringByAppendingFormat:@"/%@.png", userId];
+    return path;
+}
+
+///缓存头像（覆盖）
++ (void)cacheHeadData:(NSData *)headData userId:(NSString *)userId
+{
+    NSString *path = [CacheTool pathOfUserId:userId];
+    [headData writeToFile:path atomically:YES];
 }
 
 ///沙盒里读取头像
 + (UIImage *)getLocalHeadImgOfUserId:(NSString *)userId
 {
-    return [UIImage new];
+    NSString *path = [CacheTool pathOfUserId:userId];
+    NSData *imgData = [[NSFileManager defaultManager] contentsAtPath:path];
+    UIImage *img = [UIImage imageWithData:imgData];
+    return img;
 }
 
 @end

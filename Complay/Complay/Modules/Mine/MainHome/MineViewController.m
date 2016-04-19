@@ -8,11 +8,12 @@
 
 #import "MineViewController.h"
 #import "HeadImgView.h"
-#import "UserModel.h"
-#import "NetTool.h"
+#import "CommonHeaders.h"
 #import "LoginViewController.h"
 #import "CommonFunctions.h"
 #import "SettingViewController.h"
+#import "OldTasksViewController.h"
+#import "NewTasksViewController.h"
 
 @implementation MineLabel
 
@@ -40,7 +41,7 @@
 
 @end
 
-@interface MineViewController ()<UIScrollViewDelegate, UIActionSheetDelegate>
+@interface MineViewController ()<UIScrollViewDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     __weak IBOutlet UIScrollView *scroll;
     __weak IBOutlet UIView *navBar;
@@ -76,19 +77,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
-    //移除通知(退出登录监听)
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UserDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     scroll.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height+100);
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = NO;
-    
 }
 
 
@@ -99,9 +92,11 @@
     scroll.showsVerticalScrollIndicator = NO;
     scroll.showsHorizontalScrollIndicator = NO;
     
+    headImgView.layer.borderColor = [UIColor whiteColor].CGColor;
+    headImgView.layer.borderWidth = 1;
     //更换头像
     [headImgView setClickBlock:^{
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从相册选择", nil];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", @"拍照", nil];
         [sheet showInView:self.view];
     }];
 }
@@ -109,13 +104,15 @@
 #pragma mark - 刷新个人中心数据
 - (void)updateInfo
 {
-    UserModel *user = [UserModel shareModel];
+    UserModel *user = [UserModel currentUser];
     if (user.isLogin) {
         loginButton.hidden = YES;
         careFansView.hidden = NO;
+        headImgView.userInteractionEnabled = YES;
     }else{
         loginButton.hidden = NO;
         careFansView.hidden = YES;
+        headImgView.userInteractionEnabled = NO;
     }
     
     careCountLabel.text = StringFromNumber(user.careCount);
@@ -124,6 +121,19 @@
     newTaskNumLabel.text = StringFromNumber(user.newSendTaskCount + user.newGetTaskCount);
     oldTaskNumLabel.text = StringFromNumber(user.oldSendTaskCount + user.oldGetTaskCount);
     
+    //头像
+    [NetTool getHeadImgOfUser:user complete:^(UIImage *img) {
+        headImgView.image = img;
+    }];
+}
+
+
++ (void)updateUserBaseInfo
+{
+    __weak UIViewController *vc = [[UIApplication sharedApplication].delegate window].rootViewController;
+    __weak UINavigationController *nc = ((UITabBarController *)vc).viewControllers.lastObject;
+    __weak MineViewController *mineVC = nc.viewControllers.firstObject;
+    [mineVC updateInfo];
 }
 
 #pragma mark - 获取数据
@@ -136,12 +146,20 @@
 #pragma mark - 事件
 ///我的任务
 - (IBAction)newTaskButtonPressed:(UIButton *)sender {
-    
+    [UserModel dealBlock:^{
+        NewTasksViewController *nVC = [NewTasksViewController new];
+        nVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:nVC animated:YES];
+    }];
 }
 
 ///任务历史
 - (IBAction)oldTaskButtonPressed:(UIButton *)sender {
-    
+    [UserModel dealBlock:^{
+        OldTasksViewController *oVC = [OldTasksViewController new];
+        oVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:oVC animated:YES];
+    }];
 }
 
 ///设置
@@ -149,18 +167,28 @@
     SettingViewController *sVC = [SettingViewController new];
     sVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sVC animated:YES];
-    //注册通知(退出登录监听)
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:UserDidChangeNotification object:nil];
 }
 
 ///登录
 - (IBAction)loginButtonPressed:(UIButton *)sender {
-    LoginViewController *lVC = [LoginViewController new];
-    [lVC setLoginBlock:^{ [self updateInfo]; }];
-    lVC.hidesBottomBarWhenPushed = YES;
-    [self presentViewController:lVC animated:YES completion:nil];
+    [UserModel dealBlock:nil];
 }
 
+#pragma mark - 上传并缓存头像
+- (void)uploadHeadData:(NSData *)headData
+{
+    [LPCustomHUD startLoading];
+    [NetTool uploadHeadData:headData complete:^(BOOL isSucceed) {
+        [LPCustomHUD endLoading];
+        if (isSucceed) {
+            headImgView.image = [UIImage imageWithData:headData];
+        }else{
+            [AlertView showWithTitle:@"提示" message:@"上传失败" leftTitle:@"放弃此图" rightTitle:@"重新上传" leftBlock:nil rightBlock:^{
+                [self uploadHeadData:headData];
+            }];
+        }
+    }];
+}
 
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -175,14 +203,26 @@
 #pragma mark - <UIActionSheetDelegate>
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    //拍照
-    if (buttonIndex == actionSheet.firstOtherButtonIndex) {
-        
+    if (buttonIndex == 0 || buttonIndex == 1) {
+        UIImagePickerController *iPC = [UIImagePickerController new];
+        iPC.sourceType = buttonIndex;
+        iPC.allowsEditing = YES;
+        iPC.delegate = self;
+        [self presentViewController:iPC animated:YES completion:nil];
     }
-    //从相册选
-    else if (buttonIndex == 1) {
-        
-    }
+}
+
+#pragma mark - <UIImagePickerControllerDelegate>
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self uploadHeadData:UIImagePNGRepresentation(img)];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

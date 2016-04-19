@@ -14,5 +14,9 @@
 
 @interface MineViewController : BasicViewController
 
+
+///刷新个人中心数据
++ (void)updateUserBaseInfo;
+
 @end
 
