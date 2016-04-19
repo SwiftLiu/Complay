@@ -10,4 +10,7 @@
 
 @interface HeadImgView : UIImageView
 
+///点击事件
+@property (strong, nonatomic) void (^clickBlock)();
+
 @end

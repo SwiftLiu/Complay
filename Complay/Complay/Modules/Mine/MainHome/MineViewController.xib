@@ -266,7 +266,7 @@
                 <constraint firstItem="doE-Od-ghZ" firstAttribute="top" secondItem="aRz-sD-dKX" secondAttribute="top" id="pdb-at-jev"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="321" y="495"/>
+            <point key="canvasLocation" x="401" y="495"/>
         </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>

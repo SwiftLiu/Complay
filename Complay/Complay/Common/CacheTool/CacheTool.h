@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface CacheTool : NSObject
 
@@ -17,5 +18,11 @@
 + (NSArray<NSString*> *)getAccountAndPsd;
 ///删除保存的密码
 + (void)deletePsd;
+
+#pragma mark - 资源文件
+///缓存头像（覆盖）
++ (void)cacheHeadImg:(UIImage *)img userId:(NSString *)userId;
+///沙盒里读取头像
++ (UIImage *)getLocalHeadImgOfUserId:(NSString *)userId;
 
 @end

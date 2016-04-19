@@ -17,8 +17,7 @@
     self = [super init];
     if (self) {
         self.bounds = CGRectMake(0, 0, 60, 60);
-        self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = CGRectGetMidX(self.bounds);
+        [self initView];
     }
     return self;
 }
@@ -28,7 +27,7 @@
     if (!self.image) {
         self.image = nil;
     }
-    self.layer.cornerRadius = CGRectGetMidX(self.bounds);
+    [self initView];
 }
 
 - (void)setImage:(UIImage *)image
@@ -38,6 +37,23 @@
     }else{
         [super setImage:[UIImage imageNamed:@"default_head_img"]];
     }
+}
+
+#pragma mark - 添加手势
+- (void)initView
+{
+    self.clipsToBounds = YES;
+    self.layer.cornerRadius = CGRectGetMidX(self.bounds);
+    self.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressedHeadView)];
+    [self addGestureRecognizer:tap];
+}
+
+#pragma mark - 点击查看对呀用户信息
+- (void)pressedHeadView
+{
+    if (_clickBlock) _clickBlock();
 }
 
 @end

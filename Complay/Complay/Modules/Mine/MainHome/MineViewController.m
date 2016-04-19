@@ -40,7 +40,7 @@
 
 @end
 
-@interface MineViewController ()<UIScrollViewDelegate>
+@interface MineViewController ()<UIScrollViewDelegate, UIActionSheetDelegate>
 {
     __weak IBOutlet UIScrollView *scroll;
     __weak IBOutlet UIView *navBar;
@@ -98,6 +98,12 @@
     navBar.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
     scroll.showsVerticalScrollIndicator = NO;
     scroll.showsHorizontalScrollIndicator = NO;
+    
+    //更换头像
+    [headImgView setClickBlock:^{
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从相册选择", nil];
+        [sheet showInView:self.view];
+    }];
 }
 
 #pragma mark - 刷新个人中心数据
@@ -166,5 +172,17 @@
     }
 }
 
+#pragma mark - <UIActionSheetDelegate>
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //拍照
+    if (buttonIndex == actionSheet.firstOtherButtonIndex) {
+        
+    }
+    //从相册选
+    else if (buttonIndex == 1) {
+        
+    }
+}
 
 @end

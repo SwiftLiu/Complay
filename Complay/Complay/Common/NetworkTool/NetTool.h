@@ -20,4 +20,11 @@ typedef void (^FailedBlock)(NSString *msg);
 ///注销账号
 + (void)logout;
 
+
+#pragma mark - 资源文件管理
+///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
+- (void)getHeadImgOfUserId:(NSString *)userId complete:(void(^)(UIImage *img))block;
+///上传并缓存用户头像
+- (void)uploadHeadImg:(UIImage *)img complete:(void (^)(NSString *headUrl))block;
+
 @end

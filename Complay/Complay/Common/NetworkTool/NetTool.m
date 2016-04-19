@@ -42,4 +42,41 @@
     [CacheTool deletePsd];
 }
 
+
+#pragma mark - 资源文件管理
+///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
+- (void)getHeadImgOfUserId:(NSString *)userId complete:(void(^)(UIImage *img))block
+{
+    
+}
+
+///上传并缓存用户头像
+- (void)uploadHeadImg:(UIImage *)img complete:(void (^)(NSString *))block
+{
+    //上传文件
+    NSString *fileName = [UserModel shareModel].userId;
+    NSData *fileData = UIImagePNGRepresentation(img);
+    BmobFile *file = [[BmobFile alloc] initWithFileName:fileName withFileData:fileData];
+    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //上传路径到用户表
+            BmobUser *user = [BmobUser getCurrentUser];
+            [user setObject:file forKey:@"headImg"];
+            [user saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (!error && isSuccessful) {
+                    if (block) block(file.url);
+                }else if (block) {
+                    block(nil);
+                }
+            }];
+        }else{
+            if (block) block(nil);
+        }
+    } withProgressBlock:^(CGFloat progress) {
+        NSLog(@"头像上传进度：%lf", progress);
+    }];
+}
+
+
+
 @end

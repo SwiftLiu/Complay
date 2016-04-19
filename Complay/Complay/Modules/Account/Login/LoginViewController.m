@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "CommonHeaders.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 {
     __weak IBOutlet UITextField *userTextField;
     __weak IBOutlet UITextField *psdTextField;
@@ -26,9 +26,15 @@
     [super viewDidLoad];
     
     //获取记住的账号密码
-    NSArray *accountInfo = [CacheTool getAccountAndPsd];
-    userTextField.text = accountInfo.firstObject;
-    psdTextField.text = accountInfo.lastObject;
+    NSString *account = [CacheTool getAccountAndPsd].firstObject;
+    NSString *psd = [CacheTool getAccountAndPsd].lastObject;
+    userTextField.text = account;
+    psdTextField.text = psd;
+    if (!account || !account.length) {
+        [userTextField becomeFirstResponder];
+    }else if (!psd || !psd.length) {
+        [psdTextField becomeFirstResponder];
+    }
 }
 
 #pragma mark - 登录
@@ -66,7 +72,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } failed:^(NSString *msg) {
         [LPCustomHUD endLoading];
-        [AlertView showWithTitle:@"警告" message:msg buttonTitle:TITLE_CONFIRM block:^{
+        [AlertView showWithTitle:@"提示" message:msg buttonTitle:TITLE_CONFIRM block:^{
             [userTextField becomeFirstResponder];
         }];
     }];
@@ -96,4 +102,11 @@
     [psdTextField resignFirstResponder];
 }
 
+#pragma mark - <UITextFieldDelegate>
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self loginButtonPressed:nil];
+    [textField endEditing:YES];
+    return YES;
+}
 @end

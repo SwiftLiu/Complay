@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BmobSDK/BmobUser.h>
+#import <BmobSDK/Bmob.h>
 
 ///用户账户修改通知
 static NSString *UserDidChangeNotification = @"userDidChangeNotification";
@@ -23,6 +23,8 @@ static NSString *UserDidChangeNotification = @"userDidChangeNotification";
 @property (strong, nonatomic, readonly) NSString *bmobId;
 ///昵称
 @property (strong, nonatomic, readonly) NSString *nickname;
+///头像Url
+@property (strong, nonatomic) NSString *headUrl;
 ///等级
 @property (assign, nonatomic, readonly) int stage;
 ///等级名称

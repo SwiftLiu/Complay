@@ -28,6 +28,7 @@
     _userId    = [user objectForKey:@"userId"];
     _bmobId    = user.objectId;
     _nickname  = user.username;
+    _headUrl   = ((BmobFile *)[user objectForKey:@"headImg"]).url;
     _stage     = [[user objectForKey:@"stage"] intValue];
     _stageName = [user objectForKey:@"stageName"];
     
