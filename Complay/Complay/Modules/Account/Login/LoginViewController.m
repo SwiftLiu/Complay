@@ -44,7 +44,6 @@
     [userTextField resignFirstResponder];
     [psdTextField resignFirstResponder];
     
-    
     //验证
     NSString *account = userTextField.text;
     if (!account || !account.length) {
