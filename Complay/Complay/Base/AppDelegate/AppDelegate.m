@@ -9,17 +9,22 @@
 #import "AppDelegate.h"
 #import "MainTabBarController.h"
 #import <BmobSDK/Bmob.h>
+#import <BmobIMSDK/BmobIMSDK.h>
 #import "UserModel.h"
 #import "CacheTool.h"
 #import "NetTool.h"
+#import "MsgTool.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) BmobIM *shareIM;
+@property (strong, nonatomic) MsgTool *msgTool;
 
 @end
 
 @implementation AppDelegate
 
-
+#pragma mark - App Launch
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //配置Bmob AppKey
@@ -37,7 +42,20 @@
 ///配置Bmob AppKey
 - (void)initBmobKey
 {
-    [Bmob registerWithAppKey:@"0ca519009e02689ee294f290496521f3"];
+    static NSString *AppKey = @"0ca519009e02689ee294f290496521f3";
+    [Bmob registerWithAppKey:AppKey];
+    //即时聊天
+    self.shareIM = [BmobIM sharedBmobIM];
+    [self.shareIM registerWithAppKey:AppKey];
+    self.msgTool = [MsgTool new];
+    self.shareIM.delegate = self.msgTool;
+    
+    //链接即时聊天服务器
+    [self loginIM];
+    
+    //注册通知，监听登录
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginIM) name:kUserDidLoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutIM) name:kUserDidLogoutNotification object:nil];
 }
 
 ///自动登录
@@ -65,20 +83,46 @@
     [_window makeKeyAndVisible];
 }
 
+#pragma mark - 即使聊天登录退出处理
+//退出登录
+- (void)logoutIM
+{
+    [self.shareIM disconnect];
+    NSLog(@"iM即时聊天服务器 已断开");
+}
+
+//连接Bmob即使聊天服务器
+- (void)loginIM
+{
+    BmobUser *user = [BmobUser getCurrentUser];
+    if (user) {
+        [self.shareIM setupBelongId:user.objectId];
+//        [self.shareIM setupDeviceToken:@""];
+        [self.shareIM connect];
+        NSLog(@"iM即时聊天服务器 已连接");
+    }
+}
 
 
+#pragma mark - App进入后台
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    //退出即时聊天服务器
+    if ([self.shareIM isConnected]) {
+        [self logoutIM];
+    }
+}
+
+#pragma mark - App进入前台
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    //链接即时聊天服务器
+    [self loginIM];
+}
+
+
+#pragma mark -
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

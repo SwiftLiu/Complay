@@ -11,7 +11,7 @@
 #import "MainTabBar.h"
 #import "HomeViewController.h"
 #import "TaskViewController.h"
-#import "MsgViewController.h"
+#import "MsgListViewController.h"
 #import "MineViewController.h"
 #import "AddView.h"
 #import "CommonConstants.h"
@@ -68,7 +68,7 @@
     taskVC.title = @"任务";
     UINavigationController *taskNC =  [[UINavigationController alloc] initWithRootViewController:taskVC];
     
-    MsgViewController *msgVC = [MsgViewController new];
+    MsgListViewController *msgVC = [MsgListViewController new];
     msgVC.title = @"消息";
     UINavigationController *msgNC =  [[UINavigationController alloc] initWithRootViewController:msgVC];
     

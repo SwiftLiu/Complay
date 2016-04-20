@@ -34,8 +34,13 @@
 #pragma mark - 退出登录
 - (void)logout
 {
+    //退出
     [NetTool logout];
+    //刷新个人中心数据
     [MineViewController updateUserBaseInfo];
+    //发送退出登录通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidLogoutNotification object:nil];
+    //返回上页
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

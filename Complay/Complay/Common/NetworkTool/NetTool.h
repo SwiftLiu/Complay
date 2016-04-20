@@ -10,6 +10,9 @@
 #import "UserModel.h"
 #import <BmobSDK/Bmob.h>
 
+static NSString *kUserDidLoginNotification = @"loginNotification";
+static NSString *kUserDidLogoutNotification = @"logoutNotification";
+
 typedef void (^SucceedBlock)(BmobObject *object);
 typedef void (^FailedBlock)(NSString *msg);
 
