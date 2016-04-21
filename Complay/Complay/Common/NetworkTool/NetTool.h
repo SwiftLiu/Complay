@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
 #import <BmobSDK/Bmob.h>
+#import <BmobIMSDK/BmobIMSDK.h>
 
-static NSString *kUserDidLoginNotification = @"loginNotification";
-static NSString *kUserDidLogoutNotification = @"logoutNotification";
+static NSString *kLoginOrLogoutNotification = @"loginOrlogoutNotification";
 
 typedef void (^SucceedBlock)(BmobObject *object);
 typedef void (^FailedBlock)(NSString *msg);
@@ -27,8 +27,16 @@ typedef void (^FailedBlock)(NSString *msg);
 
 #pragma mark - 资源文件管理
 ///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
-+ (void)getHeadImgOfUser:(UserModel *)user complete:(void(^)(UIImage *img))block;
++ (void)getAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block;
 ///上传并缓存用户头像
-+ (void)uploadHeadData:(NSData *)headData complete:(void (^)(BOOL isSucceed))block;
++ (void)uploadAvatarData:(NSData *)avatarData complete:(void (^)(BOOL isSucceed))block;
+
+
+#pragma mark - 下载用户信息
+///加载特定用户的信息
++ (void)loadUserWithUserId:(NSString *)objectId completion:(void(^)(BmobIMUserInfo *result))block;
+///批量加载用户的信息
++ (void)loadUsersWithUserIds:(NSArray *)array completion:(void(^)(NSArray<BmobIMUserInfo *> *result))block;
+
 
 @end

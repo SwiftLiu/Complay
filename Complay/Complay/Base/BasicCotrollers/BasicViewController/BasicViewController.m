@@ -48,12 +48,13 @@
     NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
     if (index) {
         UIImage *img = [UIImage imageNamed:@"navigation_back"];
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:img style:(UIBarButtonItemStyleDone) target:self action:@selector(back)];
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:img style:(UIBarButtonItemStyleDone) target:self action:@selector(goback)];
         self.navigationItem.leftBarButtonItem = backItem;
     }
 }
 
-- (void)back
+//返回
+- (void)goback
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

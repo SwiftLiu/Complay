@@ -9,30 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <BmobSDK/Bmob.h>
 
-@interface UserModel : NSObject
-
-///用户登录状态
-@property (assign, nonatomic, readonly) BOOL isLogin;
+@interface BmobUser (UserModel)
 
 ///用户Id
 @property (strong, nonatomic, readonly) NSString *userId;
-///Bmob Id
-@property (strong, nonatomic, readonly) NSString *bmobId;
-///昵称
-@property (strong, nonatomic, readonly) NSString *nickname;
 ///头像Url
-@property (strong, nonatomic) NSString *headUrl;
-///是否需要下载新头像
-@property (assign, nonatomic) BOOL newHead;
+@property (strong, nonatomic, readonly) NSString *avatarUrl;
 ///等级
-@property (assign, nonatomic, readonly) int stage;
+@property (assign, nonatomic, readonly) NSInteger stage;
 ///等级名称
 @property (strong, nonatomic, readonly) NSString *stageName;
 
-///邮箱
-@property (strong, nonatomic, readonly) NSString *email;
-///手机
-@property (strong, nonatomic, readonly) NSString *phoneNum;
 ///微博
 @property (strong, nonatomic, readonly) NSString *weboName;
 ///个人链接
@@ -54,11 +41,6 @@
 ///历史任务数(接手)
 @property (assign, nonatomic, readonly) NSInteger oldGetTaskCount;
 
-
-///单利（当前用户）
-+ (UserModel *)currentUser;
-///初始化所有数据
-- (void)initWithBmobUser:(BmobUser *)user;
 
 ///登录后才处理
 + (void)dealBlock:(void(^)())block;

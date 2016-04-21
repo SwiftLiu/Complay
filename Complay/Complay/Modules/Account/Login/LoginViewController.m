@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "MineViewController.h"
+#import "RegistViewController.h"
 #import "CommonHeaders.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
@@ -69,7 +70,7 @@
         //更新个人中心
         [MineViewController updateUserBaseInfo];
         //发送登录通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidLoginNotification object:object.objectId];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:object.objectId];
         //登录成功后回调
         if (_loginBlock) _loginBlock();
         //返回上一页面
@@ -84,7 +85,8 @@
 
 #pragma mark - 注册
 - (IBAction)registButtonPressed:(UIButton *)sender {
-    
+    RegistViewController *rVC = [RegistViewController new];
+    [self presentViewController:rVC animated:YES completion:nil];
 }
 
 #pragma mark - 找回密码

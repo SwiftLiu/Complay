@@ -7,9 +7,10 @@
 //
 
 #import "BasicViewController.h"
+#import <BmobIMSDK/BmobIMSDK.h>
 
 @interface ChatViewController : BasicViewController
 
-@property (strong, nonatomic) NSString *chatUserId;
+@property (strong, nonatomic) BmobIMConversation *conversation;
 
 @end

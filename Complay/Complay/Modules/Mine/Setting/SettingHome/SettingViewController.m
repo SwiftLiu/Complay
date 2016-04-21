@@ -39,7 +39,7 @@
     //刷新个人中心数据
     [MineViewController updateUserBaseInfo];
     //发送退出登录通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:nil];
     //返回上页
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -65,7 +65,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == titles.count-1 && [UserModel currentUser].isLogin) {
+    BmobUser *user = [BmobUser getCurrentUser];
+    if (section == titles.count-1 && user) {
         UIButton *logoutBtn = [UIButton new];
         logoutBtn.frame = CGRectMake(20, 15, tableView.bounds.size.width-40, 40);
         logoutBtn.clipsToBounds = YES;
@@ -74,7 +75,7 @@
         logoutBtn.alpha = 0.9;
         [logoutBtn setTintColor:[UIColor whiteColor]];
         logoutBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        NSString *title = [NSString stringWithFormat:@"退出登录(%@)", [UserModel currentUser].nickname];
+        NSString *title = [NSString stringWithFormat:@"退出登录(%@)", user.username];
         [logoutBtn setTitle:title forState:UIControlStateNormal];
         [logoutBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         UIView *logoutView = [UIView new];
@@ -93,7 +94,7 @@
             }
                 break;
             case 1:{
-                [UserModel dealBlock:^{
+                [BmobUser dealBlock:^{
                     
                 }];
             }

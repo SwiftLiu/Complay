@@ -53,15 +53,13 @@
     //链接即时聊天服务器
     [self loginIM];
     
-    //注册通知，监听登录
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginIM) name:kUserDidLoginNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutIM) name:kUserDidLogoutNotification object:nil];
+    //注册通知，监听账户的登录和注销
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOrLogout:) name:kLoginOrLogoutNotification object:nil];
 }
 
 ///自动登录
 - (void)autoLogin
 {
-    [[UserModel currentUser] initWithBmobUser:[BmobUser getCurrentUser]];
     NSString *account = [CacheTool getAccountAndPsd].firstObject;
     NSString *psd = [CacheTool getAccountAndPsd].lastObject;
     if (account && account.length && psd && psd.length) {
@@ -84,6 +82,16 @@
 }
 
 #pragma mark - 即使聊天登录退出处理
+//监听
+- (void)loginOrLogout:(NSNotification *)noti
+{
+    if (noti.object) {
+        [self loginIM];
+    }else {
+        [self logoutIM];
+    }
+}
+
 //退出登录
 - (void)logoutIM
 {

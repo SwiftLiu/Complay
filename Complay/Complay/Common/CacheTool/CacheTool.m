@@ -38,7 +38,7 @@
 
 #pragma mark -#pragma mark - 资源文件
 ///头像缓存路径
-+ (NSString *)pathOfUserId:(NSString *)userId
++ (NSString *)pathOfUserAvatar:(NSString *)userId
 {
     NSString *dirPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/userHeads"];
     NSFileManager *fileMager = [NSFileManager defaultManager];
@@ -50,16 +50,16 @@
 }
 
 ///缓存头像（覆盖）
-+ (void)cacheHeadData:(NSData *)headData userId:(NSString *)userId
++ (void)saveAvatarData:(NSData *)headData forUserId:(NSString *)userId
 {
-    NSString *path = [CacheTool pathOfUserId:userId];
+    NSString *path = [CacheTool pathOfUserAvatar:userId];
     [headData writeToFile:path atomically:YES];
 }
 
 ///沙盒里读取头像
-+ (UIImage *)getLocalHeadImgOfUserId:(NSString *)userId
++ (UIImage *)getLocalAvatarOfUserId:(NSString *)userId
 {
-    NSString *path = [CacheTool pathOfUserId:userId];
+    NSString *path = [CacheTool pathOfUserAvatar:userId];
     NSData *imgData = [[NSFileManager defaultManager] contentsAtPath:path];
     UIImage *img = [UIImage imageWithData:imgData];
     return img;

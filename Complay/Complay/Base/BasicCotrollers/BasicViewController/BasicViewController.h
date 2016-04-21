@@ -12,6 +12,8 @@
 
 ///子视图首次布局
 - (void)viewDidLayoutSubviewsWhenFirst;
+///返回
+- (void)goback;
 
 ///开始加载动画
 - (void)loadBegin:(void (^)())block;

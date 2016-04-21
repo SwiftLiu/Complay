@@ -7,7 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MsgListViewController">
             <connections>
-                <outlet property="msgListTable" destination="EKN-Nu-9fh" id="eNk-iE-399"/>
+                <outlet property="convListTable" destination="EKN-Nu-9fh" id="ZsA-k9-IFM"/>
+                <outlet property="isnotLoginView" destination="gxr-D3-lAz" id="A3p-E6-f1w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,16 +25,58 @@
                         <outlet property="delegate" destination="-1" id="7xG-B9-RZR"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-D3-lAz">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uu9-1I-dvJ">
+                            <rect key="frame" x="124" y="271" width="73" height="25"/>
+                            <color key="backgroundColor" red="0.3024977351" green="0.7060008887" blue="1" alpha="0.90210620779999995" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="7jO-yw-sF2"/>
+                                <constraint firstAttribute="width" constant="73" id="FjK-zo-JKY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="点击登录">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="loginButtonPressed:" destination="-1" eventType="touchUpInside" id="XlN-gR-ugi"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，您还未登录哟!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0U-g4-N69">
+                            <rect key="frame" x="98" y="238" width="125" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="uu9-1I-dvJ" firstAttribute="centerX" secondItem="gxr-D3-lAz" secondAttribute="centerX" id="1jV-V8-L4b"/>
+                        <constraint firstItem="uu9-1I-dvJ" firstAttribute="top" secondItem="T0U-g4-N69" secondAttribute="bottom" constant="15" id="9XT-cB-F6I"/>
+                        <constraint firstItem="T0U-g4-N69" firstAttribute="centerX" secondItem="gxr-D3-lAz" secondAttribute="centerX" id="Yhm-6Z-Rio"/>
+                        <constraint firstItem="uu9-1I-dvJ" firstAttribute="centerY" secondItem="gxr-D3-lAz" secondAttribute="centerY" id="j3d-fS-qcf"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EKN-Nu-9fh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2yf-Lg-wQ1"/>
+                <constraint firstItem="gxr-D3-lAz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GLw-i9-aS3"/>
                 <constraint firstAttribute="bottom" secondItem="EKN-Nu-9fh" secondAttribute="bottom" id="Hhu-d8-1jl"/>
+                <constraint firstItem="gxr-D3-lAz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JMM-vX-S5q"/>
+                <constraint firstAttribute="trailing" secondItem="gxr-D3-lAz" secondAttribute="trailing" id="MCi-Wg-C75"/>
+                <constraint firstAttribute="bottom" secondItem="gxr-D3-lAz" secondAttribute="bottom" id="Mjd-nH-yyc"/>
                 <constraint firstItem="EKN-Nu-9fh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VxU-pA-rwH"/>
                 <constraint firstAttribute="trailing" secondItem="EKN-Nu-9fh" secondAttribute="trailing" id="Zlx-1h-Kr9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="137" y="293"/>
+            <point key="canvasLocation" x="182" y="288"/>
         </view>
     </objects>
 </document>

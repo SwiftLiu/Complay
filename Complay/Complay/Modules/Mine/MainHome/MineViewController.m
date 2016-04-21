@@ -104,8 +104,8 @@
 #pragma mark - 刷新个人中心数据
 - (void)updateInfo
 {
-    UserModel *user = [UserModel currentUser];
-    if (user.isLogin) {
+    BmobUser *user = [BmobUser getCurrentUser];
+    if (user) {
         loginButton.hidden = YES;
         careFansView.hidden = NO;
         headImgView.userInteractionEnabled = YES;
@@ -115,6 +115,10 @@
         headImgView.userInteractionEnabled = NO;
     }
     
+    if (user.username && user.username) {
+        navTitleLabel.text = user.username;
+    }
+    
     careCountLabel.text = StringFromNumber(user.careCount);
     fansCountLabel.text = StringFromNumber(user.fansCount);
     
@@ -122,7 +126,7 @@
     oldTaskNumLabel.text = StringFromNumber(user.oldSendTaskCount + user.oldGetTaskCount);
     
     //头像
-    [NetTool getHeadImgOfUser:user complete:^(UIImage *img) {
+    [NetTool getAvatarFromUrl:user.avatarUrl userId:user.userId complete:^(UIImage *img) {
         headImgView.image = img;
     }];
 }
@@ -146,7 +150,7 @@
 #pragma mark - 事件
 ///我的任务
 - (IBAction)newTaskButtonPressed:(UIButton *)sender {
-    [UserModel dealBlock:^{
+    [BmobUser dealBlock:^{
         NewTasksViewController *nVC = [NewTasksViewController new];
         nVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:nVC animated:YES];
@@ -155,7 +159,7 @@
 
 ///任务历史
 - (IBAction)oldTaskButtonPressed:(UIButton *)sender {
-    [UserModel dealBlock:^{
+    [BmobUser dealBlock:^{
         OldTasksViewController *oVC = [OldTasksViewController new];
         oVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:oVC animated:YES];
@@ -171,14 +175,14 @@
 
 ///登录
 - (IBAction)loginButtonPressed:(UIButton *)sender {
-    [UserModel dealBlock:nil];
+    [BmobUser dealBlock:nil];
 }
 
 #pragma mark - 上传并缓存头像
 - (void)uploadHeadData:(NSData *)headData
 {
     [LPCustomHUD startLoading];
-    [NetTool uploadHeadData:headData complete:^(BOOL isSucceed) {
+    [NetTool uploadAvatarData:headData complete:^(BOOL isSucceed) {
         [LPCustomHUD endLoading];
         if (isSucceed) {
             headImgView.image = [UIImage imageWithData:headData];

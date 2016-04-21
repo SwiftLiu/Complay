@@ -11,44 +11,91 @@
 #import <BmobIMSDK/BmobIMSDK.h>
 #import <BmobSDK/Bmob.h>
 #import "MsgTool.h"
+#import "NetTool.h"
 
 @interface MsgListViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
-    __weak IBOutlet UITableView *msgListTable;
+    __weak IBOutlet UIView *isnotLoginView;
+    __weak IBOutlet UITableView *convListTable;
     
     ///会话表中的所有聊天对象的objectId
-    NSArray *converUsersIds;
+    NSArray *convDataArray;
 }
 @end
 
 @implementation MsgListViewController
 
+#pragma mark 测试临时代码*****************************
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    BmobQuery *query = [BmobQuery queryForUser];
+//    [query getObjectInBackgroundWithId:@"SmXu3337" block:^(BmobObject *object, NSError *error) {
+//        NSLog(@"%@", object);
+//    }];
+//}
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    BmobIMConversation *conv = [BmobIMConversation new];
+//    conv.conversationId = @"2EW0444X";
+//    conv.conversationType = BmobIMConversationTypeSingle;
+//    //创建BmobIMTextMessage对象
+//    BmobIMTextMessage *message = [BmobIMTextMessage messageWithText:@"测试啦" attributes:nil];
+//    message.conversationType =  BmobIMConversationTypeSingle;//单聊
+//    message.createdTime = (uint64_t)([[NSDate date] timeIntervalSince1970] * 1000);
+//    message.updatedTime = message.createdTime;
+//    
+//    //会话
+//    [conv sendMessage:message completion:^(BOOL isSuccessful, NSError *error) {
+//        NSLog(@"发送%@：%@", isSuccessful?@"成功":@"失败", message.content);
+//    }];
+//}
+#pragma mark
+
+#pragma mark - 重写以及加载处理
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self reloadList];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNewMsg:) name:kNewMsgNotifacation object:nil];
+
+    [self setLoginView];
+    [self loadConversations];
+    [self registNotifications];
 }
 
-- (void)receiveNewMsg:(NSNotification *)noti
+//设置是否登录提示
+- (void)setLoginView
 {
-    [self reloadList];
-    NSLog(@"消息列表界面接收到新消息：%@", noti.object);
+    isnotLoginView.hidden = [BmobUser getCurrentUser];
 }
 
-- (void)reloadList
+///注册通知
+- (void)registNotifications
 {
-    NSMutableArray *ids = [NSMutableArray arrayWithArray:[[BmobIM sharedBmobIM] allConversationUsersIds]];
-    [ids removeObject:[BmobUser getCurrentUser].objectId];
-    converUsersIds = ids;
-    [msgListTable reloadData];
+    NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
+    [noti addObserver:self selector:@selector(setLoginView) name:kLoginOrLogoutNotification object:nil];
+    [noti addObserver:self selector:@selector(loadConversations) name:kNewMsgNotifacation object:nil];
+    [noti addObserver:self selector:@selector(loadConversations) name:kNewChaterNotifacation object:nil];
+}
+
+- (IBAction)loginButtonPressed:(UIButton *)sender {
+    [BmobUser dealBlock:^{
+        [self setLoginView];
+    }];
+}
+
+#pragma mark - 加载本地会话列表
+-(void)loadConversations
+{
+    NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
+    if (array && array.count > 0) {
+        convDataArray = array;
+        [convListTable reloadData];
+    }
 }
 
 #pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return converUsersIds.count;
+    return convDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,14 +106,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.textLabel.text = [converUsersIds objectAtIndex:indexPath.row];
+    BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = conv.conversationTitle;
+    cell.detailTextLabel.text = conv.conversationDetail;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatViewController *cVC = [ChatViewController new];
-    cVC.chatUserId = [converUsersIds objectAtIndex:indexPath.row];
+    cVC.conversation = [convDataArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:cVC animated:YES];
 }
 
