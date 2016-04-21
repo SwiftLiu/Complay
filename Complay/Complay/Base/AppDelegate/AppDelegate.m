@@ -27,6 +27,9 @@
 #pragma mark - App Launch
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //崩溃日志搜集
+    NSSetUncaughtExceptionHandler(uncaughtHandler);
+    
     //配置Bmob AppKey
     [self initBmobKey];
     
@@ -38,6 +41,12 @@
     
     return YES;
 }
+
+//崩溃日志搜集
+void uncaughtHandler(NSException *exception) {
+    NSString *reason = [exception reason];
+    NSLog(@"崩溃日志reason--------------%@", reason);
+};
 
 ///配置Bmob AppKey
 - (void)initBmobKey
