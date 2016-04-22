@@ -37,32 +37,32 @@
 }
 
 #pragma mark -#pragma mark - 资源文件
-///头像缓存路径
-+ (NSString *)pathOfUserAvatar:(NSString *)userId
-{
-    NSString *dirPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/userHeads"];
-    NSFileManager *fileMager = [NSFileManager defaultManager];
-    if (![fileMager fileExistsAtPath:dirPath]) {
-        [fileMager createDirectoryAtPath:dirPath attributes:@{}];
-    }
-    NSString *path = [dirPath stringByAppendingFormat:@"/%@.png", userId];
-    return path;
-}
-
-///缓存头像（覆盖）
-+ (void)saveAvatarData:(NSData *)headData forUserId:(NSString *)userId
-{
-    NSString *path = [CacheTool pathOfUserAvatar:userId];
-    [headData writeToFile:path atomically:YES];
-}
-
-///沙盒里读取头像
-+ (UIImage *)getLocalAvatarOfUserId:(NSString *)userId
-{
-    NSString *path = [CacheTool pathOfUserAvatar:userId];
-    NSData *imgData = [[NSFileManager defaultManager] contentsAtPath:path];
-    UIImage *img = [UIImage imageWithData:imgData];
-    return img;
-}
+/////头像缓存路径
+//+ (NSString *)pathOfUserAvatar:(NSString *)userId
+//{
+//    NSString *dirPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/userHeads"];
+//    NSFileManager *fileMager = [NSFileManager defaultManager];
+//    if (![fileMager fileExistsAtPath:dirPath]) {
+//        [fileMager createDirectoryAtPath:dirPath attributes:@{}];
+//    }
+//    NSString *path = [dirPath stringByAppendingFormat:@"/%@.png", userId];
+//    return path;
+//}
+//
+/////缓存头像（覆盖）
+//+ (void)saveAvatarData:(NSData *)headData forUserId:(NSString *)userId
+//{
+//    NSString *path = [CacheTool pathOfUserAvatar:userId];
+//    [headData writeToFile:path atomically:YES];
+//}
+//
+/////沙盒里读取头像
+//+ (UIImage *)getLocalAvatarOfUserId:(NSString *)userId
+//{
+//    NSString *path = [CacheTool pathOfUserAvatar:userId];
+//    NSData *imgData = [[NSFileManager defaultManager] contentsAtPath:path];
+//    UIImage *img = [UIImage imageWithData:imgData];
+//    return img;
+//}
 
 @end

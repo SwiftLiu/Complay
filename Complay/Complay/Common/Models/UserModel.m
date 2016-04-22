@@ -23,7 +23,7 @@
 //}
 
 #pragma mark - getter
-- (NSString *)userId    { return [NSString stringWithFormat:@"%@", [self objectForKey:@"userId"]]; };
+- (NSString *)userId    { return [NSString stringWithFormat:@"%d", [[self objectForKey:@"userId"] intValue] ]; };
 - (NSString *)avatarUrl   { return ((BmobFile *)[self objectForKey:@"headImg"]).url; };
 - (NSInteger)stage      { return [[self objectForKey:@"stage"] intValue]; };
 - (NSString *)stageName { return [self objectForKey:@"stageName"]; };

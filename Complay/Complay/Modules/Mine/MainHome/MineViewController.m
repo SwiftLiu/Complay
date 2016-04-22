@@ -7,7 +7,7 @@
 //
 
 #import "MineViewController.h"
-#import "HeadImgView.h"
+#import "AvatarView.h"
 #import "CommonHeaders.h"
 #import "LoginViewController.h"
 #import "CommonFunctions.h"
@@ -48,7 +48,7 @@
     __weak IBOutlet MineLabel *navTitleLabel;
     
     __weak IBOutlet UIView *personView;
-    __weak IBOutlet HeadImgView *headImgView;
+    __weak IBOutlet AvatarView *avatarView;
     __weak IBOutlet UIImageView *bgImgView;
     
     __weak IBOutlet UIButton *loginButton;
@@ -92,10 +92,10 @@
     scroll.showsVerticalScrollIndicator = NO;
     scroll.showsHorizontalScrollIndicator = NO;
     
-    headImgView.layer.borderColor = [UIColor whiteColor].CGColor;
-    headImgView.layer.borderWidth = 1;
+    avatarView.layer.borderColor = [UIColor whiteColor].CGColor;
+    avatarView.layer.borderWidth = 1;
     //更换头像
-    [headImgView setClickBlock:^{
+    [avatarView setClickBlock:^{
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", @"拍照", nil];
         [sheet showInView:self.view];
     }];
@@ -108,11 +108,11 @@
     if (user) {
         loginButton.hidden = YES;
         careFansView.hidden = NO;
-        headImgView.userInteractionEnabled = YES;
+        avatarView.userInteractionEnabled = YES;
     }else{
         loginButton.hidden = NO;
         careFansView.hidden = YES;
-        headImgView.userInteractionEnabled = NO;
+        avatarView.userInteractionEnabled = NO;
     }
     
     if (user.username && user.username) {
@@ -126,9 +126,7 @@
     oldTaskNumLabel.text = StringFromNumber(user.oldSendTaskCount + user.oldGetTaskCount);
     
     //头像
-    [NetTool getAvatarFromUrl:user.avatarUrl userId:user.userId complete:^(UIImage *img) {
-        headImgView.image = img;
-    }];
+    [avatarView getAvatar:user.avatarUrl];
 }
 
 
@@ -182,10 +180,10 @@
 - (void)uploadHeadData:(NSData *)headData
 {
     [LPCustomHUD startLoading];
-    [NetTool uploadAvatarData:headData complete:^(BOOL isSucceed) {
+    [NetTool uploadAvatarData:headData complete:^(NSString *url) {
         [LPCustomHUD endLoading];
-        if (isSucceed) {
-            headImgView.image = [UIImage imageWithData:headData];
+        if (url) {
+            [avatarView getAvatar:url];
         }else{
             [AlertView showWithTitle:@"提示" message:@"上传失败" leftTitle:@"放弃此图" rightTitle:@"重新上传" leftBlock:nil rightBlock:^{
                 [self uploadHeadData:headData];

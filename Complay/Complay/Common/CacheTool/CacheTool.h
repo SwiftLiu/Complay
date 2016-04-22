@@ -20,9 +20,9 @@
 + (void)deletePsd;
 
 #pragma mark - 资源文件
-///缓存头像（覆盖）
-+ (void)saveAvatarData:(NSData *)headData forUserId:(NSString *)userId;
-///沙盒里读取头像
-+ (UIImage *)getLocalAvatarOfUserId:(NSString *)userId;
+/////缓存头像（覆盖）
+//+ (void)saveAvatarData:(NSData *)headData forUserId:(NSString *)userId;
+/////沙盒里读取头像
+//+ (UIImage *)getLocalAvatarOfUserId:(NSString *)userId;
 
 @end

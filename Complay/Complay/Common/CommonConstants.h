@@ -24,13 +24,12 @@
 
 
 ///默认关键字体颜色
-
+#define DefaultFontColor [UIColor colorWithWhite:30/255.l alpha:1]
 ///默认非关键字体颜色
-
+#define DefaultMinorFontColor [UIColor colorWithWhite:120/255.l alpha:1]
 
 ///默认线条色
 #define DefaultLineColor [UIColor colorWithWhite:200/255.l alpha:1]
-
 
 
 #pragma mark -

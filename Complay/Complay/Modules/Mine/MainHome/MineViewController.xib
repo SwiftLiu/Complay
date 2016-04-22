@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineViewController">
             <connections>
+                <outlet property="avatarView" destination="1Yj-a3-H0c" id="HHA-4F-CJ0"/>
                 <outlet property="bgImgView" destination="V32-gV-aXx" id="THM-lO-tCo"/>
                 <outlet property="careCountLabel" destination="2eb-PB-Y9i" id="luJ-Sh-a9Q"/>
                 <outlet property="careFansView" destination="mTR-mg-ibz" id="GlP-eI-GRi"/>
                 <outlet property="fansCountLabel" destination="l7c-zR-PSL" id="SiW-St-Zbv"/>
-                <outlet property="headImgView" destination="1Yj-a3-H0c" id="RZZ-xY-TXQ"/>
                 <outlet property="loginButton" destination="9dp-9s-KH4" id="5h7-Uw-OaG"/>
                 <outlet property="navBar" destination="doE-Od-ghZ" id="Xtg-US-Nfk"/>
                 <outlet property="navTitleLabel" destination="tLQ-hn-H7Y" id="lFe-ot-6Li"/>
@@ -40,7 +40,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdF-Zd-hEq">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="225"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_head_img" translatesAutoresizingMaskIntoConstraints="NO" id="1Yj-a3-H0c" customClass="HeadImgView">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_head_img" translatesAutoresizingMaskIntoConstraints="NO" id="1Yj-a3-H0c" customClass="AvatarView">
                                     <rect key="frame" x="125" y="60" width="70" height="70"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -271,7 +271,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
     <resources>
-        <image name="default_head_img" width="100" height="100"/>
+        <image name="default_head_img" width="64" height="64"/>
         <image name="mine_bg" width="320" height="163"/>
         <image name="mine_setting" width="20" height="20"/>
     </resources>

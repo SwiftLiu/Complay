@@ -6,14 +6,18 @@
 //  Copyright © 2016年 iOS_Liu. All rights reserved.
 //
 
-#import "MsgListViewController.h"
+#import "ConvListViewController.h"
+#import "ConversationCell.h"
 #import "ChatViewController.h"
+#import "CommonConstants.h"
 #import <BmobIMSDK/BmobIMSDK.h>
 #import <BmobSDK/Bmob.h>
 #import "MsgTool.h"
 #import "NetTool.h"
 
-@interface MsgListViewController ()<UITableViewDataSource, UITableViewDelegate>
+static NSString *convCellIdentifier = @"convCell";
+
+@interface ConvListViewController ()<UITableViewDataSource, UITableViewDelegate, ConversationCellDelegate>
 {
     __weak IBOutlet UIView *isnotLoginView;
     __weak IBOutlet UITableView *convListTable;
@@ -23,17 +27,9 @@
 }
 @end
 
-@implementation MsgListViewController
+@implementation ConvListViewController
 
 #pragma mark 测试临时代码*****************************
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    BmobQuery *query = [BmobQuery queryForUser];
-//    [query getObjectInBackgroundWithId:@"SmXu3337" block:^(BmobObject *object, NSError *error) {
-//        NSLog(@"%@", object);
-//    }];
-//}
-
 //- (void)viewDidAppear:(BOOL)animated
 //{
 //    BmobIMConversation *conv = [BmobIMConversation new];
@@ -53,43 +49,78 @@
 #pragma mark
 
 #pragma mark - 重写以及加载处理
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self loadConversations];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setLoginView];
-    [self loadConversations];
+    
+    [self initView];
+    [self loginOrLogout];
     [self registNotifications];
 }
 
-//设置是否登录提示
-- (void)setLoginView
+//界面
+- (void)initView
 {
-    isnotLoginView.hidden = [BmobUser getCurrentUser];
+    //注册cell
+    NSString *nibName = NSStringFromClass([ConversationCell class]);
+    UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
+    [convListTable registerNib:nib forCellReuseIdentifier:convCellIdentifier];
+}
+
+//设置是否登录提示
+- (void)loginOrLogout
+{
+    if ([BmobUser getCurrentUser]) {
+        isnotLoginView.hidden = YES;
+        [self loadConversations];
+    }else{
+        isnotLoginView.hidden = NO;
+        convDataArray = @[];
+        [convListTable reloadData];
+    }
 }
 
 ///注册通知
 - (void)registNotifications
 {
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
-    [noti addObserver:self selector:@selector(setLoginView) name:kLoginOrLogoutNotification object:nil];
+    [noti addObserver:self selector:@selector(loginOrLogout) name:kLoginOrLogoutNotification object:nil];
     [noti addObserver:self selector:@selector(loadConversations) name:kNewMsgNotifacation object:nil];
     [noti addObserver:self selector:@selector(loadConversations) name:kNewChaterNotifacation object:nil];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     [BmobUser dealBlock:^{
-        [self setLoginView];
+        [self loginOrLogout];
     }];
 }
 
 #pragma mark - 加载本地会话列表
--(void)loadConversations
+- (void)loadConversations
 {
     NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
     if (array && array.count > 0) {
         convDataArray = array;
         [convListTable reloadData];
     }
+}
+
+#pragma mark - <ConversationCellDelegate>协议
+//点击头像
+- (void)didClickAvatarAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+//清除新消息数
+- (void)didClearNewMsgNumberBadgeAtIndexPath:(NSIndexPath *)indexPath
+{
+    BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
+    [conv updateLocalCache];
 }
 
 #pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
@@ -100,15 +131,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"msgListCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:convCellIdentifier];
+    cell.delegate = self;
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = conv.conversationTitle;
-    cell.detailTextLabel.text = conv.conversationDetail;
+    [cell setAvatarUrl:conv.conversationIcon];
+    [cell setTitle:conv.conversationTitle];
+    [cell setDetail:conv.conversationDetail];
+    [cell setDateInterval:conv.updatedTime];
+    [cell setNewMsgNum:conv.unreadCount];
     return cell;
 }
 
@@ -119,10 +149,16 @@
     [self.navigationController pushViewController:cVC animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
+    [conv deleteMessageWithdeleteMessageListOrNot:NO updateTime:conv.updatedTime];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return ConversationCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

@@ -32,16 +32,8 @@
 #pragma mark - 账户管理
 + (void)loginWithAccount:(NSString *)account psd:(NSString *)psd succeed:(SucceedBlock)succeed failed:(FailedBlock)failed
 {
-    int oldHeadVersion = [[[BmobUser getCurrentUser] objectForKey:@"headVersion"] intValue];
     [BmobUser loginInbackgroundWithAccount:account andPassword:psd block:^(BmobUser *user, NSError *error) {
         if (!error) {
-            //若头像版本更改，则删除本地缓存头像
-            int newHeadVersion = [[user objectForKey:@"headVersion"] intValue];
-            if (oldHeadVersion && newHeadVersion > oldHeadVersion) {
-                [NetTool loadAvatarFromUrl:user.avatarUrl userId:user.userId complete:^(UIImage *img) {
-                    [MineViewController updateUserBaseInfo];
-                }];
-            }
             //缓存用户信息
             /*已使用BmobUser缓存机制*/
             //登录成功回调
@@ -63,43 +55,43 @@
 
 
 #pragma mark - 资源文件管理
-///下载头像
-+ (void)loadAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block
-{
-    NSURL *URL = [NSURL URLWithString:url];
-    dispatch_async(dispatch_get_global_queue(2, 0), ^{
-        NSData *data = [NSData dataWithContentsOfURL:URL];
-        UIImage *img = [UIImage imageWithData:data];
-        //缓存
-        [CacheTool saveAvatarData:data forUserId:userId];
-        //回调（主线程）
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (block) block(img);
-        });
-    });
-}
-
-///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
-+ (void)getAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block
-{
-    if (!userId || !userId.length) {
-        if (block) block(nil);
-        return;
-    }
-    //获取本地缓存头像
-    UIImage *locImg = [CacheTool getLocalAvatarOfUserId:userId];
-    if (locImg) {
-        if (block) block(locImg);
-    }
-    //异步下载
-    else if(url && url.length) {
-        [NetTool loadAvatarFromUrl:url userId:userId complete:block];
-    }
-}
+/////下载头像
+//+ (void)loadAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block
+//{
+//    NSURL *URL = [NSURL URLWithString:url];
+//    dispatch_async(dispatch_get_global_queue(2, 0), ^{
+//        NSData *data = [NSData dataWithContentsOfURL:URL];
+//        UIImage *img = [UIImage imageWithData:data];
+//        //缓存
+//        [CacheTool saveAvatarData:data forUserId:userId];
+//        //回调（主线程）
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (block) block(img);
+//        });
+//    });
+//}
+//
+/////先从本地获取头像，若没有则下载并缓存头像（按用户Id）
+//+ (void)getAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block
+//{
+//    if (!userId || !userId.length) {
+//        if (block) block(nil);
+//        return;
+//    }
+//    //获取本地缓存头像
+//    UIImage *locImg = [CacheTool getLocalAvatarOfUserId:userId];
+//    if (locImg) {
+//        if (block) block(locImg);
+//    }
+//    //异步下载
+//    else if(url && url.length) {
+//        [NetTool loadAvatarFromUrl:url userId:userId complete:block];
+//    }
+//}
 
 
 ///上传并缓存用户头像
-+ (void)uploadAvatarData:(NSData *)avatarData complete:(void (^)(BOOL))block
++ (void)uploadAvatarData:(NSData *)avatarData complete:(void (^)(NSString *))block
 {
     //上传文件
     BmobUser *user = [BmobUser getCurrentUser];
@@ -120,21 +112,19 @@
             [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (!error && isSuccessful) {
                     //回调
-                    if (block) block(YES);
-                    //缓存头像
-                    [CacheTool saveAvatarData:avatarData forUserId:user.userId];
+                    if (block) block(newFile.url);
                     //删除原头像
                     [oldFile deleteInBackground];
                 }else {
                     //回调
-                    if (block) block(NO);
+                    if (block) block(nil);
                     NSLog(@"头像上传失败：%@", error);
                     //删除新头像
                     [newFile deleteInBackground];
                 }
             }];
         }else{
-            if (block) block(NO);
+            if (block) block(nil);
             NSLog(@"头像上传(资源文件)失败：%@", error);
         }
     } withProgressBlock:^(CGFloat progress) {

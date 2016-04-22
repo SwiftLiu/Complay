@@ -27,10 +27,17 @@ UIColor *ColorGray(CGFloat gray);
 
 
 #pragma mark - 日期时间
-///时间转标准字符串
-NSString *StringFromDate(NSDate *date);
-///时间转年月日
-NSString *YMDString(NSDate *date);
+@interface NSDate (Category)
+
+///转化为日期组件
+- (NSDateComponents *)components;
+///转为特定格式字符串
+- (NSString *)stringWithFormatterString:(NSString *)formStr;
+///转化为软文字符串
+- (NSString *)softString:(BOOL)essay;
+
+@end
+
 
 
 #pragma mark - 数字

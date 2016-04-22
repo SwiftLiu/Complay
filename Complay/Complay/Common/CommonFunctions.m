@@ -36,20 +36,75 @@ UIColor *ColorGray(CGFloat gray) {
 
 
 #pragma mark - 日期时间
-///时间转标准字符串
-NSString *StringFromDate(NSDate *date) {
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    return [formatter stringFromDate:date];
+@implementation NSDate (Category)
+
+///转化为日期组件
+- (NSDateComponents *)components
+{
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendarUnit calendarUnit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *components = [calendar components:calendarUnit fromDate:self];
+    return components;
 }
 
-///时间转年月日
-NSString *YMDString(NSDate *date)
+///转为特定格式字符串
+- (NSString *)stringWithFormatterString:(NSString *)formStr
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    return [formatter stringFromDate:date];
+    [formatter setDateFormat:formStr];
+    return [formatter stringFromDate:self];
 }
+
+///转化为软文字符串
+- (NSString *)softString:(BOOL)essay
+{
+    //目标日期组件
+    NSDateComponents *tagComp = [self components];
+    //此时日期组件
+    NSDateComponents *nowComp = [[NSDate date] components];
+    //今天已过秒数
+    const NSTimeInterval todaySecs = nowComp.hour*3600 + nowComp.minute*60 + nowComp.second;
+    //目标日期到现在的秒数
+    const NSTimeInterval intervalSecs = [[NSDate date] timeIntervalSinceDate:self];
+    
+    //未来
+    if (intervalSecs < 0) {
+        return [self stringWithFormatterString:@"yyyy-MM-dd hh:mm"];
+    }
+    //刚刚
+    else if (intervalSecs <= 5) {
+        return @"刚刚";
+    }
+    //刚才
+    else if (intervalSecs <= 60) {
+        return [NSString stringWithFormat:@"%.0f秒前", intervalSecs];
+    }
+    //今天
+    else if (intervalSecs <= todaySecs) {
+        if (essay) return [self stringWithFormatterString:@"hh:mm"];
+        else return [self stringWithFormatterString:@"今天hh:mm"];
+    }
+    //昨天
+    else if (intervalSecs <= todaySecs + 84600) {
+        if (essay) return @"昨天";
+        else return [self stringWithFormatterString:@"昨天hh:mm"];
+    }
+    //今年
+    else if (tagComp.year == nowComp.year) {
+        if (essay) return [self stringWithFormatterString:@"MM-dd"];
+        else return [self stringWithFormatterString:@"yyyy-MM-dd"];
+    }
+    //往年
+    else {
+        if (essay) return [self stringWithFormatterString:@"yy-MM-dd"];
+        else return [self stringWithFormatterString:@"yyyy-MM-dd"];
+    }
+    return [self stringWithFormatterString:@"yyyy-MM-dd hh:mm"];
+}
+
+@end
+
+
 
 
 

@@ -94,7 +94,7 @@ void uncaughtHandler(NSException *exception) {
 //监听
 - (void)loginOrLogout:(NSNotification *)noti
 {
-    if (noti.object) {
+    if ([noti.object boolValue]) {
         [self loginIM];
     }else {
         [self logoutIM];

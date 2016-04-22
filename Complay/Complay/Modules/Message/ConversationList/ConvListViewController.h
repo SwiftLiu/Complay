@@ -8,6 +8,6 @@
 
 #import "BasicViewController.h"
 
-@interface MsgListViewController : BasicViewController
+@interface ConvListViewController : BasicViewController
 
 @end

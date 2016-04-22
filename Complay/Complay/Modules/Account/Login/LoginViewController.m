@@ -70,7 +70,7 @@
         //更新个人中心
         [MineViewController updateUserBaseInfo];
         //发送登录通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:object.objectId];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:@(YES)];
         //登录成功后回调
         if (_loginBlock) _loginBlock();
         //返回上一页面

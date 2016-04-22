@@ -39,7 +39,7 @@
     //刷新个人中心数据
     [MineViewController updateUserBaseInfo];
     //发送退出登录通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginOrLogoutNotification object:@(NO)];
     //返回上页
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

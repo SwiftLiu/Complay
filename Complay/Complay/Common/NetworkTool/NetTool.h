@@ -26,10 +26,10 @@ typedef void (^FailedBlock)(NSString *msg);
 
 
 #pragma mark - 资源文件管理
-///先从本地获取头像，若没有则下载并缓存头像（按用户Id）
-+ (void)getAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block;
+/////先从本地获取头像，若没有则下载并缓存头像（按用户Id）
+//+ (void)getAvatarFromUrl:(NSString *)url userId:(NSString *)userId complete:(void (^)(UIImage *))block;
 ///上传并缓存用户头像
-+ (void)uploadAvatarData:(NSData *)avatarData complete:(void (^)(BOOL isSucceed))block;
++ (void)uploadAvatarData:(NSData *)avatarData complete:(void (^)(NSString *url))block;
 
 
 #pragma mark - 下载用户信息
