@@ -8,17 +8,17 @@
 
 #import "MainTabBarController.h"
 #import "TabBarItem.h"
-#import "MainTabBar.h"
 #import "HomeViewController.h"
 #import "TaskViewController.h"
 #import "ConvListViewController.h"
 #import "MineViewController.h"
 #import "AddView.h"
+#import "MsgTool.h"
 #import "CommonConstants.h"
+#import <BmobIMSDK/BmobIMSDK.h>
 
 @interface MainTabBarController ()<MainTabBarDelegate>
 {
-    MainTabBar *tabBar;
     AddView *addView;
 }
 @end
@@ -31,6 +31,7 @@
     [self settingStatusBarAndNavigationBar];
     [self initCotrollers];
     [self initTabBar];
+    [self initClearBadgeBlock];
 }
 
 //设置状态栏和导航栏
@@ -51,10 +52,10 @@
 {
     self.tabBar.translucent = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    tabBar = [MainTabBar tabBar];
-    tabBar.delegate = self;
-    tabBar.frame = self.tabBar.bounds;
-    [self.tabBar addSubview:tabBar];
+    _mTabBar = [MainTabBar tabBar];
+    _mTabBar.delegate = self;
+    _mTabBar.frame = self.tabBar.bounds;
+    [self.tabBar addSubview:_mTabBar];
 }
 
 //初始化根控制器
@@ -82,15 +83,42 @@
     }
 }
 
+//设置未读消息数Badge清空事件
+- (void)initClearBadgeBlock
+{
+    //设置未读消息数
+    [_mTabBar setHideBadgeBlock:^(int num, NSInteger index) {
+        if (index == 2) {
+            //设置未读消息数
+            NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
+            for (BmobIMConversation *conv in array) {
+                [conv updateLocalCache];
+                //通知清空所有未读消息数
+                [[NSNotificationCenter defaultCenter] postNotificationName:kClearAllNewMsgNotifacation object:nil];
+            }
+        }
+    }];
+}
+
+#pragma mark - 刷新tabBar未读消息总数
++ (void)updateNewMsgTotal
+{
+    //设置未读消息数
+    NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
+    int newMsgNum = 0;
+    for (BmobIMConversation *conv in array) {
+        newMsgNum += conv.unreadCount;
+    }
+    UIViewController *rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
+    MainTabBarController *mTBC = (MainTabBarController *)rootVC;
+    [mTBC.mTabBar setBadgeNum:newMsgNum atIndex:2];
+}
+
 
 #pragma mark - <MainTabBarDelegate>协议实现
 - (void)didSelectedIndex:(NSInteger)index
 {
     if (self.selectedIndex != index) {
-        //个人中心需登录
-        if (index == 3) {
-            
-        }
         [self setSelectedIndex:index];
     }
 }

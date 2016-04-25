@@ -22,7 +22,7 @@
     __weak IBOutlet LPBadgeView *badgeView;
     
     NSTimer *timer;
-    NSDate *date;
+    NSDate *_dateInterval;
 }
 @end
 
@@ -30,12 +30,13 @@
 
 - (void)awakeFromNib {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    titleLabel.font = [UIFont systemFontOfSize:17 weight:0.35];
     titleLabel.textColor = DefaultFontColor;
     detailLabel.textColor = DefaultMinorFontColor;
     dateLabel.textColor = DefaultMinorFontColor;
     badgeView.backgroundColor = LPBadgeDefalutTintColor;
     badgeView.value = 0;
-    [badgeView setHiddenBlock:^(NSInteger num) {
+    [badgeView setHiddenBlock:^(int num) {
         [self.delegate didClearNewMsgNumberBadgeAtIndexPath:self.indexPath];
     }];
     [avatarView setClickBlock:^{
@@ -63,7 +64,7 @@
 {
     NSDate *aDate = [NSDate dateWithTimeIntervalSince1970:secs/1000];
     dateLabel.text = [aDate softString:YES];
-    date = aDate;
+    _dateInterval = aDate;
     
     [timer invalidate];
     timer = nil;
@@ -75,8 +76,8 @@
 
 - (void)setDate
 {
-    if ([[NSDate date] timeIntervalSinceDate:date] <= 60) {
-        dateLabel.text = [date softString:YES];
+    if ([[NSDate date] timeIntervalSinceDate:_dateInterval] <= 61) {
+        dateLabel.text = [_dateInterval softString:YES];
     }else{
         [timer invalidate];
         timer = nil;

@@ -35,6 +35,9 @@
         [item setTitle:titles[i]];
         [item setImage:[UIImage imageNamed:imgNames[i]]];
         [bar addSubview:item];
+        [item setHideBadgeBlock:^(int value) {
+            if (bar.hideBadgeBlock) bar.hideBadgeBlock(value, i);
+        }];
     }
     
     UIButton *addButton = [UIButton new];
@@ -44,6 +47,12 @@
     [addButton addTarget:bar action:@selector(addButtonPressed:) forControlEvents:(UIControlEventTouchUpInside)];
     [bar addSubview:addButton];
     return bar;
+}
+
+- (void)setBadgeNum:(int)badgeNum atIndex:(NSInteger)index
+{
+    TabBarItem *item = [self.subviews objectAtIndex:index];
+    [item setBadgeNum:badgeNum];
 }
 
 - (void)layoutSubviews

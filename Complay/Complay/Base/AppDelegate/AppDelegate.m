@@ -53,6 +53,7 @@ void uncaughtHandler(NSException *exception) {
 {
     static NSString *AppKey = @"0ca519009e02689ee294f290496521f3";
     [Bmob registerWithAppKey:AppKey];
+    [Bmob setBmobRequestTimeOut:25];
     //即时聊天
     self.shareIM = [BmobIM sharedBmobIM];
     [self.shareIM registerWithAppKey:AppKey];
@@ -88,6 +89,8 @@ void uncaughtHandler(NSException *exception) {
     MainTabBarController *tabBC = [MainTabBarController new];
     _window.rootViewController = tabBC;
     [_window makeKeyAndVisible];
+    //刷新未读消息总数
+    [MainTabBarController updateNewMsgTotal];
 }
 
 #pragma mark - 即使聊天登录退出处理

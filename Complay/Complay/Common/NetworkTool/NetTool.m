@@ -42,6 +42,8 @@
             NSLog(@"登录失败：%@", error);
             if (error.code == 101) {
                 if (failed) failed(@"账号或密码错误");
+            }else if (error.code == 20002) {
+                if (failed) failed(@"网络异常，请稍后重试!");
             }
         }
     }];

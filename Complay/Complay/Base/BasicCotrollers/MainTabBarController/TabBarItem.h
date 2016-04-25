@@ -14,5 +14,7 @@
 
 - (void)setImage:(UIImage *)image;
 - (void)setTitle:(NSString *)title;
+- (void)setBadgeNum:(int)badgeNum;
+- (void)setHideBadgeBlock:(void(^)(int value))block;
 
 @end

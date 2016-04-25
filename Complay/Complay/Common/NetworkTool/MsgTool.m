@@ -9,7 +9,7 @@
 #import "MsgTool.h"
 #import <BmobSDK/Bmob.h>
 #import "NetTool.h"
-
+#import "MainTabBarController.h"
 
 
 typedef NS_ENUM(int,SystemMessageContact){
@@ -24,7 +24,6 @@ typedef NS_ENUM(int,SystemMessageContact){
 //未读历史消息
 - (void)didGetOfflineMessagesWithIM:(BmobIM *)im
 {
-    
     //获取哪些人的消息还未读
     NSArray *objectIds = [im allConversationUsersIds];
     NSLog(@"未读消息：%@", objectIds);
@@ -35,6 +34,8 @@ typedef NS_ENUM(int,SystemMessageContact){
             [im saveUserInfos:result];
             //发新用户的通知
             [[NSNotificationCenter defaultCenter] postNotificationName:kNewChaterNotifacation object:nil];
+            //刷新未读消息总数
+            [MainTabBarController updateNewMsgTotal];
         }];
     }
 }
@@ -57,10 +58,14 @@ typedef NS_ENUM(int,SystemMessageContact){
             }
             //发接收到新信息的通知
             [[NSNotificationCenter defaultCenter] postNotificationName:kNewMsgNotifacation object:message];
+            //刷新未读消息总数
+            [MainTabBarController updateNewMsgTotal];
         }];
     }else{
         //发接收到新信息的通知
         [[NSNotificationCenter defaultCenter] postNotificationName:kNewMsgNotifacation object:message];
+        //刷新未读消息总数
+        [MainTabBarController updateNewMsgTotal];
     }
 }
 

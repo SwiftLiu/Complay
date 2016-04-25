@@ -29,8 +29,6 @@
 //返回(重写)
 - (void)goback
 {
-    //更新缓存
-    [self.conversation updateLocalCache];
     //返回
     [super goback];
     //注销通知

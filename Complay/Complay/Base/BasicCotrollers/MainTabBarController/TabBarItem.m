@@ -7,12 +7,13 @@
 //
 
 #import "TabBarItem.h"
-
+#import "LPBadgeView.h"
 
 @interface TabBarItem ()
 {
     UIImageView *imgView;
-    UILabel *label;
+    UILabel *titleLabel;
+    LPBadgeView *badgeView;
 }
 @end
 
@@ -34,18 +35,22 @@
 
 - (void)initView
 {
-    self.alpha = TabBarItemAlpha;
-    
     imgView = [UIImageView new];
+    imgView.alpha = TabBarItemAlpha;
     imgView.contentMode = UIViewContentModeCenter;
     imgView.layer.anchorPoint = CGPointMake(0.5, 0.5);
     [self addSubview:imgView];
     
-    label = [UILabel new];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:9];
-    [self addSubview:label];
+    titleLabel = [UILabel new];
+    titleLabel.alpha = TabBarItemAlpha;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont systemFontOfSize:9];
+    [self addSubview:titleLabel];
+    
+    badgeView = [LPBadgeView badgeWithColor:[UIColor redColor]];
+    badgeView.value = 0;
+    [self addSubview:badgeView];
 }
 
 - (void)setImage:(UIImage *)image
@@ -55,7 +60,17 @@
 
 - (void)setTitle:(NSString *)title
 {
-    label.text = title;
+    titleLabel.text = title;
+}
+
+- (void)setBadgeNum:(int)badgeNum
+{
+    badgeView.value = badgeNum;
+}
+
+- (void)setHideBadgeBlock:(void (^)(int))block
+{
+    badgeView.hiddenBlock = block;
 }
 
 //重写高宽设置
@@ -64,7 +79,8 @@
     if (!CGSizeEqualToSize(self.frame.size, frame.size)) {
         [super setFrame:frame];
         imgView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height*0.7);
-        label.frame = CGRectMake(0, CGRectGetMaxY(imgView.frame), frame.size.width, 10);
+        titleLabel.frame = CGRectMake(0, CGRectGetMaxY(imgView.frame), frame.size.width, 10);
+        badgeView.center = CGPointMake(CGRectGetMidX(imgView.frame)+20, CGRectGetMidY(imgView.frame)-5);
     }else{
         [super setFrame:frame];
     }
@@ -74,7 +90,7 @@
     if (!CGSizeEqualToSize(self.bounds.size, bounds.size)) {
         [super setBounds:bounds];
         imgView.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height*0.7);
-        label.frame = CGRectMake(0, CGRectGetMaxY(imgView.frame), bounds.size.width, 10);
+        titleLabel.frame = CGRectMake(0, CGRectGetMaxY(imgView.frame), bounds.size.width, 10);
     }else{
         [super setBounds:bounds];
     }
@@ -85,7 +101,8 @@
 - (void)setSelected:(BOOL)selected
 {
     if (!self.selected && selected) {
-        self.alpha = 1;
+        imgView.alpha = 1;
+        titleLabel.alpha = 1;
         [UIView animateWithDuration:0.1 animations:^{
             imgView.layer.affineTransform = CGAffineTransformScale(CGAffineTransformIdentity, 1.15, 1.15);
         } completion:^(BOOL finished) {
@@ -95,7 +112,8 @@
         }];
     }
     else if (self.selected && !selected) {
-        self.alpha = TabBarItemAlpha;
+        imgView.alpha = TabBarItemAlpha;
+        titleLabel.alpha = TabBarItemAlpha;
     }
     [super setSelected:selected];
 }

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainTabBar.h"
 
 @interface MainTabBarController : UITabBarController
+
+@property (weak, nonatomic) MainTabBar *mTabBar;
+
+///刷新tabBar未读消息总数
++ (void)updateNewMsgTotal;
 
 @end

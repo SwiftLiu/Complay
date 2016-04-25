@@ -20,6 +20,10 @@
 
 @property (weak, nonatomic) UITabBarController <MainTabBarDelegate> *delegate;
 
+@property (strong, nonatomic) void (^hideBadgeBlock)(int value, NSInteger index);
+
 + (MainTabBar *)tabBar;
+
+- (void)setBadgeNum:(int)badgeNum atIndex:(NSInteger)index;
 
 @end

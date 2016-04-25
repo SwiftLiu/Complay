@@ -14,7 +14,7 @@
 ///徽标半径
 const CGFloat BadgeR = 10;
 ///可回弹的最大半径
-const CGFloat ElsticMaxR = 55;
+const CGFloat ElsticMaxR = 70;
 ///增加的边距
 const CGFloat Margin = 5;
 
@@ -54,13 +54,19 @@ typedef NS_ENUM(NSInteger, BState) {
 @implementation LPBadgeView
 
 #pragma mark - 属性值
-- (void)setValue:(NSInteger)value
+- (void)setValue:(int)value
 {
     if (_value != value) {
         _value = value;
         
-        _badgeLabel.hidden = !value;
-        _elasticLayer.hidden = !value;
+        if (value) {
+            self.hidden = NO;
+            _elasticLayer.hidden = NO;
+            _badgeLabel.hidden = NO;
+        }else{
+            [self beHidden];
+        }
+        
         self.userInteractionEnabled = value;
         
         CGFloat wide = 2 * BadgeR;
@@ -68,10 +74,10 @@ typedef NS_ENUM(NSInteger, BState) {
             _badgeLabel.text = @"99+";
             [self setBadgeSize:CGSizeMake(wide * 1.6, wide)];
         }else if (value >= 10) {
-            _badgeLabel.text = [NSString stringWithFormat:@"%ld", value];
+            _badgeLabel.text = [NSString stringWithFormat:@"%d", value];
             [self setBadgeSize:CGSizeMake(wide * 1.3, wide)];
         }else if (value >= 1) {
-            _badgeLabel.text = [NSString stringWithFormat:@"%ld", value];
+            _badgeLabel.text = [NSString stringWithFormat:@"%d", value];
             [self setBadgeSize:CGSizeMake(wide, wide)];
         }
     }
@@ -82,13 +88,16 @@ typedef NS_ENUM(NSInteger, BState) {
 + (LPBadgeView *)badgeWithColor:(UIColor *)color
 {
     LPBadgeView *badge = [LPBadgeView new];
-    badge.badgeLabel.backgroundColor = color?:[UIColor redColor];
+    badge.badgeLabel.backgroundColor = color?:LPBadgeDefalutTintColor;
     return badge;
 }
 
 //初始化
 - (void)initWithColor:(UIColor *)color
 {
+    self.hidden = YES;
+    _badgeLabel.hidden = YES;
+    _elasticLayer.hidden = YES;
     self.clipsToBounds = NO;
     self.backgroundColor = [UIColor clearColor];
     
@@ -118,7 +127,7 @@ typedef NS_ENUM(NSInteger, BState) {
 {
     self = [super init];
     if (self) {
-        [self initWithColor:[UIColor redColor]];
+        [self initWithColor:LPBadgeDefalutTintColor];
     }
     return self;
 }
@@ -126,7 +135,6 @@ typedef NS_ENUM(NSInteger, BState) {
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.hidden = YES;
     [self initWithColor:self.backgroundColor];
     self.value = _value;
 }
@@ -324,7 +332,10 @@ typedef NS_ENUM(NSInteger, BState) {
 - (void)beHidden
 {
     state = BStateHidden;
+    _value = 0;
     if (_hiddenBlock) _hiddenBlock(_value);//回调
+    _elasticLayer.hidden = YES;
+    _badgeLabel.hidden = YES;
     
     //动画容器
     UIImageView *imgView = [UIImageView new];
@@ -342,14 +353,11 @@ typedef NS_ENUM(NSInteger, BState) {
     imgView.animationImages = images;
     [imgView startAnimating];
     
-    _badgeLabel.hidden = YES;
-    
     //动画结束后处理
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(imgView.animationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [imgView stopAnimating];
         [imgView removeFromSuperview];
         [self beStatic];
-        self.value = 0;
     });
 }
 

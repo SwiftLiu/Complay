@@ -9,6 +9,7 @@
 #import "ConvListViewController.h"
 #import "ConversationCell.h"
 #import "ChatViewController.h"
+#import "MainTabBarController.h"
 #import "CommonConstants.h"
 #import <BmobIMSDK/BmobIMSDK.h>
 #import <BmobSDK/Bmob.h>
@@ -23,7 +24,7 @@ static NSString *convCellIdentifier = @"convCell";
     __weak IBOutlet UITableView *convListTable;
     
     ///会话表中的所有聊天对象的objectId
-    NSArray *convDataArray;
+    NSMutableArray *convDataArray;
 }
 @end
 
@@ -79,7 +80,7 @@ static NSString *convCellIdentifier = @"convCell";
         [self loadConversations];
     }else{
         isnotLoginView.hidden = NO;
-        convDataArray = @[];
+        convDataArray = [NSMutableArray array];
         [convListTable reloadData];
     }
 }
@@ -91,6 +92,7 @@ static NSString *convCellIdentifier = @"convCell";
     [noti addObserver:self selector:@selector(loginOrLogout) name:kLoginOrLogoutNotification object:nil];
     [noti addObserver:self selector:@selector(loadConversations) name:kNewMsgNotifacation object:nil];
     [noti addObserver:self selector:@selector(loadConversations) name:kNewChaterNotifacation object:nil];
+    [noti addObserver:self selector:@selector(loadConversations) name:kClearAllNewMsgNotifacation object:nil];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
@@ -104,7 +106,7 @@ static NSString *convCellIdentifier = @"convCell";
 {
     NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
     if (array && array.count > 0) {
-        convDataArray = array;
+        convDataArray = [NSMutableArray arrayWithArray:array];
         [convListTable reloadData];
     }
 }
@@ -116,11 +118,13 @@ static NSString *convCellIdentifier = @"convCell";
     
 }
 
-//清除新消息数
+//清除某行新消息数
 - (void)didClearNewMsgNumberBadgeAtIndexPath:(NSIndexPath *)indexPath
 {
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
     [conv updateLocalCache];
+    //刷新未读消息总数
+    [MainTabBarController updateNewMsgTotal];
 }
 
 #pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
@@ -147,12 +151,19 @@ static NSString *convCellIdentifier = @"convCell";
     ChatViewController *cVC = [ChatViewController new];
     cVC.conversation = [convDataArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:cVC animated:YES];
+    //清空该对话未读消息数
+    BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
+    [conv updateLocalCache];
+    //刷新未读消息总数
+    [MainTabBarController updateNewMsgTotal];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
-    [conv deleteMessageWithdeleteMessageListOrNot:NO updateTime:conv.updatedTime];
+    [conv deleteMessageWithdeleteMessageListOrNot:YES updateTime:conv.updatedTime];
+    [convDataArray removeObjectAtIndex:indexPath.row];
+    [convListTable reloadData];
 }
 
 
