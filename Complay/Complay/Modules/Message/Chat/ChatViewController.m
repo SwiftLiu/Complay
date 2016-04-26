@@ -19,7 +19,7 @@
     __weak IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
     __weak IBOutlet UITextField *msgTextField;
     
-    
+    __weak UIButton *selectedMsgEditButton;
 }
 @end
 
@@ -109,8 +109,11 @@
     sender.selected = !sender.selected;
     [msgTextField resignFirstResponder];
     if (sender.selected) {
+        if (selectedMsgEditButton) selectedMsgEditButton.selected = NO;
+        selectedMsgEditButton = sender;
         bottomViewHeightConstraint.constant = BottomViewHeightEditing;
     }else{
+        selectedMsgEditButton = nil;
         bottomViewHeightConstraint.constant = BottomViewHeightNormal;
     }
 }

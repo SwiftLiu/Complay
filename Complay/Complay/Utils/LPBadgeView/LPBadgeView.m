@@ -59,15 +59,15 @@ typedef NS_ENUM(NSInteger, BState) {
     if (_value != value) {
         _value = value;
         
+        self.hidden = !value;
+        
         if (value) {
-            self.hidden = NO;
             _elasticLayer.hidden = NO;
             _badgeLabel.hidden = NO;
         }else{
             [self beHidden];
         }
         
-        self.userInteractionEnabled = value;
         
         CGFloat wide = 2 * BadgeR;
         if (value >= 100) {

@@ -80,14 +80,14 @@
 		5D8AEE891CC6315E00E7F9A4 /* OldTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8AEE871CC6315E00E7F9A4 /* OldTasksViewController.xib */; };
 		5D95FC931CBB9396009EF97A /* BasicImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D95FC921CBB9396009EF97A /* BasicImgView.m */; };
 		5D95FC961CBB93CD009EF97A /* AvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D95FC951CBB93CD009EF97A /* AvatarView.m */; };
-		5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */; };
-		5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDE1AAB1CBBA9EB00D769B1 /* MineViewController.xib */; };
 		5DF4D8B91CC7856D009BF68A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF4D8B71CC7856D009BF68A /* ChatViewController.m */; };
 		5DF4D8BA1CC7856D009BF68A /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF4D8B81CC7856D009BF68A /* ChatViewController.xib */; };
 		5DF6971B1CC0BCDD001C9921 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF6971A1CC0BCDD001C9921 /* BasicButton.m */; };
 		5DF697231CC0D8C0001C9921 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF697211CC0D8C0001C9921 /* LoginViewController.m */; };
 		5DF697251CC0D8C7001C9921 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF697241CC0D8C7001C9921 /* LoginViewController.xib */; };
 		C66374D91CBD2EFC00447A39 /* RefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C66374D81CBD2EFC00447A39 /* RefreshTableView.m */; };
+		C698E41E1CCF91CF00CA8D3F /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C698E41C1CCF91CF00CA8D3F /* MineViewController.m */; };
+		C698E41F1CCF91CF00CA8D3F /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C698E41D1CCF91CF00CA8D3F /* MineViewController.xib */; };
 		C6C236B51CBE945000919E31 /* AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C236B41CBE945000919E31 /* AddView.m */; };
 /* End PBXBuildFile section */
 
@@ -225,9 +225,6 @@
 		5D95FC921CBB9396009EF97A /* BasicImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicImgView.m; sourceTree = "<group>"; };
 		5D95FC941CBB93CD009EF97A /* AvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarView.h; sourceTree = "<group>"; };
 		5D95FC951CBB93CD009EF97A /* AvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarView.m; sourceTree = "<group>"; };
-		5DDE1AA91CBBA9EB00D769B1 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
-		5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
-		5DDE1AAB1CBBA9EB00D769B1 /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
 		5DF4D8B61CC7856D009BF68A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		5DF4D8B71CC7856D009BF68A /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		5DF4D8B81CC7856D009BF68A /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -240,6 +237,9 @@
 		5DF697241CC0D8C7001C9921 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C66374D71CBD2EFC00447A39 /* RefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableView.h; sourceTree = "<group>"; };
 		C66374D81CBD2EFC00447A39 /* RefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableView.m; sourceTree = "<group>"; };
+		C698E41B1CCF91CF00CA8D3F /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		C698E41C1CCF91CF00CA8D3F /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		C698E41D1CCF91CF00CA8D3F /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
 		C6C236B31CBE945000919E31 /* AddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddView.h; sourceTree = "<group>"; };
 		C6C236B41CBE945000919E31 /* AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -499,6 +499,7 @@
 				5D5723241CB7A0550041643A /* Home */,
 				5D5723271CB7A0550041643A /* Task */,
 				5D5723251CB7A0550041643A /* Message */,
+				C698E41A1CCF91CF00CA8D3F /* MineHome */,
 				5D5723261CB7A0550041643A /* Mine */,
 				5D51248A1CBF2AB6009114CC /* Account */,
 			);
@@ -530,7 +531,6 @@
 		5D5723261CB7A0550041643A /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				5DDE1AA81CBBA9EB00D769B1 /* MainHome */,
 				5D129B9B1CC4D948005584E8 /* Setting */,
 				5D8AEE7E1CC6313500E7F9A4 /* NewTask */,
 				5D8AEE7F1CC6313500E7F9A4 /* OldTask */,
@@ -697,16 +697,6 @@
 			path = OldTask;
 			sourceTree = "<group>";
 		};
-		5DDE1AA81CBBA9EB00D769B1 /* MainHome */ = {
-			isa = PBXGroup;
-			children = (
-				5DDE1AA91CBBA9EB00D769B1 /* MineViewController.h */,
-				5DDE1AAA1CBBA9EB00D769B1 /* MineViewController.m */,
-				5DDE1AAB1CBBA9EB00D769B1 /* MineViewController.xib */,
-			);
-			path = MainHome;
-			sourceTree = "<group>";
-		};
 		5DF4D8B51CC7854E009BF68A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +725,17 @@
 				C66374D81CBD2EFC00447A39 /* RefreshTableView.m */,
 			);
 			path = RefreshTableView;
+			sourceTree = "<group>";
+		};
+		C698E41A1CCF91CF00CA8D3F /* MineHome */ = {
+			isa = PBXGroup;
+			children = (
+				C698E41B1CCF91CF00CA8D3F /* MineViewController.h */,
+				C698E41C1CCF91CF00CA8D3F /* MineViewController.m */,
+				C698E41D1CCF91CF00CA8D3F /* MineViewController.xib */,
+			);
+			name = MineHome;
+			path = Mine/MineHome;
 			sourceTree = "<group>";
 		};
 		C6C236B21CBE945000919E31 /* Add */ = {
@@ -813,10 +814,10 @@
 				5D8AEE891CC6315E00E7F9A4 /* OldTasksViewController.xib in Resources */,
 				5D17A6001CC9F26000CCCA01 /* LPBadgeView.bundle in Resources */,
 				5D0852181CC8D24D0040AA3F /* RegistViewController.xib in Resources */,
-				5DDE1AAD1CBBA9EB00D769B1 /* MineViewController.xib in Resources */,
 				5D57233C1CB7A0DE0041643A /* TaskViewController.xib in Resources */,
 				5DF4D8BA1CC7856D009BF68A /* ChatViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
+				C698E41F1CCF91CF00CA8D3F /* MineViewController.xib in Resources */,
 				5D17A5F11CC9CA4B00CCCA01 /* ConversationCell.xib in Resources */,
 				5D129BA11CC4D97B005584E8 /* SettingViewController.xib in Resources */,
 				5D17A5EC1CC9C30800CCCA01 /* ConvListViewController.xib in Resources */,
@@ -860,6 +861,7 @@
 				5D17A6271CCA185000CCCA01 /* MKAnnotationView+WebCache.m in Sources */,
 				5D17A62D1CCA185000CCCA01 /* SDWebImageDownloaderOperation.m in Sources */,
 				5D129B8D1CC4C6CD005584E8 /* CommonFunctions.m in Sources */,
+				C698E41E1CCF91CF00CA8D3F /* MineViewController.m in Sources */,
 				5D5723401CB7B0440041643A /* TestViewController.m in Sources */,
 				5D17A6301CCA185000CCCA01 /* UIButton+WebCache.m in Sources */,
 				5D129B871CC4B8D6005584E8 /* CacheTool.m in Sources */,
@@ -879,7 +881,6 @@
 				5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */,
 				5D57232B1CB7A08B0041643A /* HomeViewController.m in Sources */,
 				5D5124971CBF344C009114CC /* UserModel.m in Sources */,
-				5DDE1AAC1CBBA9EB00D769B1 /* MineViewController.m in Sources */,
 				5D17A6351CCA185000CCCA01 /* UIImageView+WebCache.m in Sources */,
 				5D0852171CC8D24D0040AA3F /* RegistViewController.m in Sources */,
 				5D129B971CC4D4F3005584E8 /* LPAlertView.m in Sources */,
