@@ -11,14 +11,27 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LPBadgeViewDelegate <NSObject>
+
+@optional
+///清除
+- (void)badgeViewDidClearValue:(int)value;
+///开始拖动动画时
+- (void)badgeViewDidBeganAnimation;
+///结束拖动动画时
+- (void)badgeViewDidEndAnimation;
+
+@end
+
+
 #define LPBadgeDefalutTintColor [UIColor redColor]
 
 @interface LPBadgeView : UIView
 
 ///值
 @property (assign, nonatomic) int value;
-///结束回调
-@property (strong, nonatomic) void (^hiddenBlock)(int value);
+///代理
+@property (weak, nonatomic) id <LPBadgeViewDelegate> delegate;
 
 ///便利初始化，默认color(主题颜色)为红色
 + (LPBadgeView *)badgeWithColor:(UIColor *)color;

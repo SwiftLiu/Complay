@@ -9,7 +9,7 @@
 #import "TabBarItem.h"
 #import "LPBadgeView.h"
 
-@interface TabBarItem ()
+@interface TabBarItem ()<LPBadgeViewDelegate>
 {
     UIImageView *imgView;
     UILabel *titleLabel;
@@ -50,6 +50,7 @@
     
     badgeView = [LPBadgeView badgeWithColor:[UIColor redColor]];
     badgeView.value = 0;
+    badgeView.delegate = self;
     [self addSubview:badgeView];
 }
 
@@ -68,10 +69,6 @@
     badgeView.value = badgeNum;
 }
 
-- (void)setHideBadgeBlock:(void (^)(int))block
-{
-    badgeView.hiddenBlock = block;
-}
 
 //重写高宽设置
 - (void)setFrame:(CGRect)frame
@@ -116,6 +113,12 @@
         titleLabel.alpha = TabBarItemAlpha;
     }
     [super setSelected:selected];
+}
+
+#pragma mark - <LPBadgeViewDelegate>
+- (void)badgeViewDidClearValue:(int)value
+{
+    if (_hideBadgeBlock) _hideBadgeBlock(value);
 }
 
 @end

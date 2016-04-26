@@ -14,6 +14,6 @@
 @property (weak, nonatomic) MainTabBar *mTabBar;
 
 ///刷新tabBar未读消息总数
-+ (void)updateNewMsgTotal;
++ (void)updateNewMsgTotalClear:(BOOL)clear;
 
 @end

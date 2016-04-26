@@ -124,7 +124,7 @@ static NSString *convCellIdentifier = @"convCell";
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
     [conv updateLocalCache];
     //刷新未读消息总数
-    [MainTabBarController updateNewMsgTotal];
+    [MainTabBarController updateNewMsgTotalClear:NO];
 }
 
 #pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
@@ -150,12 +150,15 @@ static NSString *convCellIdentifier = @"convCell";
 {
     ChatViewController *cVC = [ChatViewController new];
     cVC.conversation = [convDataArray objectAtIndex:indexPath.row];
+    cVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cVC animated:YES];
     //清空该对话未读消息数
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
     [conv updateLocalCache];
     //刷新未读消息总数
-    [MainTabBarController updateNewMsgTotal];
+    [MainTabBarController updateNewMsgTotalClear:NO];
+    //取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,6 +167,8 @@ static NSString *convCellIdentifier = @"convCell";
     [conv deleteMessageWithdeleteMessageListOrNot:YES updateTime:conv.updatedTime];
     [convDataArray removeObjectAtIndex:indexPath.row];
     [convListTable reloadData];
+    //刷新未读消息总数
+    [MainTabBarController updateNewMsgTotalClear:NO];
 }
 
 

@@ -90,7 +90,7 @@ void uncaughtHandler(NSException *exception) {
     _window.rootViewController = tabBC;
     [_window makeKeyAndVisible];
     //刷新未读消息总数
-    [MainTabBarController updateNewMsgTotal];
+    [MainTabBarController updateNewMsgTotalClear:NO];
 }
 
 #pragma mark - 即使聊天登录退出处理
@@ -99,8 +99,12 @@ void uncaughtHandler(NSException *exception) {
 {
     if ([noti.object boolValue]) {
         [self loginIM];
+        //刷新未读消息总数
+        [MainTabBarController updateNewMsgTotalClear:NO];
     }else {
         [self logoutIM];
+        //未读消息总数清零
+        [MainTabBarController updateNewMsgTotalClear:YES];
     }
 }
 

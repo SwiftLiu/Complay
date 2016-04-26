@@ -101,13 +101,15 @@
 }
 
 #pragma mark - 刷新tabBar未读消息总数
-+ (void)updateNewMsgTotal
++ (void)updateNewMsgTotalClear:(BOOL)clear
 {
     //设置未读消息数
-    NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
     int newMsgNum = 0;
-    for (BmobIMConversation *conv in array) {
-        newMsgNum += conv.unreadCount;
+    if (!clear) {
+        NSArray *array = [[BmobIM sharedBmobIM] queryRecentConversation];
+        for (BmobIMConversation *conv in array) {
+            newMsgNum += conv.unreadCount;
+        }
     }
     UIViewController *rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
     MainTabBarController *mTBC = (MainTabBarController *)rootVC;

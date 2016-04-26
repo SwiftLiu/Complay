@@ -16,7 +16,7 @@ const CGFloat BadgeR = 10;
 ///可回弹的最大半径
 const CGFloat ElsticMaxR = 70;
 ///增加的边距
-const CGFloat Margin = 5;
+const CGFloat Margin = 10;
 
 typedef NS_ENUM(NSInteger, BState) {
     ///静止状态（初始默认状态）
@@ -221,12 +221,14 @@ typedef NS_ENUM(NSInteger, BState) {
     
     if (state==BStateStatic) {
         [self beHidden];
+        [self.delegate badgeViewDidClearValue:_value];
     }
     else if (state == BStateTensile) {
         [self beBackAt:p];
     }
     else if (Distance(CGPointZero, p)>ElsticMaxR) {
         [self beHidden];
+        [self.delegate badgeViewDidClearValue:_value];
     }
     else{
         [self beStatic];
@@ -237,6 +239,10 @@ typedef NS_ENUM(NSInteger, BState) {
 //静止动画
 - (void)beStatic
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(badgeViewDidEndAnimation)]) {
+        [self.delegate badgeViewDidEndAnimation];
+    }
+    
     state = BStateStatic;
     self.userInteractionEnabled = YES;
     //徽标移动至self上
@@ -286,6 +292,10 @@ typedef NS_ENUM(NSInteger, BState) {
 //拉伸动画
 - (void)beTensileAt:(CGPoint)p
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(badgeViewDidBeganAnimation)]) {
+        [self.delegate badgeViewDidBeganAnimation];
+    }
+    
     state = BStateTensile;
     UIWindow *window = [[UIApplication sharedApplication].delegate window];
     
@@ -333,7 +343,6 @@ typedef NS_ENUM(NSInteger, BState) {
 {
     state = BStateHidden;
     _value = 0;
-    if (_hiddenBlock) _hiddenBlock(_value);//回调
     _elasticLayer.hidden = YES;
     _badgeLabel.hidden = YES;
     
@@ -375,7 +384,7 @@ typedef NS_ENUM(NSInteger, BState) {
     
     
     //小圆弧半径
-    CGFloat r = BadgeR - (BadgeR/2.5l) * (Distance(CGPointZero, p)/ElsticMaxR) - 2;
+    CGFloat r = BadgeR - (BadgeR/2.5l) * (Distance(CGPointZero, p)/ElsticMaxR) - 1;
     //角度，逆时针绘制
     double angle = Angle(CGPointZero, p);
     double fixAngle = M_PI_2 * 0.7l;

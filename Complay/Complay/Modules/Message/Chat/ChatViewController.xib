@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
-                <outlet property="textField" destination="Nvl-91-gkL" id="zXB-G8-1w3"/>
+                <outlet property="bottomView" destination="Jzq-D9-51y" id="FkC-FQ-N39"/>
+                <outlet property="bottomViewBottomConstraint" destination="mmW-P5-qa7" id="Phg-y2-CnX"/>
+                <outlet property="bottomViewHeightConstraint" destination="4dN-4X-PeO" id="ZOh-3l-jZ5"/>
+                <outlet property="msgTextField" destination="Nvl-91-gkL" id="UwW-3x-eOh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,22 +19,124 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZb-6a-pBB">
-                    <rect key="frame" x="262" y="138" width="50" height="30"/>
-                    <state key="normal" title="发送"/>
-                    <connections>
-                        <action selector="send:" destination="-1" eventType="touchUpInside" id="qY3-V8-V3g"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="这是测试" borderStyle="roundedRect" placeholder="测试发送" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nvl-91-gkL">
-                    <rect key="frame" x="8" y="139" width="246" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzq-D9-51y">
+                    <rect key="frame" x="0.0" y="293" width="320" height="275"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="这是测试" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nvl-91-gkL">
+                            <rect key="frame" x="8" y="0.0" width="304" height="35"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="vE0-g3-ADd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-mY-6Nr">
+                            <rect key="frame" x="0.0" y="35" width="64" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="oTI-D7-uob"/>
+                            </constraints>
+                            <state key="normal" image="chat_bottom_PTT_nor"/>
+                            <state key="selected" image="chat_bottom_PTT_press"/>
+                            <connections>
+                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="zT1-Kb-8lQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-F7-deH">
+                            <rect key="frame" x="64" y="35" width="64" height="40"/>
+                            <state key="normal" image="chat_bottom_location_nor"/>
+                            <state key="selected" image="chat_bottom_location_press"/>
+                            <connections>
+                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="dZn-FJ-jB5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qN-cT-jrH">
+                            <rect key="frame" x="128" y="35" width="64" height="40"/>
+                            <state key="normal" image="chat_bottom_photo_nor"/>
+                            <state key="selected" image="chat_bottom_photo_press"/>
+                            <connections>
+                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="kqq-he-weP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-VR-sLB">
+                            <rect key="frame" x="192" y="35" width="64" height="40"/>
+                            <state key="normal" image="chat_bottom_Camera_nor"/>
+                            <state key="selected" image="chat_bottom_Camera_press"/>
+                            <connections>
+                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="VWM-If-E9F"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck6-Ns-C9U">
+                            <rect key="frame" x="256" y="35" width="64" height="40"/>
+                            <state key="normal" image="chat_bottom_emotion_nor"/>
+                            <state key="selected" image="chat_bottom_emotion_press"/>
+                            <connections>
+                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="51R-Q6-IQq"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-lg-NnV">
+                            <rect key="frame" x="0.0" y="75" width="320" height="200"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="jfn-GQ-7s4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="275" id="4dN-4X-PeO"/>
+                        <constraint firstItem="Nvl-91-gkL" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" constant="8" id="9yg-Kh-pmT"/>
+                        <constraint firstAttribute="trailing" secondItem="Ck6-Ns-C9U" secondAttribute="trailing" id="AqJ-QS-MPq"/>
+                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="leading" secondItem="PuI-VR-sLB" secondAttribute="trailing" id="DSJ-PL-6VP"/>
+                        <constraint firstItem="Fbd-mY-6Nr" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" id="KXf-eJ-HCa"/>
+                        <constraint firstItem="7qN-cT-jrH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="Lt6-gn-kRe"/>
+                        <constraint firstItem="0oR-lg-NnV" firstAttribute="top" secondItem="Ck6-Ns-C9U" secondAttribute="bottom" id="Mci-UT-Owl"/>
+                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="MkN-EH-h64"/>
+                        <constraint firstItem="8Ze-F7-deH" firstAttribute="leading" secondItem="Fbd-mY-6Nr" secondAttribute="trailing" id="NjJ-aQ-olW"/>
+                        <constraint firstItem="PuI-VR-sLB" firstAttribute="leading" secondItem="7qN-cT-jrH" secondAttribute="trailing" id="VMo-kV-BoY"/>
+                        <constraint firstAttribute="trailing" secondItem="Nvl-91-gkL" secondAttribute="trailing" constant="8" id="WCn-NA-EdZ"/>
+                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="XMT-6D-YjB"/>
+                        <constraint firstItem="7qN-cT-jrH" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="ZeT-a8-zHK"/>
+                        <constraint firstItem="PuI-VR-sLB" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="cLZ-To-9VQ"/>
+                        <constraint firstItem="7qN-cT-jrH" firstAttribute="leading" secondItem="8Ze-F7-deH" secondAttribute="trailing" id="fUn-gz-K7d"/>
+                        <constraint firstItem="PuI-VR-sLB" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="gpP-rx-QeK"/>
+                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="gqc-4o-0nP"/>
+                        <constraint firstItem="8Ze-F7-deH" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="hnE-Ew-fW8"/>
+                        <constraint firstAttribute="trailing" secondItem="0oR-lg-NnV" secondAttribute="trailing" id="iDO-x0-kEW"/>
+                        <constraint firstItem="Nvl-91-gkL" firstAttribute="top" secondItem="Jzq-D9-51y" secondAttribute="top" id="jg3-qx-Tgz"/>
+                        <constraint firstItem="8Ze-F7-deH" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="kKC-nM-PX0"/>
+                        <constraint firstItem="Fbd-mY-6Nr" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="n9s-fq-mml"/>
+                        <constraint firstItem="PuI-VR-sLB" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="tyD-X6-KSl"/>
+                        <constraint firstItem="8Ze-F7-deH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="uR0-zH-cSE"/>
+                        <constraint firstItem="7qN-cT-jrH" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="w0i-A5-oJZ"/>
+                        <constraint firstItem="0oR-lg-NnV" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" id="z1o-BR-YoD"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.94472064393939392" green="0.94472064393939392" blue="0.94472064393939392" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Jzq-D9-51y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0uT-ya-cM6"/>
+                <constraint firstAttribute="trailing" secondItem="Jzq-D9-51y" secondAttribute="trailing" id="JE7-ze-IBl"/>
+                <constraint firstAttribute="bottom" secondItem="Jzq-D9-51y" secondAttribute="bottom" id="mmW-P5-qa7"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="495" y="233"/>
+            <point key="canvasLocation" x="363" y="257"/>
         </view>
     </objects>
+    <resources>
+        <image name="chat_bottom_Camera_nor" width="34" height="34"/>
+        <image name="chat_bottom_Camera_press" width="34" height="34"/>
+        <image name="chat_bottom_PTT_nor" width="34" height="34"/>
+        <image name="chat_bottom_PTT_press" width="34" height="34"/>
+        <image name="chat_bottom_emotion_nor" width="34" height="34"/>
+        <image name="chat_bottom_emotion_press" width="34" height="34"/>
+        <image name="chat_bottom_location_nor" width="34" height="34"/>
+        <image name="chat_bottom_location_press" width="34" height="34"/>
+        <image name="chat_bottom_photo_nor" width="34" height="34"/>
+        <image name="chat_bottom_photo_press" width="34" height="34"/>
+    </resources>
 </document>

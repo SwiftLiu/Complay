@@ -35,7 +35,7 @@ typedef NS_ENUM(int,SystemMessageContact){
             //发新用户的通知
             [[NSNotificationCenter defaultCenter] postNotificationName:kNewChaterNotifacation object:nil];
             //刷新未读消息总数
-            [MainTabBarController updateNewMsgTotal];
+            [MainTabBarController updateNewMsgTotalClear:NO];
         }];
     }
 }
@@ -59,13 +59,13 @@ typedef NS_ENUM(int,SystemMessageContact){
             //发接收到新信息的通知
             [[NSNotificationCenter defaultCenter] postNotificationName:kNewMsgNotifacation object:message];
             //刷新未读消息总数
-            [MainTabBarController updateNewMsgTotal];
+            [MainTabBarController updateNewMsgTotalClear:NO];
         }];
     }else{
         //发接收到新信息的通知
         [[NSNotificationCenter defaultCenter] postNotificationName:kNewMsgNotifacation object:message];
         //刷新未读消息总数
-        [MainTabBarController updateNewMsgTotal];
+        [MainTabBarController updateNewMsgTotalClear:NO];
     }
 }
 

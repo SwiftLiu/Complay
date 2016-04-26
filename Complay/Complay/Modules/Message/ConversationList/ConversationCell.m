@@ -13,7 +13,7 @@
 #import "NetTool.h"
 #import "CommonFunctions.h"
 
-@interface ConversationCell ()
+@interface ConversationCell ()<LPBadgeViewDelegate>
 {
     __weak IBOutlet AvatarView *avatarView;
     __weak IBOutlet UILabel *titleLabel;
@@ -29,16 +29,13 @@
 @implementation ConversationCell
 
 - (void)awakeFromNib {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     titleLabel.font = [UIFont systemFontOfSize:17 weight:0.35];
     titleLabel.textColor = DefaultFontColor;
     detailLabel.textColor = DefaultMinorFontColor;
     dateLabel.textColor = DefaultMinorFontColor;
     badgeView.backgroundColor = LPBadgeDefalutTintColor;
     badgeView.value = 0;
-    [badgeView setHiddenBlock:^(int num) {
-        [self.delegate didClearNewMsgNumberBadgeAtIndexPath:self.indexPath];
-    }];
+    badgeView.delegate = self;
     [avatarView setClickBlock:^{
         [self.delegate didClickAvatarAtIndexPath:self.indexPath];
     }];
@@ -88,6 +85,22 @@
 - (void)setNewMsgNum:(int)newMsgNum
 {
     badgeView.value = newMsgNum;
+}
+
+#pragma mark - <LPBadgeViewDelegate>
+- (void)badgeViewDidClearValue:(int)value
+{
+    [self.delegate didClearNewMsgNumberBadgeAtIndexPath:self.indexPath];
+}
+
+- (void)badgeViewDidBeganAnimation
+{
+    self.tableView.scrollEnabled = NO;
+}
+
+- (void)badgeViewDidEndAnimation
+{
+    self.tableView.scrollEnabled = YES;
 }
 
 @end

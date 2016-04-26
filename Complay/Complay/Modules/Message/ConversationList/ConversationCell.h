@@ -25,6 +25,8 @@
 
 ///代理
 @property (weak, nonatomic) id <ConversationCellDelegate> delegate;
+///tableView
+@property (weak, nonatomic) UITableView *tableView;
 ///indexPath
 @property (strong, nonatomic) NSIndexPath *indexPath;
 
