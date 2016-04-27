@@ -7,10 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
+                <outlet property="bottomEditView" destination="0oR-lg-NnV" id="Ptu-Q6-Y0n"/>
                 <outlet property="bottomView" destination="Jzq-D9-51y" id="FkC-FQ-N39"/>
                 <outlet property="bottomViewBottomConstraint" destination="mmW-P5-qa7" id="Phg-y2-CnX"/>
-                <outlet property="bottomViewHeightConstraint" destination="4dN-4X-PeO" id="ZOh-3l-jZ5"/>
-                <outlet property="msgTextField" destination="Nvl-91-gkL" id="UwW-3x-eOh"/>
+                <outlet property="msgTableView" destination="288-eA-P2j" id="v1v-Tq-5Wa"/>
+                <outlet property="msgTextView" destination="q8D-Hm-lc5" id="2ZX-K0-mVF"/>
+                <outlet property="msgTextViewHeightConstraint" destination="99a-F7-kwY" id="hym-AV-mH3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,111 +22,136 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzq-D9-51y">
-                    <rect key="frame" x="0.0" y="293" width="320" height="275"/>
+                    <rect key="frame" x="0.0" y="285" width="320" height="283"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="这是测试" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nvl-91-gkL">
-                            <rect key="frame" x="8" y="0.0" width="304" height="35"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="q8D-Hm-lc5">
+                            <rect key="frame" x="8" y="8" width="304" height="35"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="vE0-g3-ADd"/>
+                                <constraint firstAttribute="height" constant="35" id="99a-F7-kwY"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="5"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
-                        </textField>
-                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-mY-6Nr">
-                            <rect key="frame" x="0.0" y="35" width="64" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="oTI-D7-uob"/>
-                            </constraints>
-                            <state key="normal" image="chat_bottom_PTT_nor"/>
-                            <state key="selected" image="chat_bottom_PTT_press"/>
-                            <connections>
-                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="zT1-Kb-8lQ"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-F7-deH">
-                            <rect key="frame" x="64" y="35" width="64" height="40"/>
-                            <state key="normal" image="chat_bottom_location_nor"/>
-                            <state key="selected" image="chat_bottom_location_press"/>
-                            <connections>
-                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="dZn-FJ-jB5"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qN-cT-jrH">
-                            <rect key="frame" x="128" y="35" width="64" height="40"/>
-                            <state key="normal" image="chat_bottom_photo_nor"/>
-                            <state key="selected" image="chat_bottom_photo_press"/>
-                            <connections>
-                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="kqq-he-weP"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-VR-sLB">
-                            <rect key="frame" x="192" y="35" width="64" height="40"/>
-                            <state key="normal" image="chat_bottom_Camera_nor"/>
-                            <state key="selected" image="chat_bottom_Camera_press"/>
-                            <connections>
-                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="VWM-If-E9F"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck6-Ns-C9U">
-                            <rect key="frame" x="256" y="35" width="64" height="40"/>
-                            <state key="normal" image="chat_bottom_emotion_nor"/>
-                            <state key="selected" image="chat_bottom_emotion_press"/>
-                            <connections>
-                                <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="51R-Q6-IQq"/>
-                            </connections>
-                        </button>
+                        </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-lg-NnV">
-                            <rect key="frame" x="0.0" y="75" width="320" height="200"/>
+                            <rect key="frame" x="0.0" y="83" width="320" height="200"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="jfn-GQ-7s4"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkt-db-cWQ">
+                            <rect key="frame" x="0.0" y="43" width="320" height="40"/>
+                            <subviews>
+                                <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck6-Ns-C9U">
+                                    <rect key="frame" x="256" y="0.0" width="64" height="40"/>
+                                    <state key="normal" image="chat_bottom_emotion_nor"/>
+                                    <state key="selected" image="chat_bottom_emotion_press"/>
+                                    <state key="highlighted" image="chat_bottom_emotion_press"/>
+                                    <connections>
+                                        <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="51R-Q6-IQq"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-mY-6Nr">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
+                                    <state key="normal" image="chat_bottom_PTT_nor"/>
+                                    <state key="selected" image="chat_bottom_PTT_press"/>
+                                    <state key="highlighted" image="chat_bottom_PTT_press"/>
+                                    <connections>
+                                        <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="zT1-Kb-8lQ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ze-F7-deH">
+                                    <rect key="frame" x="64" y="0.0" width="64" height="40"/>
+                                    <state key="normal" image="chat_bottom_location_nor"/>
+                                    <state key="selected" image="chat_bottom_location_press"/>
+                                    <state key="highlighted" image="chat_bottom_location_press"/>
+                                    <connections>
+                                        <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="dZn-FJ-jB5"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qN-cT-jrH">
+                                    <rect key="frame" x="128" y="0.0" width="64" height="40"/>
+                                    <state key="normal" image="chat_bottom_photo_nor"/>
+                                    <state key="selected" image="chat_bottom_photo_press"/>
+                                    <state key="highlighted" image="chat_bottom_photo_press"/>
+                                    <connections>
+                                        <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="kqq-he-weP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuI-VR-sLB">
+                                    <rect key="frame" x="192" y="0.0" width="64" height="40"/>
+                                    <state key="normal" image="chat_bottom_Camera_nor"/>
+                                    <state key="selected" image="chat_bottom_Camera_press"/>
+                                    <state key="highlighted" image="chat_bottom_Camera_press"/>
+                                    <connections>
+                                        <action selector="didSelectEditMsgButton:" destination="-1" eventType="touchUpInside" id="VWM-If-E9F"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="8Ze-F7-deH" firstAttribute="leading" secondItem="Fbd-mY-6Nr" secondAttribute="trailing" id="3ex-cc-Erj"/>
+                                <constraint firstItem="8Ze-F7-deH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="8V7-M5-S1k"/>
+                                <constraint firstItem="Ck6-Ns-C9U" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="top" id="BbL-EL-xYT"/>
+                                <constraint firstAttribute="height" constant="40" id="DlK-73-6xP"/>
+                                <constraint firstItem="PuI-VR-sLB" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="HYn-kI-1c4"/>
+                                <constraint firstItem="Fbd-mY-6Nr" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="top" id="LKO-ak-bwu"/>
+                                <constraint firstAttribute="bottom" secondItem="Fbd-mY-6Nr" secondAttribute="bottom" id="MgO-Pn-ZEb"/>
+                                <constraint firstItem="7qN-cT-jrH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="TSD-mh-qJB"/>
+                                <constraint firstItem="7qN-cT-jrH" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="top" id="TzH-9A-KVZ"/>
+                                <constraint firstItem="Ck6-Ns-C9U" firstAttribute="leading" secondItem="PuI-VR-sLB" secondAttribute="trailing" id="WWf-lv-rLu"/>
+                                <constraint firstItem="PuI-VR-sLB" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="top" id="ZZm-9g-IyM"/>
+                                <constraint firstAttribute="bottom" secondItem="PuI-VR-sLB" secondAttribute="bottom" id="bzb-sK-BCJ"/>
+                                <constraint firstAttribute="trailing" secondItem="Ck6-Ns-C9U" secondAttribute="trailing" id="cQJ-n5-gGQ"/>
+                                <constraint firstItem="PuI-VR-sLB" firstAttribute="leading" secondItem="7qN-cT-jrH" secondAttribute="trailing" id="d79-hi-Wu2"/>
+                                <constraint firstAttribute="bottom" secondItem="Ck6-Ns-C9U" secondAttribute="bottom" id="dpQ-5u-cps"/>
+                                <constraint firstItem="Fbd-mY-6Nr" firstAttribute="leading" secondItem="fkt-db-cWQ" secondAttribute="leading" id="eCh-ft-ifH"/>
+                                <constraint firstItem="Ck6-Ns-C9U" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="jkv-4D-njD"/>
+                                <constraint firstAttribute="bottom" secondItem="7qN-cT-jrH" secondAttribute="bottom" id="l2A-xo-DxR"/>
+                                <constraint firstItem="8Ze-F7-deH" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="top" id="oLB-cv-Gze"/>
+                                <constraint firstItem="7qN-cT-jrH" firstAttribute="leading" secondItem="8Ze-F7-deH" secondAttribute="trailing" id="pJQ-gu-ZeE"/>
+                                <constraint firstAttribute="bottom" secondItem="8Ze-F7-deH" secondAttribute="bottom" id="wjg-mQ-LIw"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="275" id="4dN-4X-PeO"/>
-                        <constraint firstItem="Nvl-91-gkL" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" constant="8" id="9yg-Kh-pmT"/>
-                        <constraint firstAttribute="trailing" secondItem="Ck6-Ns-C9U" secondAttribute="trailing" id="AqJ-QS-MPq"/>
-                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="leading" secondItem="PuI-VR-sLB" secondAttribute="trailing" id="DSJ-PL-6VP"/>
-                        <constraint firstItem="Fbd-mY-6Nr" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" id="KXf-eJ-HCa"/>
-                        <constraint firstItem="7qN-cT-jrH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="Lt6-gn-kRe"/>
-                        <constraint firstItem="0oR-lg-NnV" firstAttribute="top" secondItem="Ck6-Ns-C9U" secondAttribute="bottom" id="Mci-UT-Owl"/>
-                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="MkN-EH-h64"/>
-                        <constraint firstItem="8Ze-F7-deH" firstAttribute="leading" secondItem="Fbd-mY-6Nr" secondAttribute="trailing" id="NjJ-aQ-olW"/>
-                        <constraint firstItem="PuI-VR-sLB" firstAttribute="leading" secondItem="7qN-cT-jrH" secondAttribute="trailing" id="VMo-kV-BoY"/>
-                        <constraint firstAttribute="trailing" secondItem="Nvl-91-gkL" secondAttribute="trailing" constant="8" id="WCn-NA-EdZ"/>
-                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="XMT-6D-YjB"/>
-                        <constraint firstItem="7qN-cT-jrH" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="ZeT-a8-zHK"/>
-                        <constraint firstItem="PuI-VR-sLB" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="cLZ-To-9VQ"/>
-                        <constraint firstItem="7qN-cT-jrH" firstAttribute="leading" secondItem="8Ze-F7-deH" secondAttribute="trailing" id="fUn-gz-K7d"/>
-                        <constraint firstItem="PuI-VR-sLB" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="gpP-rx-QeK"/>
-                        <constraint firstItem="Ck6-Ns-C9U" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="gqc-4o-0nP"/>
-                        <constraint firstItem="8Ze-F7-deH" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="hnE-Ew-fW8"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="283" id="4dN-4X-PeO"/>
+                        <constraint firstAttribute="trailing" secondItem="q8D-Hm-lc5" secondAttribute="trailing" constant="8" id="891-MB-0yX"/>
+                        <constraint firstItem="fkt-db-cWQ" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" id="Lrn-Ka-NHC"/>
+                        <constraint firstItem="q8D-Hm-lc5" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" constant="8" id="aLb-ib-PjS"/>
+                        <constraint firstItem="fkt-db-cWQ" firstAttribute="top" secondItem="q8D-Hm-lc5" secondAttribute="bottom" id="gaZ-C1-KaA"/>
                         <constraint firstAttribute="trailing" secondItem="0oR-lg-NnV" secondAttribute="trailing" id="iDO-x0-kEW"/>
-                        <constraint firstItem="Nvl-91-gkL" firstAttribute="top" secondItem="Jzq-D9-51y" secondAttribute="top" id="jg3-qx-Tgz"/>
-                        <constraint firstItem="8Ze-F7-deH" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="kKC-nM-PX0"/>
-                        <constraint firstItem="Fbd-mY-6Nr" firstAttribute="top" secondItem="Nvl-91-gkL" secondAttribute="bottom" id="n9s-fq-mml"/>
-                        <constraint firstItem="PuI-VR-sLB" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="tyD-X6-KSl"/>
-                        <constraint firstItem="8Ze-F7-deH" firstAttribute="width" secondItem="Fbd-mY-6Nr" secondAttribute="width" id="uR0-zH-cSE"/>
-                        <constraint firstItem="7qN-cT-jrH" firstAttribute="height" secondItem="Fbd-mY-6Nr" secondAttribute="height" id="w0i-A5-oJZ"/>
+                        <constraint firstItem="0oR-lg-NnV" firstAttribute="top" secondItem="fkt-db-cWQ" secondAttribute="bottom" id="kO7-Q9-Rzo"/>
+                        <constraint firstItem="q8D-Hm-lc5" firstAttribute="top" secondItem="Jzq-D9-51y" secondAttribute="top" constant="8" id="lqA-Ai-5Xr"/>
+                        <constraint firstAttribute="trailing" secondItem="fkt-db-cWQ" secondAttribute="trailing" id="sph-0G-uCl"/>
+                        <constraint firstAttribute="bottom" secondItem="0oR-lg-NnV" secondAttribute="bottom" id="wl2-Xl-0LF"/>
                         <constraint firstItem="0oR-lg-NnV" firstAttribute="leading" secondItem="Jzq-D9-51y" secondAttribute="leading" id="z1o-BR-YoD"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="288-eA-P2j">
+                    <rect key="frame" x="0.0" y="-200" width="320" height="485"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="0.94472064393939392" green="0.94472064393939392" blue="0.94472064393939392" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Jzq-D9-51y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0uT-ya-cM6"/>
                 <constraint firstAttribute="trailing" secondItem="Jzq-D9-51y" secondAttribute="trailing" id="JE7-ze-IBl"/>
+                <constraint firstItem="Jzq-D9-51y" firstAttribute="top" secondItem="288-eA-P2j" secondAttribute="bottom" id="JwL-WF-UeQ"/>
+                <constraint firstAttribute="trailing" secondItem="288-eA-P2j" secondAttribute="trailing" id="QzW-8i-BeZ"/>
+                <constraint firstItem="288-eA-P2j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U9e-dP-Teh"/>
                 <constraint firstAttribute="bottom" secondItem="Jzq-D9-51y" secondAttribute="bottom" id="mmW-P5-qa7"/>
+                <constraint firstItem="288-eA-P2j" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-83" id="r57-IZ-ZEv"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="363" y="257"/>
+            <point key="canvasLocation" x="204" y="338"/>
         </view>
     </objects>
     <resources>

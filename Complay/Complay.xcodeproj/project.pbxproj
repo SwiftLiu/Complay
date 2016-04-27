@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D074AC91CD09CFB006DBDFF /* ChatExpressionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */; };
+		5D074ACB1CD0AAF7006DBDFF /* ChatExpressionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */; };
 		5D0852171CC8D24D0040AA3F /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0852151CC8D24D0040AA3F /* RegistViewController.m */; };
 		5D0852181CC8D24D0040AA3F /* RegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0852161CC8D24D0040AA3F /* RegistViewController.xib */; };
 		5D129B5F1CC46DD5005584E8 /* BmobIMSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D129B571CC46DD5005584E8 /* BmobIMSDK.framework */; };
@@ -106,6 +108,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D074AC71CD09CFB006DBDFF /* ChatExpressionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatExpressionView.h; sourceTree = "<group>"; };
+		5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatExpressionView.m; sourceTree = "<group>"; };
+		5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatExpressionView.xib; sourceTree = "<group>"; };
 		5D0852141CC8D24D0040AA3F /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
 		5D0852151CC8D24D0040AA3F /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		5D0852161CC8D24D0040AA3F /* RegistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistViewController.xib; sourceTree = "<group>"; };
@@ -268,6 +273,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */ = {
+			isa = PBXGroup;
+			children = (
+				5D074AC71CD09CFB006DBDFF /* ChatExpressionView.h */,
+				5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */,
+				5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */,
+			);
+			path = ChatMsgEditViews;
+			sourceTree = "<group>";
+		};
 		5D0852131CC8D2360040AA3F /* Regist */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +718,7 @@
 				5DF4D8B61CC7856D009BF68A /* ChatViewController.h */,
 				5DF4D8B71CC7856D009BF68A /* ChatViewController.m */,
 				5DF4D8B81CC7856D009BF68A /* ChatViewController.xib */,
+				5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -815,6 +831,7 @@
 				5D17A6001CC9F26000CCCA01 /* LPBadgeView.bundle in Resources */,
 				5D0852181CC8D24D0040AA3F /* RegistViewController.xib in Resources */,
 				5D57233C1CB7A0DE0041643A /* TaskViewController.xib in Resources */,
+				5D074ACB1CD0AAF7006DBDFF /* ChatExpressionView.xib in Resources */,
 				5DF4D8BA1CC7856D009BF68A /* ChatViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
 				C698E41F1CCF91CF00CA8D3F /* MineViewController.xib in Resources */,
@@ -847,6 +864,7 @@
 				5D510D9C1CC71D890051519E /* MsgTool.m in Sources */,
 				5D6107B61CBCC425002C35E5 /* LoadView.m in Sources */,
 				5D17A6361CCA185000CCCA01 /* UIView+WebCacheOperation.m in Sources */,
+				5D074AC91CD09CFB006DBDFF /* ChatExpressionView.m in Sources */,
 				5D60A16E1CB63F5B009B38F7 /* main.m in Sources */,
 				5D17A62B1CCA185000CCCA01 /* SDWebImageDecoder.m in Sources */,
 				5D6107B51CBCC425002C35E5 /* BasicViewController.m in Sources */,

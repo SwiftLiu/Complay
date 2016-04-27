@@ -166,7 +166,7 @@ static NSString *convCellIdentifier = @"convCell";
     BmobIMConversation *conv = [convDataArray objectAtIndex:indexPath.row];
     [conv deleteMessageWithdeleteMessageListOrNot:YES updateTime:conv.updatedTime];
     [convDataArray removeObjectAtIndex:indexPath.row];
-    [convListTable reloadData];
+    [convListTable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationMiddle)];
     //刷新未读消息总数
     [MainTabBarController updateNewMsgTotalClear:NO];
 }
