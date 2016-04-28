@@ -11,7 +11,7 @@
                 <outlet property="bottomView" destination="Jzq-D9-51y" id="FkC-FQ-N39"/>
                 <outlet property="bottomViewBottomConstraint" destination="mmW-P5-qa7" id="Phg-y2-CnX"/>
                 <outlet property="msgTableView" destination="288-eA-P2j" id="v1v-Tq-5Wa"/>
-                <outlet property="msgTextView" destination="q8D-Hm-lc5" id="2ZX-K0-mVF"/>
+                <outlet property="msgTextView" destination="q8D-Hm-lc5" id="Zf5-wb-MCE"/>
                 <outlet property="msgTextViewHeightConstraint" destination="99a-F7-kwY" id="hym-AV-mH3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,13 +24,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzq-D9-51y">
                     <rect key="frame" x="0.0" y="285" width="320" height="283"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="q8D-Hm-lc5">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8D-Hm-lc5" customClass="ChatMsgTextView">
                             <rect key="frame" x="8" y="8" width="304" height="35"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="99a-F7-kwY"/>
+                                <constraint firstAttribute="height" priority="999" constant="35" id="99a-F7-kwY"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="hwR-rV-j9p"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             <userDefinedRuntimeAttributes>

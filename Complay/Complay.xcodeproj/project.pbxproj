@@ -57,6 +57,7 @@
 		5D17A6341CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6221CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m */; };
 		5D17A6351CCA185000CCCA01 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6241CCA185000CCCA01 /* UIImageView+WebCache.m */; };
 		5D17A6361CCA185000CCCA01 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6261CCA185000CCCA01 /* UIView+WebCacheOperation.m */; };
+		5D2D14221CD1FE65003CE860 /* ChatMsgTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */; };
 		5D510D9C1CC71D890051519E /* MsgTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D510D9B1CC71D890051519E /* MsgTool.m */; };
 		5D5124971CBF344C009114CC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5124961CBF344C009114CC /* UserModel.m */; };
 		5D57231A1CB73F5F0041643A /* LPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723191CB73F5F0041643A /* LPLine.m */; };
@@ -186,6 +187,8 @@
 		5D17A6241CCA185000CCCA01 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		5D17A6251CCA185000CCCA01 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		5D17A6261CCA185000CCCA01 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		5D2D14201CD1FE65003CE860 /* ChatMsgTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMsgTextView.h; sourceTree = "<group>"; };
+		5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMsgTextView.m; sourceTree = "<group>"; };
 		5D510D9A1CC71D890051519E /* MsgTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTool.h; sourceTree = "<group>"; };
 		5D510D9B1CC71D890051519E /* MsgTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTool.m; sourceTree = "<group>"; };
 		5D5124951CBF344C009114CC /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 		5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */ = {
 			isa = PBXGroup;
 			children = (
+				5D2D14201CD1FE65003CE860 /* ChatMsgTextView.h */,
+				5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */,
 				5D074AC71CD09CFB006DBDFF /* ChatExpressionView.h */,
 				5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */,
 				5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */,
@@ -874,6 +879,7 @@
 				5D17A6341CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5D17A6311CCA185000CCCA01 /* UIImage+GIF.m in Sources */,
 				5D17A6011CC9F26000CCCA01 /* LPBadgeView.m in Sources */,
+				5D2D14221CD1FE65003CE860 /* ChatMsgTextView.m in Sources */,
 				5D129B961CC4D4F3005584E8 /* AlertView.m in Sources */,
 				5D17A6291CCA185000CCCA01 /* SDImageCache.m in Sources */,
 				5D17A6271CCA185000CCCA01 /* MKAnnotationView+WebCache.m in Sources */,

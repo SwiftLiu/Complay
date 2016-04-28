@@ -7,13 +7,16 @@
 //
 
 #import "ChatExpressionView.h"
+#import "ChatMsgTextView.h"
+
+const NSUInteger expressionCount = 20;
 
 static NSString *exprCellID = @"collectionExpressionCellId";
 static NSString *deleCellID = @"collectionDeleteCellId";
 
 @interface ChatExpressionView ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
-    NSArray *exprDataArray;
+    __weak IBOutlet UICollectionView *exprCollectionView;
 }
 @end
 
@@ -28,16 +31,11 @@ static NSString *deleCellID = @"collectionDeleteCellId";
 
 - (void)awakeFromNib
 {
-    self.delegate = self;
-    self.dataSource = self;
+    exprCollectionView.delegate = self;
+    exprCollectionView.dataSource = self;
     self.backgroundColor = [UIColor clearColor];
-    [self registerClass:[ChatExpressionCell class] forCellWithReuseIdentifier:exprCellID];
-    [self registerClass:[ChatDeleteCell class] forCellWithReuseIdentifier:deleCellID];
-    
-    exprDataArray = @[@"😄", @"😊", @"😃", @"☺️", @"😉", @"😍", @"😘",
-                      @"😳", @"😁", @"😜", @"😝", @"😋", @"😏", @"😔",
-                      @"😖", @"😥", @"😰", @"😂", @"😭", @"😱", @"😫",
-                      @"😷", @"😪", @"😡", @"😠", @"😲", @"😇"];
+    [exprCollectionView registerClass:[ChatExpressionCell class] forCellWithReuseIdentifier:exprCellID];
+    [exprCollectionView registerClass:[ChatDeleteCell class] forCellWithReuseIdentifier:deleCellID];
 }
 
 #pragma mark - <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -48,18 +46,18 @@ static NSString *deleCellID = @"collectionDeleteCellId";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return exprDataArray.count + 1;
+    return expressionCount+1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //表情
-    if (indexPath.row < exprDataArray.count) {
+    //表情cell
+    if (indexPath.row < expressionCount) {
         ChatExpressionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:exprCellID forIndexPath:indexPath];
-        cell.emojLabel.text = [exprDataArray objectAtIndex:indexPath.row];
+        cell.emojLabel.attributedText = ExpressionAt((int)indexPath.row, cell.emojLabel.font.pointSize);
         return cell;
     }
-    //删除
+    //删除cell
     else{
         ChatDeleteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:deleCellID forIndexPath:indexPath];
         return cell;
@@ -69,24 +67,22 @@ static NSString *deleCellID = @"collectionDeleteCellId";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSRange range = [self.textView selectedRange];
-    NSMutableString *text = [NSMutableString stringWithString:self.textView.text];
     //添加表情
-    if (indexPath.row < exprDataArray.count) {
-        NSString *code = [exprDataArray objectAtIndex:indexPath.row];
-        [text replaceCharactersInRange:range withString:code];
+    if (indexPath.row < expressionCount) {
+        if ([self.delegate respondsToSelector:@selector(didSelectedExpressionIndex:)]) {
+            [self.delegate didSelectedExpressionIndex:(int)indexPath.row];
+        }
     }
     //删除
-    else if (text.length) {
-        NSRange delRange = NSMakeRange(MAX(range.location-1, 0), range.length+1);
-        [text replaceCharactersInRange:delRange withString:@""];
+    else if ([self.delegate respondsToSelector:@selector(willDeleteAExpression)]) {
+        [self.delegate willDeleteAExpression];
     }
-    self.textView.text = text;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return CGSizeMake((collectionView.bounds.size.width-50)/7.0l, 44);
+    CGSize size = collectionView.bounds.size;
+    return CGSizeMake((size.width-50)/7.0l, (size.height-30)/3.0l);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -154,7 +150,7 @@ static NSString *deleCellID = @"collectionDeleteCellId";
     if (self) {
         imgView = [UIImageView new];
         imgView.contentMode = UIViewContentModeCenter;
-        imgView.image = [UIImage imageNamed:@""];
+        imgView.image = [UIImage imageNamed:@"chat_expr_delete"];
         [self addSubview:imgView];
     }
     return self;

@@ -9,6 +9,7 @@
 #pragma mark - 默认颜色
 ///APP主题色
 #define MainAppColor [UIColor colorWithWhite:0/255.l alpha:0.65]
+#define MainAppColor2 [UIColor colorWithRed:77/255.0l green:180/255.0l blue:255/255.0l alpha:1]
 
 ///默认背景色（根视图背景色）
 

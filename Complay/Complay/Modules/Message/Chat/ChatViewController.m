@@ -8,18 +8,19 @@
 
 #import "ChatViewController.h"
 #import "MsgTool.h"
+#import "ChatMsgTextView.h"
 #import "ChatExpressionView.h"
 
 #define BottomViewBottomNormal -200.0l
 #define BottomViewBottomSelected 0.0l
 
-@interface ChatViewController ()<UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ChatViewController ()<UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChatExpressionViewDelegate>
 {
     __weak IBOutlet UITableView *msgTableView;
     
     __weak IBOutlet UIView *bottomView;
     __weak IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
-    __weak IBOutlet UITextView *msgTextView;
+    __weak IBOutlet ChatMsgTextView *msgTextView;
     __weak IBOutlet NSLayoutConstraint *msgTextViewHeightConstraint;
     __weak IBOutlet UIView *bottomEditView;
     
@@ -138,7 +139,6 @@
 
 #pragma mark - 各种消息编辑
 - (IBAction)didSelectEditMsgButton:(UIButton *)sender {
-    NSLog(@"%ld, %ld", [msgTextView selectedRange].location, [msgTextView selectedRange].length);
     //界面处理
     //定位或相机
     if (sender.tag == 11 || sender.tag == 13) {
@@ -194,7 +194,7 @@
         case 14: {//表情
             ChatExpressionView *exprView = [ChatExpressionView expressionView];
             exprView.frame = bottomEditView.bounds;
-            exprView.textView = msgTextView;
+            exprView.delegate = self;
             [bottomEditView addSubview:exprView];
         }
             break;
@@ -224,6 +224,16 @@
 
 
 
+#pragma mark - <ChatExpressionViewDelegate>
+- (void)didSelectedExpressionIndex:(int)index
+{
+    [msgTextView insertExpressionIndex:index];
+}
+
+- (void)willDeleteAExpression
+{
+    [msgTextView deleteAExpression];
+}
 
 
 #pragma mark - <UITextViewDelegate>

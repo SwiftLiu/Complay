@@ -7,16 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatMsgTextView.h"
 
-@interface ChatExpressionView : UICollectionView
+@protocol ChatExpressionViewDelegate <NSObject>
+
+@optional
+- (void)didSelectedExpressionIndex:(int)index;
+- (void)willDeleteAExpression;
+
+@end
+
+@interface ChatExpressionView : UIView
 
 ///关联的输入框
-@property (weak, nonatomic) UITextView *textView;
+@property (weak, nonatomic) id <ChatExpressionViewDelegate> delegate;
 
 ///便利初始化
 + (ChatExpressionView *)expressionView;
 
 @end
+
+
 
 ///表情输入cell
 @interface ChatExpressionCell : UICollectionViewCell
