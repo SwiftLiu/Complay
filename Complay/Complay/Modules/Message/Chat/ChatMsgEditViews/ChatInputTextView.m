@@ -6,11 +6,12 @@
 //  Copyright © 2016年 iOS_Liu. All rights reserved.
 //
 
-#import "ChatMsgTextView.h"
+#import "ChatInputTextView.h"
 
 #define ChatExprMinUnicode 0xEEA0
+static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
 
-@interface ChatMsgTextView ()<UITextViewDelegate>
+@interface ChatInputTextView ()<UITextViewDelegate>
 {
     //代理
     id <UITextViewDelegate> msgDelegate;
@@ -21,7 +22,7 @@
 }
 @end
 
-@implementation ChatMsgTextView
+@implementation ChatInputTextView
 
 #pragma mark - 重写
 - (void)awakeFromNib
@@ -44,7 +45,7 @@
     if (delegate != self) {
         msgDelegate = delegate;
     }
-    __weak ChatMsgTextView *weakSelf = self;
+    __weak ChatInputTextView *weakSelf = self;
     [super setDelegate:weakSelf];
 }
 
@@ -54,10 +55,26 @@
     fontSize = font.pointSize;
 }
 
+- (void)setAttributedText:(NSAttributedString *)attributedText
+{
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithAttributedString:attributedText];
+    
+    UIFont *font = [UIFont systemFontOfSize:fontSize];
+    NSMutableParagraphStyle *para = [NSMutableParagraphStyle new];
+    para.lineBreakMode = NSLineBreakByCharWrapping;
+    para.alignment = NSTextAlignmentNatural;
+    NSDictionary *attrs = @{NSFontAttributeName : font,
+                            NSParagraphStyleAttributeName : para};
+    NSRange range = NSMakeRange(0, attrStr.length);
+    [attrStr addAttributes:attrs range:range];
+    [super setAttributedText:attrStr];
+}
+
 - (void)setText:(NSString *)text
 {
     text = text?:@"";
     exprText = text;
+    //表情
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:text];
     for (int i=0; i<attrStr.length; i++) {
         unichar cha = [text characterAtIndex:i];
@@ -66,8 +83,10 @@
             [attrStr replaceCharactersInRange:NSMakeRange(i, 1) withAttributedString:exprStr];
         }
     }
-    [self setFontForAttributedString:attrStr];
     self.attributedText = attrStr;
+    
+    //调用协议方法
+    if (msgDelegate) [msgDelegate textViewDidChange:self];
 }
 
 - (NSString *)text
@@ -79,7 +98,7 @@
 //初始化设置
 - (void)initData
 {
-    __weak ChatMsgTextView *weakSelf = self;
+    __weak ChatInputTextView *weakSelf = self;
     self.delegate = weakSelf;
     
     exprText = self.text?:@"";
@@ -104,8 +123,13 @@
     }else {
         [attrStr replaceCharactersInRange:range withAttributedString:exprAttrStr];
     }
-    [self setFontForAttributedString:attrStr];
     self.attributedText = attrStr;
+    
+    //修改选中range
+    self.selectedRange = NSMakeRange(range.location+1, 0);
+    
+    //调用协议方法
+    if (msgDelegate) [msgDelegate textViewDidChange:self];
 }
 
 #pragma mark - 删除表情
@@ -113,7 +137,9 @@
 {
     NSRange selectRange = [self selectedRange];
     if (selectRange.location) {
-        NSRange range = NSMakeRange(selectRange.location-1, 1);
+        NSRange range;
+        if (selectRange.length) range = selectRange;
+        else range = NSMakeRange(selectRange.location-1, 1);
         //修改属性string
         [self updateStringRange:range replacementText:@""];
         
@@ -121,8 +147,13 @@
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
         NSAttributedString *attrReplace = [[NSAttributedString alloc] initWithString:@""];
         [attrStr replaceCharactersInRange:range withAttributedString:attrReplace];
-        [self setFontForAttributedString:attrStr];
         self.attributedText = attrStr;
+        
+        //修改选中range
+        self.selectedRange = NSMakeRange(range.location, 0);
+        
+        //调用协议方法
+        if (msgDelegate) [msgDelegate textViewDidChange:self];
     }
 }
 
@@ -143,20 +174,12 @@
 //表情
 NSAttributedString *ExpressionAt(int index, CGFloat size) {
     //表情icon名
-    NSString *exprName = [NSString stringWithFormat:@"chat_expr_%04d", index];
+    NSString *exprName = [NSString stringWithFormat:@"%@%04d", ChatExprImgName, index+1];
     //表情富文本
     NSTextAttachment *exprAtta = [NSTextAttachment new];
     exprAtta.bounds = CGRectMake(0, -3, size, size);
     exprAtta.image = [UIImage imageNamed:exprName];
     return [NSAttributedString attributedStringWithAttachment:exprAtta];
-}
-
-//修改富文本字体
-- (void)setFontForAttributedString:(NSMutableAttributedString *)attrStr
-{
-    UIFont *font = [UIFont systemFontOfSize:fontSize];
-    NSRange range = NSMakeRange(0, attrStr.length);
-    [attrStr addAttribute:NSFontAttributeName value:font range:range];
 }
 
 

@@ -30,6 +30,9 @@
                             <state key="normal" title="发送">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="sendButtonPressed:" destination="Nnk-D9-9Fa" eventType="touchUpInside" id="rza-aJ-45O"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

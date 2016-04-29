@@ -7,7 +7,7 @@
 //
 
 #import "ChatExpressionView.h"
-#import "ChatMsgTextView.h"
+#import "ChatInputTextView.h"
 
 const NSUInteger expressionCount = 20;
 
@@ -37,6 +37,14 @@ static NSString *deleCellID = @"collectionDeleteCellId";
     [exprCollectionView registerClass:[ChatExpressionCell class] forCellWithReuseIdentifier:exprCellID];
     [exprCollectionView registerClass:[ChatDeleteCell class] forCellWithReuseIdentifier:deleCellID];
 }
+
+//发送
+- (IBAction)sendButtonPressed:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickSendButton)]) {
+        [self.delegate didClickSendButton];
+    }
+}
+
 
 #pragma mark - <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -74,8 +82,8 @@ static NSString *deleCellID = @"collectionDeleteCellId";
         }
     }
     //删除
-    else if ([self.delegate respondsToSelector:@selector(willDeleteAExpression)]) {
-        [self.delegate willDeleteAExpression];
+    else if ([self.delegate respondsToSelector:@selector(didClickDeleteButton)]) {
+        [self.delegate didClickDeleteButton];
     }
 }
 

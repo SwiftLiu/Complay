@@ -8,7 +8,7 @@
 
 #import "ChatViewController.h"
 #import "MsgTool.h"
-#import "ChatMsgTextView.h"
+#import "ChatInputTextView.h"
 #import "ChatExpressionView.h"
 
 #define BottomViewBottomNormal -200.0l
@@ -20,7 +20,7 @@
     
     __weak IBOutlet UIView *bottomView;
     __weak IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
-    __weak IBOutlet ChatMsgTextView *msgTextView;
+    __weak IBOutlet ChatInputTextView *msgTextView;
     __weak IBOutlet NSLayoutConstraint *msgTextViewHeightConstraint;
     __weak IBOutlet UIView *bottomEditView;
     
@@ -80,6 +80,9 @@
     
     msgTextView.delegate = self;
     
+#pragma mark 测试临时代码*****************************
+    msgTextView.text = @"大道东熬到苹果www.baidu.com绕感觉的\uEEA0打打速度的所\uEEA0发sdf阿斯撒asdf18382015370tyje";
+#pragma mark
 }
 
 //键盘高度变化时
@@ -87,14 +90,14 @@
 {
     NSValue *sizeValue = [noti.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGFloat height = [sizeValue CGRectValue].size.height;
-    [self bottomViewAnimationWithBottom:height+BottomViewBottomNormal];
+    [self bottomViewAnimation:height+BottomViewBottomNormal block:nil];
 }
 
 //键盘收起时
 - (void)bottomViewHide
 {
     if (hideKeyboardShouldAnimate) {
-        [self bottomViewAnimationWithBottom:BottomViewBottomNormal];
+        [self bottomViewAnimation:BottomViewBottomNormal block:nil];
     }
 }
 
@@ -108,13 +111,14 @@
 }
 
 //BottomView高度变化动画
-- (void)bottomViewAnimationWithBottom:(CGFloat)constant
+- (void)bottomViewAnimation:(CGFloat)constant block:(void(^)())block
 {
     bottomViewBottomConstraint.constant = constant;
     [UIView animateWithDuration:0.3 animations:^{
         [bottomView layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self.view updateConstraints];
+        if (block) block();
     }];
 }
 
@@ -150,9 +154,13 @@
     //语言、图片或表情
     else{
         sender.selected = !sender.selected;
-        for (UIView *sub in bottomEditView.subviews) {
-            [sub removeFromSuperview];
-        }
+        //移除所有子视图
+        void (^removeSubViews)()  = ^{
+            for (UIView *sub in bottomEditView.subviews) {
+                [sub removeFromSuperview];
+            }
+        };
+        
         if (sender.selected) {
             if (selectedMsgEditButton) selectedMsgEditButton.selected = NO;
             selectedMsgEditButton = sender;
@@ -160,10 +168,11 @@
                 hideKeyboardShouldAnimate = NO;
                 [msgTextView endEditing:YES];
             }
-            [self bottomViewAnimationWithBottom:BottomViewBottomSelected];
+            removeSubViews();
+            [self bottomViewAnimation:BottomViewBottomSelected block:nil];
         }else{
             selectedMsgEditButton = nil;
-            [self bottomViewAnimationWithBottom:BottomViewBottomNormal];
+            [self bottomViewAnimation:BottomViewBottomNormal block:removeSubViews];
         }
     }
     
@@ -230,9 +239,15 @@
     [msgTextView insertExpressionIndex:index];
 }
 
-- (void)willDeleteAExpression
+- (void)didClickDeleteButton
 {
     [msgTextView deleteAExpression];
+}
+
+- (void)didClickSendButton
+{
+    [self sendTextMsg];
+    msgTextView.text = nil;
 }
 
 
@@ -243,7 +258,7 @@
     if ([text isEqualToString:@"\n"]) {
         [self sendTextMsg];
         textView.text = nil;
-        [textView resignFirstResponder];
+        return NO;
     }
     return YES;
 }

@@ -10,7 +10,7 @@
 
 
 
-@interface ChatMsgTextView : UITextView
+@interface ChatInputTextView : UITextView
 
 ///插入表情
 - (void)insertExpressionIndex:(int)index;

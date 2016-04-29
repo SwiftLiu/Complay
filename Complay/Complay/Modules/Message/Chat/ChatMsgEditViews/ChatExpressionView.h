@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChatMsgTextView.h"
 
 @protocol ChatExpressionViewDelegate <NSObject>
 
 @optional
 - (void)didSelectedExpressionIndex:(int)index;
-- (void)willDeleteAExpression;
+- (void)didClickDeleteButton;
+- (void)didClickSendButton;
 
 @end
 

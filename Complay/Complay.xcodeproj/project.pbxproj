@@ -57,7 +57,7 @@
 		5D17A6341CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6221CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m */; };
 		5D17A6351CCA185000CCCA01 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6241CCA185000CCCA01 /* UIImageView+WebCache.m */; };
 		5D17A6361CCA185000CCCA01 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D17A6261CCA185000CCCA01 /* UIView+WebCacheOperation.m */; };
-		5D2D14221CD1FE65003CE860 /* ChatMsgTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */; };
+		5D2D14221CD1FE65003CE860 /* ChatInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D14211CD1FE65003CE860 /* ChatInputTextView.m */; };
 		5D510D9C1CC71D890051519E /* MsgTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D510D9B1CC71D890051519E /* MsgTool.m */; };
 		5D5124971CBF344C009114CC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5124961CBF344C009114CC /* UserModel.m */; };
 		5D57231A1CB73F5F0041643A /* LPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5723191CB73F5F0041643A /* LPLine.m */; };
@@ -77,6 +77,7 @@
 		5D6107B81CBCC425002C35E5 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B01CBCC425002C35E5 /* MainTabBar.m */; };
 		5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B21CBCC425002C35E5 /* MainTabBarController.m */; };
 		5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B41CBCC425002C35E5 /* TabBarItem.m */; };
+		5D73BA221CD34E470000D7E0 /* ChatExpressions.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */; };
 		5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */; };
 		5D8AEE841CC6314A00E7F9A4 /* NewTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */; };
 		5D8AEE881CC6315E00E7F9A4 /* OldTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE861CC6315E00E7F9A4 /* OldTasksViewController.m */; };
@@ -187,8 +188,8 @@
 		5D17A6241CCA185000CCCA01 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		5D17A6251CCA185000CCCA01 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		5D17A6261CCA185000CCCA01 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		5D2D14201CD1FE65003CE860 /* ChatMsgTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMsgTextView.h; sourceTree = "<group>"; };
-		5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMsgTextView.m; sourceTree = "<group>"; };
+		5D2D14201CD1FE65003CE860 /* ChatInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInputTextView.h; sourceTree = "<group>"; };
+		5D2D14211CD1FE65003CE860 /* ChatInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInputTextView.m; sourceTree = "<group>"; };
 		5D510D9A1CC71D890051519E /* MsgTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTool.h; sourceTree = "<group>"; };
 		5D510D9B1CC71D890051519E /* MsgTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTool.m; sourceTree = "<group>"; };
 		5D5124951CBF344C009114CC /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -222,6 +223,7 @@
 		5D6107B21CBCC425002C35E5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		5D6107B31CBCC425002C35E5 /* TabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarItem.h; sourceTree = "<group>"; };
 		5D6107B41CBCC425002C35E5 /* TabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarItem.m; sourceTree = "<group>"; };
+		5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatExpressions.bundle; sourceTree = "<group>"; };
 		5D8AEE801CC6314A00E7F9A4 /* NewTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTasksViewController.h; sourceTree = "<group>"; };
 		5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTasksViewController.m; sourceTree = "<group>"; };
 		5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTasksViewController.xib; sourceTree = "<group>"; };
@@ -279,8 +281,9 @@
 		5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */ = {
 			isa = PBXGroup;
 			children = (
-				5D2D14201CD1FE65003CE860 /* ChatMsgTextView.h */,
-				5D2D14211CD1FE65003CE860 /* ChatMsgTextView.m */,
+				5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */,
+				5D2D14201CD1FE65003CE860 /* ChatInputTextView.h */,
+				5D2D14211CD1FE65003CE860 /* ChatInputTextView.m */,
 				5D074AC71CD09CFB006DBDFF /* ChatExpressionView.h */,
 				5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */,
 				5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */,
@@ -840,6 +843,7 @@
 				5DF4D8BA1CC7856D009BF68A /* ChatViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
 				C698E41F1CCF91CF00CA8D3F /* MineViewController.xib in Resources */,
+				5D73BA221CD34E470000D7E0 /* ChatExpressions.bundle in Resources */,
 				5D17A5F11CC9CA4B00CCCA01 /* ConversationCell.xib in Resources */,
 				5D129BA11CC4D97B005584E8 /* SettingViewController.xib in Resources */,
 				5D17A5EC1CC9C30800CCCA01 /* ConvListViewController.xib in Resources */,
@@ -879,7 +883,7 @@
 				5D17A6341CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5D17A6311CCA185000CCCA01 /* UIImage+GIF.m in Sources */,
 				5D17A6011CC9F26000CCCA01 /* LPBadgeView.m in Sources */,
-				5D2D14221CD1FE65003CE860 /* ChatMsgTextView.m in Sources */,
+				5D2D14221CD1FE65003CE860 /* ChatInputTextView.m in Sources */,
 				5D129B961CC4D4F3005584E8 /* AlertView.m in Sources */,
 				5D17A6291CCA185000CCCA01 /* SDImageCache.m in Sources */,
 				5D17A6271CCA185000CCCA01 /* MKAnnotationView+WebCache.m in Sources */,
