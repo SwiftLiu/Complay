@@ -7,9 +7,7 @@
 //
 
 #import "ChatInputTextView.h"
-
-#define ChatExprMinUnicode 0xEEA0
-static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
+#import "ChatViewController.h"
 
 @interface ChatInputTextView ()<UITextViewDelegate>
 {
@@ -34,7 +32,7 @@ static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
 {
     self = [super init];
     if (self) {
-        fontSize = 15;
+        self.font = [UIFont systemFontOfSize:15];
         [self initData];
     }
     return self;
@@ -79,7 +77,7 @@ static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
     for (int i=0; i<attrStr.length; i++) {
         unichar cha = [text characterAtIndex:i];
         if (cha >= ChatExprMinUnicode && cha < 0xEEEE) {
-            NSAttributedString *exprStr = ExpressionAt(cha-ChatExprMinUnicode, fontSize+1);
+            NSAttributedString *exprStr = ChatExpression(cha, fontSize+1);
             [attrStr replaceCharactersInRange:NSMakeRange(i, 1) withAttributedString:exprStr];
         }
     }
@@ -116,7 +114,7 @@ static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
     [self updateStringRange:range replacementText:exprStr];
     
     //修改输入框显示的富文本
-    NSAttributedString *exprAttrStr = ExpressionAt(index, fontSize+1);
+    NSAttributedString *exprAttrStr = ChatExpression(exprChar, fontSize+1);
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     if (range.location >= attrStr.length) {
         [attrStr appendAttributedString:exprAttrStr];
@@ -171,41 +169,37 @@ static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
     exprText = string;
 }
 
-//表情
-NSAttributedString *ExpressionAt(int index, CGFloat size) {
-    //表情icon名
-    NSString *exprName = [NSString stringWithFormat:@"%@%04d", ChatExprImgName, index+1];
-    //表情富文本
-    NSTextAttachment *exprAtta = [NSTextAttachment new];
-    exprAtta.bounds = CGRectMake(0, -3, size, size);
-    exprAtta.image = [UIImage imageNamed:exprName];
-    return [NSAttributedString attributedStringWithAttachment:exprAtta];
-}
-
 
 #pragma mark - <UITextViewDelegate>
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if (msgDelegate) [msgDelegate textViewDidChange:textView];
+    if (msgDelegate && [msgDelegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [msgDelegate textViewDidChange:textView];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (msgDelegate) [msgDelegate textViewDidBeginEditing:textView];
+    if (msgDelegate && [msgDelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
+        [msgDelegate textViewDidBeginEditing:textView];
+    }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (msgDelegate) [msgDelegate textViewDidEndEditing:textView];
+    if (msgDelegate && [msgDelegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
+        [msgDelegate textViewDidEndEditing:textView];
+    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if (msgDelegate) [msgDelegate textView:textView shouldChangeTextInRange:range replacementText:text];
-    
     //修改string
     [self updateStringRange:range replacementText:text];
     
+    if (msgDelegate && [msgDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
+        return [msgDelegate textView:textView shouldChangeTextInRange:range replacementText:text];
+    }
     return YES;
 }
 

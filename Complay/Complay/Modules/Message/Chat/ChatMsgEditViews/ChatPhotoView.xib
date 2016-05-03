@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatPhotoView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8V-f1-0GG">
+                    <rect key="frame" x="0.0" y="160" width="320" height="40"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMc-CG-jl7">
+                            <rect key="frame" x="242" y="5" width="70" height="30"/>
+                            <color key="backgroundColor" red="0.3024977351" green="0.7060008887" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="3b5-tY-VnG"/>
+                                <constraint firstAttribute="height" constant="30" id="KJY-2O-LbC"/>
+                            </constraints>
+                            <state key="normal" title="发送">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="sendButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="JVh-mH-p4X"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEu-YA-UYQ">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="TGo-ks-HS8"/>
+                            </constraints>
+                            <state key="normal" title="原图" image="image_deselect">
+                                <color key="titleColor" red="0.3024977351" green="0.7060008887" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" image="image_select"/>
+                            <connections>
+                                <action selector="originalPhotoButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="CMi-6Z-F3l"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jMc-CG-jl7" secondAttribute="trailing" constant="8" id="2I3-Qm-ezn"/>
+                        <constraint firstItem="IEu-YA-UYQ" firstAttribute="top" secondItem="g8V-f1-0GG" secondAttribute="top" id="OiD-16-CpY"/>
+                        <constraint firstAttribute="bottom" secondItem="IEu-YA-UYQ" secondAttribute="bottom" id="YgW-WC-PXY"/>
+                        <constraint firstItem="IEu-YA-UYQ" firstAttribute="leading" secondItem="g8V-f1-0GG" secondAttribute="leading" id="dVY-DD-8fJ"/>
+                        <constraint firstAttribute="height" constant="40" id="hTg-bf-C8m"/>
+                        <constraint firstItem="jMc-CG-jl7" firstAttribute="centerY" secondItem="g8V-f1-0GG" secondAttribute="centerY" id="ntp-gG-tZo"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y5j-Wt-CPc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YHr-bb-jDL">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="g8V-f1-0GG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1kS-4a-GHX"/>
+                <constraint firstItem="Y5j-Wt-CPc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9ua-jc-7Co"/>
+                <constraint firstAttribute="trailing" secondItem="g8V-f1-0GG" secondAttribute="trailing" id="LcM-Oz-nHm"/>
+                <constraint firstItem="Y5j-Wt-CPc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SAr-aL-ZQr"/>
+                <constraint firstAttribute="trailing" secondItem="Y5j-Wt-CPc" secondAttribute="trailing" id="g0v-wc-LYy"/>
+                <constraint firstAttribute="bottom" secondItem="g8V-f1-0GG" secondAttribute="bottom" id="iqE-SM-sVq"/>
+                <constraint firstItem="g8V-f1-0GG" firstAttribute="top" secondItem="Y5j-Wt-CPc" secondAttribute="bottom" id="w6e-4N-t3G"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="isOriginalPhotoButton" destination="IEu-YA-UYQ" id="Uv9-7t-ZPX"/>
+                <outlet property="photoCollectionView" destination="Y5j-Wt-CPc" id="pkY-sx-INN"/>
+                <outlet property="sendButton" destination="jMc-CG-jl7" id="Crg-AD-jkD"/>
+            </connections>
+            <point key="canvasLocation" x="212" y="677"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="image_deselect" width="23" height="23"/>
+        <image name="image_select" width="23" height="23"/>
+    </resources>
+</document>

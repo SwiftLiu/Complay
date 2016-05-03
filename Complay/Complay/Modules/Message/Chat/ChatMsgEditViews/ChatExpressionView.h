@@ -11,9 +11,9 @@
 @protocol ChatExpressionViewDelegate <NSObject>
 
 @optional
-- (void)didSelectedExpressionIndex:(int)index;
-- (void)didClickDeleteButton;
-- (void)didClickSendButton;
+- (void)chatExpressionViewDidSelectedExpressionIndex:(int)index;
+- (void)chatExpressionViewDidClickDeleteButton;
+- (void)chatExpressionViewDidClickSendButton;
 
 @end
 

@@ -77,7 +77,10 @@
 		5D6107B81CBCC425002C35E5 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B01CBCC425002C35E5 /* MainTabBar.m */; };
 		5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B21CBCC425002C35E5 /* MainTabBarController.m */; };
 		5D6107BA1CBCC425002C35E5 /* TabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6107B41CBCC425002C35E5 /* TabBarItem.m */; };
-		5D73BA221CD34E470000D7E0 /* ChatExpressions.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */; };
+		5D667D2E1CD843820042F360 /* ChatPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D667D2D1CD843820042F360 /* ChatPhotoView.m */; };
+		5D667D301CD843D80042F360 /* ChatPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D667D2F1CD843D80042F360 /* ChatPhotoView.xib */; };
+		5D667D391CD8A9B20042F360 /* ChatTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D667D381CD8A9B20042F360 /* ChatTextLabel.m */; };
+		5D667D3B1CD8A9F50042F360 /* ChatExpressions.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D667D3A1CD8A9F50042F360 /* ChatExpressions.bundle */; };
 		5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */; };
 		5D8AEE841CC6314A00E7F9A4 /* NewTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */; };
 		5D8AEE881CC6315E00E7F9A4 /* OldTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AEE861CC6315E00E7F9A4 /* OldTasksViewController.m */; };
@@ -223,7 +226,12 @@
 		5D6107B21CBCC425002C35E5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		5D6107B31CBCC425002C35E5 /* TabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarItem.h; sourceTree = "<group>"; };
 		5D6107B41CBCC425002C35E5 /* TabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarItem.m; sourceTree = "<group>"; };
-		5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatExpressions.bundle; sourceTree = "<group>"; };
+		5D667D2C1CD843820042F360 /* ChatPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPhotoView.h; sourceTree = "<group>"; };
+		5D667D2D1CD843820042F360 /* ChatPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPhotoView.m; sourceTree = "<group>"; };
+		5D667D2F1CD843D80042F360 /* ChatPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatPhotoView.xib; sourceTree = "<group>"; };
+		5D667D371CD8A9B20042F360 /* ChatTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextLabel.h; sourceTree = "<group>"; };
+		5D667D381CD8A9B20042F360 /* ChatTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextLabel.m; sourceTree = "<group>"; };
+		5D667D3A1CD8A9F50042F360 /* ChatExpressions.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatExpressions.bundle; sourceTree = "<group>"; };
 		5D8AEE801CC6314A00E7F9A4 /* NewTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTasksViewController.h; sourceTree = "<group>"; };
 		5D8AEE811CC6314A00E7F9A4 /* NewTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTasksViewController.m; sourceTree = "<group>"; };
 		5D8AEE821CC6314A00E7F9A4 /* NewTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTasksViewController.xib; sourceTree = "<group>"; };
@@ -281,12 +289,14 @@
 		5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */ = {
 			isa = PBXGroup;
 			children = (
-				5D73BA211CD34E470000D7E0 /* ChatExpressions.bundle */,
 				5D2D14201CD1FE65003CE860 /* ChatInputTextView.h */,
 				5D2D14211CD1FE65003CE860 /* ChatInputTextView.m */,
 				5D074AC71CD09CFB006DBDFF /* ChatExpressionView.h */,
 				5D074AC81CD09CFB006DBDFF /* ChatExpressionView.m */,
 				5D074ACA1CD0AAF7006DBDFF /* ChatExpressionView.xib */,
+				5D667D2C1CD843820042F360 /* ChatPhotoView.h */,
+				5D667D2D1CD843820042F360 /* ChatPhotoView.m */,
+				5D667D2F1CD843D80042F360 /* ChatPhotoView.xib */,
 			);
 			path = ChatMsgEditViews;
 			sourceTree = "<group>";
@@ -700,6 +710,15 @@
 			path = MainTabBarController;
 			sourceTree = "<group>";
 		};
+		5D667D361CD8A95C0042F360 /* ChatMsgShowViews */ = {
+			isa = PBXGroup;
+			children = (
+				5D667D371CD8A9B20042F360 /* ChatTextLabel.h */,
+				5D667D381CD8A9B20042F360 /* ChatTextLabel.m */,
+			);
+			path = ChatMsgShowViews;
+			sourceTree = "<group>";
+		};
 		5D8AEE7E1CC6313500E7F9A4 /* NewTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,9 +742,11 @@
 		5DF4D8B51CC7854E009BF68A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				5D667D3A1CD8A9F50042F360 /* ChatExpressions.bundle */,
 				5DF4D8B61CC7856D009BF68A /* ChatViewController.h */,
 				5DF4D8B71CC7856D009BF68A /* ChatViewController.m */,
 				5DF4D8B81CC7856D009BF68A /* ChatViewController.xib */,
+				5D667D361CD8A95C0042F360 /* ChatMsgShowViews */,
 				5D074AC61CD09CBB006DBDFF /* ChatMsgEditViews */,
 			);
 			path = Chat;
@@ -838,12 +859,13 @@
 				5D8AEE891CC6315E00E7F9A4 /* OldTasksViewController.xib in Resources */,
 				5D17A6001CC9F26000CCCA01 /* LPBadgeView.bundle in Resources */,
 				5D0852181CC8D24D0040AA3F /* RegistViewController.xib in Resources */,
+				5D667D301CD843D80042F360 /* ChatPhotoView.xib in Resources */,
 				5D57233C1CB7A0DE0041643A /* TaskViewController.xib in Resources */,
 				5D074ACB1CD0AAF7006DBDFF /* ChatExpressionView.xib in Resources */,
 				5DF4D8BA1CC7856D009BF68A /* ChatViewController.xib in Resources */,
 				5D60A1791CB63F5B009B38F7 /* Assets.xcassets in Resources */,
+				5D667D3B1CD8A9F50042F360 /* ChatExpressions.bundle in Resources */,
 				C698E41F1CCF91CF00CA8D3F /* MineViewController.xib in Resources */,
-				5D73BA221CD34E470000D7E0 /* ChatExpressions.bundle in Resources */,
 				5D17A5F11CC9CA4B00CCCA01 /* ConversationCell.xib in Resources */,
 				5D129BA11CC4D97B005584E8 /* SettingViewController.xib in Resources */,
 				5D17A5EC1CC9C30800CCCA01 /* ConvListViewController.xib in Resources */,
@@ -882,6 +904,7 @@
 				5DF4D8B91CC7856D009BF68A /* ChatViewController.m in Sources */,
 				5D17A6341CCA185000CCCA01 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5D17A6311CCA185000CCCA01 /* UIImage+GIF.m in Sources */,
+				5D667D391CD8A9B20042F360 /* ChatTextLabel.m in Sources */,
 				5D17A6011CC9F26000CCCA01 /* LPBadgeView.m in Sources */,
 				5D2D14221CD1FE65003CE860 /* ChatInputTextView.m in Sources */,
 				5D129B961CC4D4F3005584E8 /* AlertView.m in Sources */,
@@ -904,6 +927,7 @@
 				5D17A62F1CCA185000CCCA01 /* SDWebImagePrefetcher.m in Sources */,
 				5D17A6321CCA185000CCCA01 /* UIImage+MultiFormat.m in Sources */,
 				5D17A62A1CCA185000CCCA01 /* SDWebImageCompat.m in Sources */,
+				5D667D2E1CD843820042F360 /* ChatPhotoView.m in Sources */,
 				5DF6971B1CC0BCDD001C9921 /* BasicButton.m in Sources */,
 				5D6107B91CBCC425002C35E5 /* MainTabBarController.m in Sources */,
 				5D8AEE831CC6314A00E7F9A4 /* NewTasksViewController.m in Sources */,

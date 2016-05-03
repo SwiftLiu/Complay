@@ -10,11 +10,12 @@
 #import "MsgTool.h"
 #import "ChatInputTextView.h"
 #import "ChatExpressionView.h"
+#import "ChatPhotoView.h"
 
 #define BottomViewBottomNormal -200.0l
 #define BottomViewBottomSelected 0.0l
 
-@interface ChatViewController ()<UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChatExpressionViewDelegate>
+@interface ChatViewController ()<UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChatExpressionViewDelegate, ChatPhotoViewDelegate>
 {
     __weak IBOutlet UITableView *msgTableView;
     
@@ -80,9 +81,6 @@
     
     msgTextView.delegate = self;
     
-#pragma mark 测试临时代码*****************************
-    msgTextView.text = @"大道东熬到苹果www.baidu.com绕感觉的\uEEA0打打速度的所\uEEA0发sdf阿斯撒asdf18382015370tyje";
-#pragma mark
 }
 
 //键盘高度变化时
@@ -188,7 +186,10 @@
         }
             break;
         case 12: {//图片
-            
+            ChatPhotoView *pView = [ChatPhotoView photoView];
+            pView.frame = bottomEditView.bounds;
+            pView.delegate = self;
+            [bottomEditView addSubview:pView];
         }
             break;
         case 13: {//相机
@@ -213,42 +214,52 @@
 }
 
 
-#pragma mark - 发送消息
-//发送文本消息
+#pragma mark - 发送文本消息
 - (void)sendTextMsg
 {
-    //创建BmobIMTextMessage对象
-    BmobIMTextMessage *message = [BmobIMTextMessage messageWithText:msgTextView.text attributes:nil];
-    message.conversationType =  BmobIMConversationTypeSingle;//单聊
-    message.createdTime = (uint64_t)([[NSDate date] timeIntervalSince1970] * 1000);
-    message.updatedTime = message.createdTime;
+    NSString *text = msgTextView.text;
+    if (text && text.length) {
+        //创建BmobIMTextMessage对象
+        BmobIMTextMessage *message = [BmobIMTextMessage messageWithText:text attributes:nil];
+        message.conversationType =  BmobIMConversationTypeSingle;//单聊
+        message.createdTime = (uint64_t)([[NSDate date] timeIntervalSince1970] * 1000);
+        message.updatedTime = message.createdTime;
+        
+        //会话
+        [self.conversation sendMessage:message completion:^(BOOL isSuccessful, NSError *error) {
+            NSLog(@"发送%@：%@", isSuccessful?@"成功":@"失败", message.content);
+        }];
+    }
+}
+
+
+
+#pragma mark - <ChatPhotoViewDelegate> 发送图片消息
+- (void)chatPhotoViewDidSendPhotos:(NSArray<UIImage *> *)photos
+{
     
-    //会话
-    [self.conversation sendMessage:message completion:^(BOOL isSuccessful, NSError *error) {
-        NSLog(@"发送%@：%@", isSuccessful?@"成功":@"失败", message.content);
-    }];
 }
 
 
 
-
-
-#pragma mark - <ChatExpressionViewDelegate>
-- (void)didSelectedExpressionIndex:(int)index
-{
-    [msgTextView insertExpressionIndex:index];
-}
-
-- (void)didClickDeleteButton
-{
-    [msgTextView deleteAExpression];
-}
-
-- (void)didClickSendButton
+#pragma mark - <ChatExpressionViewDelegate> 发送表情
+- (void)chatExpressionViewDidClickSendButton
 {
     [self sendTextMsg];
     msgTextView.text = nil;
 }
+
+- (void)chatExpressionViewDidSelectedExpressionIndex:(int)index
+{
+    [msgTextView insertExpressionIndex:index];
+}
+
+- (void)chatExpressionViewDidClickDeleteButton
+{
+    [msgTextView deleteAExpression];
+}
+
+
 
 
 #pragma mark - <UITextViewDelegate>
@@ -304,3 +315,18 @@
 }
 
 @end
+
+
+
+//表情
+NSAttributedString *ChatExpression(unichar exprChar, CGFloat size) {
+    //表情icon名
+    static NSString *ChatExprImgName = @"ChatExpressions.bundle/chat_expr_";
+    int index = exprChar - ChatExprMinUnicode + 1;
+    NSString *exprName = [NSString stringWithFormat:@"%@%04d", ChatExprImgName, index];
+    //表情富文本
+    NSTextAttachment *exprAtta = [NSTextAttachment new];
+    exprAtta.bounds = CGRectMake(0, -3, size, size);
+    exprAtta.image = [UIImage imageNamed:exprName];
+    return [NSAttributedString attributedStringWithAttachment:exprAtta];
+}

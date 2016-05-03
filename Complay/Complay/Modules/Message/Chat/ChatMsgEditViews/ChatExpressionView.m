@@ -8,6 +8,7 @@
 
 #import "ChatExpressionView.h"
 #import "ChatInputTextView.h"
+#import "ChatViewController.h"
 
 const NSUInteger expressionCount = 20;
 
@@ -40,8 +41,8 @@ static NSString *deleCellID = @"collectionDeleteCellId";
 
 //发送
 - (IBAction)sendButtonPressed:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(didClickSendButton)]) {
-        [self.delegate didClickSendButton];
+    if ([self.delegate respondsToSelector:@selector(chatExpressionViewDidClickSendButton)]) {
+        [self.delegate chatExpressionViewDidClickSendButton];
     }
 }
 
@@ -62,7 +63,8 @@ static NSString *deleCellID = @"collectionDeleteCellId";
     //表情cell
     if (indexPath.row < expressionCount) {
         ChatExpressionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:exprCellID forIndexPath:indexPath];
-        cell.emojLabel.attributedText = ExpressionAt((int)indexPath.row, cell.emojLabel.font.pointSize);
+        unichar exprChar = (int)indexPath.row + ChatExprMinUnicode;
+        cell.emojLabel.attributedText = ChatExpression(exprChar, cell.emojLabel.font.pointSize);
         return cell;
     }
     //删除cell
@@ -77,13 +79,13 @@ static NSString *deleCellID = @"collectionDeleteCellId";
 {
     //添加表情
     if (indexPath.row < expressionCount) {
-        if ([self.delegate respondsToSelector:@selector(didSelectedExpressionIndex:)]) {
-            [self.delegate didSelectedExpressionIndex:(int)indexPath.row];
+        if ([self.delegate respondsToSelector:@selector(chatExpressionViewDidSelectedExpressionIndex:)]) {
+            [self.delegate chatExpressionViewDidSelectedExpressionIndex:(int)indexPath.row];
         }
     }
     //删除
-    else if ([self.delegate respondsToSelector:@selector(didClickDeleteButton)]) {
-        [self.delegate didClickDeleteButton];
+    else if ([self.delegate respondsToSelector:@selector(chatExpressionViewDidClickDeleteButton)]) {
+        [self.delegate chatExpressionViewDidClickDeleteButton];
     }
 }
 
