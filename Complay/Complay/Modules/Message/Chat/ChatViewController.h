@@ -19,6 +19,5 @@
 
 #pragma mark - 表情管理
 #define ChatExprMinUnicode 0xEEA0
-
 ///获取表情
 NSAttributedString *ChatExpression(unichar exprChar, CGFloat size);

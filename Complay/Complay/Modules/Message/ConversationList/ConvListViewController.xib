@@ -76,7 +76,7 @@
                 <constraint firstAttribute="trailing" secondItem="EKN-Nu-9fh" secondAttribute="trailing" id="Zlx-1h-Kr9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="182" y="288"/>
+            <point key="canvasLocation" x="309" y="276"/>
         </view>
     </objects>
 </document>

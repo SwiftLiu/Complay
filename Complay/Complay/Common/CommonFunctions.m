@@ -110,14 +110,14 @@ UIColor *ColorGray(CGFloat gray) {
 
 
 #pragma mark - 数字
-///将较大数字转化为软文, 如数字 12400 转化为 “1.2万”
+///将较大数字转化为软文, 如数字 12400 转化为 “1.2W”
 NSString *StringFromNumber(NSInteger num) {
     if (num<10000) {
         return [NSString stringWithFormat:@"%lu", MAX(0, num)];
-    }else if (num<100000000) {
-        return [NSString stringWithFormat:@"%.1lf万", num/10000.0];
+    }else if (num<10000000) {
+        return [NSString stringWithFormat:@"%.1lfW", num/10000.0];
     }else {
-        return [NSString stringWithFormat:@"%.2lf亿", num/10000.00];
+        return [NSString stringWithFormat:@"%.2lfKW", num/10000000.00];
     }
 }
 

@@ -15,7 +15,10 @@
 #define BottomViewBottomNormal -200.0l
 #define BottomViewBottomSelected 0.0l
 
-@interface ChatViewController ()<UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChatExpressionViewDelegate, ChatPhotoViewDelegate>
+//列表cell标识
+static NSString * const ChatTextCellId = @"ChatTextCellId";
+
+@interface ChatViewController ()<UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChatExpressionViewDelegate, ChatPhotoViewDelegate>
 {
     __weak IBOutlet UITableView *msgTableView;
     
@@ -32,6 +35,8 @@
     BOOL hideKeyboardShouldAnimate;
     ///输入框是否正在编辑
     BOOL msgTextViewEditing;
+    ///数据源
+    NSMutableArray <BmobIMMessage*> *msgsSource;
 }
 @end
 
@@ -58,7 +63,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initView];
+    [self initViewAndData];
     [self registNotifications];
 }
 
@@ -73,7 +78,7 @@
 
 
 //界面处理
-- (void)initView
+- (void)initViewAndData
 {
     hideKeyboardShouldAnimate = YES;
     
@@ -81,6 +86,10 @@
     
     msgTextView.delegate = self;
     
+    msgsSource = [NSMutableArray array];
+    
+    //获取历史记录
+    [self addMoreHistoryMsgs];
 }
 
 //键盘高度变化时
@@ -100,12 +109,23 @@
 }
 
 #pragma mark - 辅助方法
-//滚动到底部
-- (void)scrollToBottom
+//插入cell
+- (void)insertRowsAtIndex:(NSInteger)index
 {
-    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messagesArray.count-1 inSection:0];
-    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    //    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    if (index>0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [msgTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }else{
+        [msgTableView reloadData];
+    }
+}
+
+//滚动到指定行
+- (void)scrollToRow:(NSInteger)row
+{
+    NSInteger index = MAX(MIN(row, msgsSource.count-1), 0);
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [msgTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 //BottomView高度变化动画
@@ -120,7 +140,16 @@
     }];
 }
 
-
+//添加更多消息
+- (void)addMoreHistoryMsgs
+{
+    NSArray *msgs = [self.conversation queryMessagesWithMessage:[msgsSource firstObject] limit:20];
+    NSMutableArray *messages = [NSMutableArray arrayWithArray:msgs];
+    [messages addObjectsFromArray:msgsSource];
+    msgsSource = messages;
+    [msgTableView reloadData];
+    [self scrollToRow:msgs.count];
+}
 
 
 #pragma mark - 接收到新消息
@@ -130,10 +159,11 @@
     if (message.extra[KEY_IS_TRANSIENT] && [message.extra[KEY_IS_TRANSIENT] boolValue]) {
         return;
     }
-    
+    //添加
     if ([message.fromId isEqualToString:self.conversation.conversationId]) {
-        //        [self.messagesArray addObject:tmpMessage];
-        //        [self scrollToBottom];
+        [msgsSource addObject:message];
+        [self insertRowsAtIndex:msgsSource.count-1];
+        [self scrollToRow:msgsSource.count-1];
     }
 }
 
@@ -214,7 +244,8 @@
 }
 
 
-#pragma mark - 发送文本消息
+#pragma mark - 消息发送
+#pragma mark ①发送文本消息
 - (void)sendTextMsg
 {
     NSString *text = msgTextView.text;
@@ -234,7 +265,7 @@
 
 
 
-#pragma mark - <ChatPhotoViewDelegate> 发送图片消息
+#pragma mark ②发送图片消息 <ChatPhotoViewDelegate>
 - (void)chatPhotoViewDidSendPhotos:(NSArray<UIImage *> *)photos
 {
     
@@ -242,7 +273,7 @@
 
 
 
-#pragma mark - <ChatExpressionViewDelegate> 发送表情
+#pragma mark ③发送表情 <ChatExpressionViewDelegate>
 - (void)chatExpressionViewDidClickSendButton
 {
     [self sendTextMsg];
@@ -259,6 +290,49 @@
     [msgTextView deleteAExpression];
 }
 
+
+#pragma mark - <UITableViewDataSource, UITabBarDelegate>协议
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [msgsSource count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ChatTextCellId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:ChatTextCellId];
+    }
+    BmobIMMessage *msgModel = [msgsSource objectAtIndex:indexPath.row];
+    cell.textLabel.text = msgModel.fromId;
+    cell.detailTextLabel.text = msgModel.content;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return .5;
+}
 
 
 
